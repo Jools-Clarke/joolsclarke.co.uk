@@ -6,20 +6,10 @@
   <title>Jools Clarke | Astro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* Outer body */
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #0e1a2b;
-      display: flex;
-      justify-content: center;
-      padding: 40px 20px;
-      color: var(--text-color);
-    }
 
-    /* Theme variables inside container */
     :root {
       --container-bg: #fdf6e3;
+      --body-bg: #f5e9c8;
       --text-color: #586e75;
       --card-bg: #ffffff;
       --shadow-color: rgba(0, 0, 0, 0.1);
@@ -33,6 +23,7 @@
 
     [data-theme="dark"] {
       --container-bg: #0e1a2b;
+      --body-bg: #0e1a2b;
       --text-color: #bfbfdb;
       --card-bg: #1c2b3a;
       --shadow-color: rgba(230, 218, 255, 0.1);
@@ -43,6 +34,17 @@
       --accent-5: #4677aa;
       --accent-6: #8a7fc4;
     }
+        /* Outer body */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--body-bg); /* ← update this line */
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      color: var(--text-color);
+    }
+
 
     .container {
       background: var(--container-bg);
@@ -138,36 +140,40 @@
     <div class="subheading">Hi! I am a PhD student at UCL in London. My primary research interests are <b>machine learning</b> and <b>exoplanet atmospheres</b>. I am currently working with the upcoming the ESA Ariel Space Telescope to finalise data processing pipelines for the mission launch in 2029! See my recent work and get in touch with me below!</div>
     <div class="link-container">
     
-          <a href="https://arxiv.org/abs/2412.02328" class="link-box accent-5" target="_blank">
+    
+      <a href="https://arxiv.org/abs/2412.02328" class="link-box accent-1" target="_blank">
         <h2>NeurIPS 2024: Efficient Model Compression Techniques with FishLeg</h2>
-        <p>Read the full paper here.</p>
+        <p>Get the full PDF of my latest paper on ArXiv.</p>
       </a>
 
-      <a href="https://www.ucl.ac.uk/data-intensive-science-industry/research-projects/2025/feb/jools-clarke" class="link-box accent-3" target="_blank">
+
+      <a href="https://www.ucl.ac.uk/data-intensive-science-industry/research-projects/2025/feb/jools-clarke" class="link-box accent-2" target="_blank">
         <h2>UCL Profile</h2>
-        <p>See what I am up to at UCL and keep up with my PhD progress</p>
+        <p>See what I am up to at UCL and keep up with my PhD progress.</p>
       </a>
 
-      <a href="https://github.com/jools-clarke" class="link-box accent-4" target="_blank">
+
+      <a href="https://github.com/jools-clarke" class="link-box accent-3" target="_blank">
         <h2>GitHub</h2>
         <p>Check out my projects and code.</p>
       </a>
 
 
-      
-      <a href="https://bsky.app/profile/jools-36.bsky.social" class="link-box accent-1" target="_blank">
+      <a href="https://bsky.app/profile/jools-36.bsky.social" class="link-box accent-4" target="_blank">
         <h2>Bluesky</h2>
         <p>Follow me for <i>semi</i> regular updates and thoughts, and to see what my colleagues and I get up to.</p>
       </a>
       
-      <a href="https://www.linkedin.com/in/jools-clarke-b82588167/" class="link-box accent-2" target="_blank">
+      
+      <a href="https://www.linkedin.com/in/jools-clarke-b82588167/" class="link-box accent-5" target="_blank">
         <h2>LinkedIn</h2>
         <p>Or you can connect with me professionally, I guess...</p>
       </a>
 
+
       <a href="mailto:jools.clarke.23@ucl.ac.uk" class="link-box accent-6" target="_blank">
-        <h2>Email</h2>
-        <p>Get in touch with me directly! <i>Apart from you John from Cleethorpes. I <b>don't</b> believe that you've disproved general relativity and I <b>don't</b> want to collaborate. Please stop emailing me.</i></p>
+        <h2>Email me</h2>
+        <p>Get in touch with me directly! <i> --Apart from you Mark from Cleethorpes. I <b>don't</b> believe that you've disproved general relativity and I <b>don't</b> want to collaborate. Please stop emailing me.</i></p>
       </a>
     </div>
   </div>
