@@ -179,13 +179,13 @@
     const toggleIcon = document.querySelector('.toggle-theme');
 
     root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-    toggleIcon.textContent = prefersDark ? '☉' : '☾';
+    toggleIcon.textContent = prefersDark ? '☼' : '☾';
 
     function toggleTheme() {
       const current = root.getAttribute('data-theme');
       const isDark = current === 'dark';
       root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      toggleIcon.textContent = isDark ? '☾' : '☉';
+      toggleIcon.textContent = isDark ? '☾' : '☼';
     }
   </script>
 </body>
