@@ -1,48 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Jools Clarke | Astrophysics </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Jools Clarke | Astro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    /* Outer body */
     body {
       margin: 0;
       font-family: sans-serif;
-      background: #f0f4f8;
+      background-color: #0e1a2b;
       display: flex;
       justify-content: center;
+      padding: 40px 20px;
+      color: var(--text-color);
+    }
+
+    /* Theme variables inside container */
+    :root {
+      --container-bg: #fdf6e3;
+      --text-color: #586e75;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --accent-1: #cb4b16;
+      --accent-2: #b58900;
+      --accent-3: #859900;
+      --accent-4: #2aa198;
+      --accent-5: #268bd2;
+      --accent-6: #6c71c4;
+    }
+
+    [data-theme="dark"] {
+      --container-bg: #0e1a2b;
+      --text-color: #bfbfdb;
+      --card-bg: #1c2b3a;
+      --shadow-color: rgba(230, 218, 255, 0.1);
+      --accent-1: #935047;
+      --accent-2: #9b7b1c;
+      --accent-3: #728f3f;
+      --accent-4: #2e8582;
+      --accent-5: #4677aa;
+      --accent-6: #8a7fc4;
+    }
+
+    .container {
+      background: var(--container-bg);
+      color: var(--text-color);
+      padding: 40px 30px;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px var(--shadow-color);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
     }
 
     h1 {
-      margin-bottom: 20px;
-      color: #333;
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .toggle-theme {
+      cursor: pointer;
+      font-size: 1.5em;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .toggle-theme:hover {
+      transform: rotate(20deg);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 10px 0 20px;
+    }
+
+    .subheading {
+      margin-bottom: 30px;
+      font-size: 1.1em;
+      color: var(--text-color);
     }
 
     .link-container {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      max-width: 400px;
-      width: 90%;
     }
 
     .link-box {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 12px;
       padding: 20px;
       text-decoration: none;
-      color: #333;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      color: var(--text-color);
+      box-shadow: 0 4px 6px var(--shadow-color);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border-left: 6px solid #4f46e5; /* Customize color */
     }
 
     .link-box:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 12px var(--shadow-color);
     }
 
     .link-box h2 {
@@ -53,19 +116,77 @@
     .link-box p {
       margin: 0;
       font-size: 0.95em;
-      color: #555;
     }
+
+    .accent-1 { border-left: 6px solid var(--accent-1); }
+    .accent-2 { border-left: 6px solid var(--accent-2); }
+    .accent-3 { border-left: 6px solid var(--accent-3); }
+    .accent-4 { border-left: 6px solid var(--accent-4); }
+    .accent-5 { border-left: 6px solid var(--accent-5); }
+    .accent-6 { border-left: 6px solid var(--accent-6); }
   </style>
 </head>
 <body>
-  <h1>Jools Clarke</h1>
-  <div class="link-container">
+  <div class="container">
+    <div class="header">
+      <h1>Jools Clarke -</h1>
+      <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
+    </div>
 
-    <a href="https://www.ucl.ac.uk/data-intensive-science-industry/research-projects/2025/feb/jools-clarke" class="link-box" target="_blank">
-      <h2>Find me at UCL</h2>
-      <p>Check out my PhD progress and updates on the UCL site</p>
-    </a>
+    <hr />
+    <div class="subheading">Welcome! Here are my links to research, social media, and more.</div>
 
+    <div class="link-container">
+    
+          <a href="https://arxiv.org/abs/2412.02328" class="link-box accent-5" target="_blank">
+        <h2>NeurIPS 2024: Efficient Model Compression Techniques with FishLeg</h2>
+        <p>Read the full paper here.</p>
+      </a>
+
+      <a href="https://www.ucl.ac.uk/data-intensive-science-industry/research-projects/2025/feb/jools-clarke" class="link-box accent-3" target="_blank">
+        <h2>UCL Profile</h2>
+        <p>See what I am up to at UCL and keep up with my PhD progress</p>
+      </a>
+
+      <a href="https://github.com/jools-clarke" class="link-box accent-4" target="_blank">
+        <h2>GitHub</h2>
+        <p>Check out my projects and code.</p>
+      </a>
+
+
+      
+      <a href="https://bsky.app/profile/jools-36.bsky.social" class="link-box accent-1" target="_blank">
+        <h2>Bluesky</h2>
+        <p>Follow me for <i>semi</i> regular updates and thoughts, and to see what my colleagues and I get up to.</p>
+      </a>
+      
+      <a href="https://www.linkedin.com/in/jools-clarke-b82588167/" class="link-box accent-2" target="_blank">
+        <h2>LinkedIn</h2>
+        <p>Or you can connect with me professionally, I guess...</p>
+      </a>
+
+      <a href="mailto:jools.clarke.23@ucl.ac.uk" class="link-box accent-6" target="_blank">
+        <h2>Email</h2>
+        <p>Get in touch with me directly! <i>Apart from you John from Cleethorpes. I <b>don't</b> believe that you've disproved general relativity and I <b>don't</b> want to collaborate. Please stop emailing me.</i></p>
+      </a>
+    </div>
   </div>
+
+  <script>
+    // Set initial theme based on system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const root = document.documentElement;
+    const toggleIcon = document.querySelector('.toggle-theme');
+
+    root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    toggleIcon.textContent = prefersDark ? '☉' : '☾';
+
+    function toggleTheme() {
+      const current = root.getAttribute('data-theme');
+      const isDark = current === 'dark';
+      root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      toggleIcon.textContent = isDark ? '☾' : '☉';
+    }
+  </script>
 </body>
 </html>
