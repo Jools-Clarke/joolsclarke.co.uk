@@ -47,10 +47,12 @@
 
 
     .container {
+      position: relative; /* needed for z-index to work */
+  	  z-index: 1; /* higher than background */
       background: var(--container-bg);
       color: var(--text-color);
       padding: 40px 30px;
-      max-width: 700px;
+      max-width: 1300px;
       width: 100%;
       border-radius: 10px;
       box-shadow: 0 0 20px var(--shadow-color);
@@ -127,18 +129,122 @@
     .accent-4 { border-left: 6px solid var(--accent-4); }
     .accent-5 { border-left: 6px solid var(--accent-5); }
     .accent-6 { border-left: 6px solid var(--accent-6); }
+    
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Split into two columns on wider screens */
+    @media (min-width: 800px) {
+      .main-content {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .bio {
+        flex: 1;
+        margin-right: 30px;
+      }
+
+      .link-container {
+        flex: 1.2;
+      }
+    }
+    /* Default: narrow view */
+    .full-name {
+      display: none;
+    }
+    .short-name {
+      display: inline;
+    }
+
+    /* On wide viewports, show fancy version */
+    @media (min-width: 500px) {
+      .full-name {
+        display: inline;
+      }
+      .short-name {
+        display: none;
+      }
+    }
+    .profile-photo {
+      width: 50%;
+      max-width: 100px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      object-fit: cover;
+      object-position: top;
+      border: 4px solid var(--text-color);
+    }
+    
+    .background-svgs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Makes sure clicks pass through */
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-svg {
+      position: absolute;
+      z-index: -1;
+      height: auto;
+      opacity: 0.08;
+      filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+      transition: filter 0.3s ease;
+      fill: var(--text-color);
+    }
+    [data-theme="dark"] .bg-svg {
+      filter: invert(100%);
+      opacity: 0.4;
+    }
+
+    .ligo  { bottom: 30%; left: 5%; width: 210px;}
+    .desi  { bottom: 3%; left: 40%; width: 100px;}
+    .juice { top: 30%; left: 30%; width: 200px;}
+    .ariel { top: 5%; left: 10%; width: 130px;}
   </style>
 </head>
 <body>
+
   <div class="container">
     <div class="header">
-      <h1>☆｡⋆ Jools Clarke ⋆°★</h1>
+    
+        <div class="background-svgs">
+        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ligo.svg" class="bg-svg ligo" alt="" />
+        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/desi.svg" class="bg-svg desi" alt="" />
+        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/juice.svg" class="bg-svg juice" alt="" />
+        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ariel.svg" class="bg-svg ariel" alt="" />
+      </div>
+    
+    
+      <h1>
+        <span class="full-name">☆｡⋆ Jools Clarke ⋆°★</span>
+        <span class="short-name">Jools<br>Clarke</span>
+      </h1>
       <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
     </div>
 
     <hr />
-    <div class="subheading">Hi! I am a PhD student at UCL in London. My primary research interests are <b>machine learning</b> and <b>exoplanet atmospheres</b>. I am currently working with the upcoming the ESA Ariel Space Telescope to finalise data processing pipelines for the mission launch in 2029! See my recent work and get in touch with me below!</div>
-    <div class="link-container">
+
+    <!-- New wrapper -->
+    <div class="main-content">
+      <div class="bio">
+      	<img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/profile.jpg" alt="Jools Clarke" class="profile-photo" />
+        <div class="subheading">
+          Hi! I am a PhD student at UCL in London. My primary research interests are <b>machine learning</b> and <b>exoplanet atmospheres</b>. I am currently working with the upcoming the ESA Ariel Space Telescope to finalise data processing pipelines for the mission launch in 2029! See my recent work and get in touch with me below!
+        </div>
+      </div>
+
+      <div class="link-container">
     
     
       <a href="https://arxiv.org/abs/2412.02328" class="link-box accent-1" target="_blank">
@@ -194,5 +300,7 @@
       toggleIcon.textContent = isDark ? '☾' : '☼';
     }
   </script>
+  
+  
 </body>
 </html>
