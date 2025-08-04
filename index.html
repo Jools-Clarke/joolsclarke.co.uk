@@ -231,68 +231,7 @@
     .desi  { bottom: 3%; right: 5%; width: 100px;}
     .juice { top: 30%; right: 5%; width: 200px;}
     .ariel { top: 5%; left: 5%; width: 130px;}
-    
-    .exoplanet-counter {
-      text-align: left;
-      margin: 40px 0 20px;
-      color: var(--accent-2);
-      font-size: 0.8em;
-    }
-
-    .exoplanet-counter h2 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      color: var(--accent-2);
-      letter-spacing: 1px;
-    }
-
-    /* Flipboard-style container */
-    #counter {
-      display: inline-flex;
-      background: var(--container-bg);
-      border-radius: 50px;
-      padding: 10px 40px;
-      box-shadow: 0 6px 20px var(--shadow-color);
-    }
-
-    /* Each digit */
-    .digit {
-      background: linear-gradient(145deg, #f0e1bb, #f5e9c8);
-      color: var(--accent-1);
-      font-size: 2em;
-      width: 42px;
-      height: 60px;
-      margin: 0 4px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      box-shadow:
-        inset 0 -2px 4px rgba(0, 0, 0, 0.1),
-        0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out;
-      
-    }
-
-    [data-theme="dark"] .exoplanet-counter h2 {
-      color: var(--accent-5);
-    }
-
-    [data-theme="dark"] #counter {
-      background: var(--card-bg);
-      box-shadow: 0 6px 20px var(--shadow-color);
-    }
-
-    [data-theme="dark"] .digit {
-      background: linear-gradient(145deg, #1c2b3a, #0e1a2b); 
-      color: var(--accent-1);
-      box-shadow:
-        inset 0 -2px 4px --shadow-color,
-        0 2px 4px --shadow-color;
-    }
-
-
+  
   </style>
 </head>
 <body>
@@ -320,19 +259,6 @@
           Hi! I am a PhD student at UCL in London. My primary research interests are <b>machine learning</b> and <b>exoplanet atmospheres</b>. I am currently working with the upcoming the ESA Ariel Space Telescope to finalise data processing pipelines for the mission launch in 2029! See my recent work and get in touch with me below!
         </div>
 
-        <div class="exoplanet-counter">
-          
-          <div id="counter">
-          	<h2>Confirmed<br>Exoplanets ​ ​</h2>
-            <span class="digit">5</span>
-            <span class="digit">9</span>
-            <span class="digit">6</span>
-            <span class="digit">7</span>
-          </div>
-          <div class=right-justified>
-          	<p>as of 03/08/25</p>
-          </div>
-        </div>
       </div>
 
       <div class="link-container">
