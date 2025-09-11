@@ -343,19 +343,24 @@
   </div>
 
 <script>
-  // Set initial theme based on system preference
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const root = document.documentElement;
   const toggleIcon = document.querySelector('.toggle-theme');
 
-  root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-  toggleIcon.textContent = prefersDark ? '☼' : '☾';
+  // Load saved preference or system default
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+  root.setAttribute('data-theme', initialTheme);
+  toggleIcon.textContent = initialTheme === 'dark' ? '☼' : '☾';
 
   function toggleTheme() {
     const current = root.getAttribute('data-theme');
     const isDark = current === 'dark';
-    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    toggleIcon.textContent = isDark ? '☾' : '☼';
+    const newTheme = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', newTheme);
+    toggleIcon.textContent = newTheme === 'dark' ? '☼' : '☾';
+    localStorage.setItem('theme', newTheme);
   }
 </script>
   
