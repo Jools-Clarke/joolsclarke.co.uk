@@ -231,6 +231,24 @@
     .desi  { bottom: 3%; right: 5%; width: 100px;}
     .juice { top: 30%; right: 5%; width: 200px;}
     .ariel { top: 5%; left: 5%; width: 130px;}
+    
+    .perturb-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .perturb-image {
+      max-width: 200px;
+      width: 80%;
+      height: auto;
+      margin-bottom: 10px;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .perturb-image:hover {
+      transform: translateY(-5px);
+    }
   
   </style>
 </head>
@@ -258,7 +276,18 @@
         <div class="subheading">
           Hi! I am a PhD student at UCL in London. My primary research interests are <b>machine learning</b> and <b>exoplanet atmospheres</b>. I am currently working with the upcoming the ESA Ariel Space Telescope to finalise data processing pipelines for the mission launch in 2029! See my recent work and get in touch with me below!
         </div>
-
+        <!-- Divider -->
+  		<hr />
+        <div class="perturb-section">
+          <a href="https://www.joolsclarke.co.uk/perturb">
+            <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" 
+                 alt="Perturbed Framework" 
+                 class="perturb-image" />
+          </a>
+          <p>Perturb framework is coming soon, watch this space!</p>
+        </div>
+        <!-- Divider -->
+  		<hr />
       </div>
 
       <div class="link-container">
