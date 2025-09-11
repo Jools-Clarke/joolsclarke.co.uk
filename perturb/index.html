@@ -1,13 +1,398 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Perturb | Jools Clarke</title>
+  <title>Jools Clarke | Astro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+
+    :root {
+      --container-bg: #fdf6e3;
+      --body-bg: #f5e9c8;
+      --text-color: #586e75;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --accent-1: #cb4b16;
+      --accent-2: #b58900;
+      --accent-3: #859900;
+      --accent-4: #2aa198;
+      --accent-5: #268bd2;
+      --accent-6: #6c71c4;
+    }
+
+    [data-theme="dark"] {
+      --container-bg: #0e1a2b;
+      --body-bg: #0e1a2b;
+      --text-color: #bfbfdb;
+      --card-bg: #1c2b3a;
+      --shadow-color: rgba(230, 218, 255, 0.1);
+      --accent-1: #935047;
+      --accent-2: #9b7b1c;
+      --accent-3: #728f3f;
+      --accent-4: #2e8582;
+      --accent-5: #4677aa;
+      --accent-6: #8a7fc4;
+    }
+        /* Outer body */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--body-bg); /* ← update this line */
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      color: var(--text-color);
+    }
+
+
+    .container {
+      position: relative; /* needed for z-index to work */
+  	  z-index: 1; /* higher than background */
+      background: var(--container-bg);
+      color: var(--text-color);
+      padding: 40px 30px;
+      max-width: 1300px;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px var(--shadow-color);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    
+    .right-justified {
+      text-align: right;
+      font-size: 0.9em;
+      color: var(--text-color)
+    }
+
+    .toggle-theme {
+      cursor: pointer;
+      font-size: 1.5em;
+      user-select: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 6px 8px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .toggle-theme:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 6px var(--shadow-color);
+    }
+    
+
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 10px 0 20px;
+    }
+
+    .subheading {
+      margin-bottom: 30px;
+      font-size: 1.1em;
+      color: var(--text-color);
+    }
+
+    .link-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .link-box {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text-color);
+      box-shadow: 0 4px 6px var(--shadow-color);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .link-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 12px var(--shadow-color);
+    }
+
+    .link-box h2 {
+      margin: 0 0 5px;
+      font-size: 1.2em;
+    }
+
+    .link-box p {
+      margin: 0;
+      font-size: 0.95em;
+    }
+
+    .accent-1 { border-left: 6px solid var(--accent-1); }
+    .accent-2 { border-left: 6px solid var(--accent-2); }
+    .accent-3 { border-left: 6px solid var(--accent-3); }
+    .accent-4 { border-left: 6px solid var(--accent-4); }
+    .accent-5 { border-left: 6px solid var(--accent-5); }
+    .accent-6 { border-left: 6px solid var(--accent-6); }
+    
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Split into two columns on wider screens */
+    @media (min-width: 800px) {
+      .main-content {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .bio {
+        flex: 1;
+        margin-right: 30px;
+      }
+
+      .link-container {
+        flex: 1.2;
+      }
+    }
+    /* Default: narrow view */
+    .full-name {
+      display: none;
+    }
+    .short-name {
+      display: inline;
+    }
+
+    /* On wide viewports, show fancy version */
+    @media (min-width: 500px) {
+      .full-name {
+        display: inline;
+      }
+      .short-name {
+        display: none;
+      }
+    }
+    .profile-photo {
+      width: 50%;
+      max-width: 100px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      object-fit: cover;
+      object-position: top;
+      
+    }
+    
+    .background-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+    }
+
+    .background-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 40px;
+      width: 100%;
+      height: 100%;
+      justify-items: center;
+      align-items: center;
+      padding: 20px;
+      z-index: -1;
+    }
+
+    .bg-svg {
+      width: 100px;
+      height: auto;
+      opacity: 0.2;
+      fill: var(--text-color);
+      filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+      transition: filter 0.3s ease;
+    }
+
+    [data-theme="dark"] .bg-svg {
+      filter: invert(100%);
+      opacity: 0.4;
+    }
+
+    .ligo  { bottom: 20%; left: 5%; width: 210px;}
+    .desi  { bottom: 3%; right: 5%; width: 100px;}
+    .juice { top: 30%; right: 5%; width: 200px;}
+    .ariel { top: 5%; left: 5%; width: 130px;}
+    
+    .perturb-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .perturb-image {
+      max-width: 200px;
+      width: 80%;
+      height: auto;
+      margin-bottom: 10px;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .perturb-image:hover {
+      transform: translateY(-5px);
+    }
+    
+    .not-ready {
+      cursor: not-allowed;
+      opacity: 0.7;
+      transition: transform 0.2s;
+    }
+
+    .not-ready:hover {
+      animation: shake 0.3s;
+      animation-iteration-count: 1;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    
+    .home-link {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 1.8em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 6px 8px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .home-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 6px var(--shadow-color);
+    }
+    
+
+  </style>
 </head>
 <body>
-  <h1>Perturbed Framework</h1>
-  <p>Coming soon...</p>
-  <a href="/">← Back to Home</a>
+  <div class="background-wrapper">
+    <div class="background-grid">
+    <!-- nothing here, its added via js -->
+    </div>
+  </div>
+  <div class="container">
+    <div class="header">
+      <a href="https://joolsclarke.co.uk/" class="home-link" title="Go to homepage">◀︎</a>
+      <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
+    </div>
+
+    <hr />
+
+    <div class="main-content">
+    <!-- Left pane -->
+    <div class="bio">
+      <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb2.svg" 
+           alt="Perturb Logo" 
+           class="profile-photo" />
+      <div class="subheading">
+        The Perturb framework is under development. Check back here for updates as the project grows.
+      </div>
+
+      <!-- Divider -->
+      <hr />
+
+      <!-- Placeholder link box -->
+      <div class="link-container">
+        <div class="link-box accent-1 not-ready">
+          <h2>Perturb GitHub</h2>
+          <p>Repository coming soon...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right pane -->
+    <div class="link-container">
+      <div class="blog-post">
+        <h2>Perturb Framework</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placeholder text for future blog content about the Perturb framework.</p>
+        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" alt="Perturb Logo" style="width:100%;border-radius:12px;margin:20px 0;" />
+        <p>More placeholder content. This is where detailed discussion, figures, and updates about Perturb will be added.</p>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+<script>
+  // Set initial theme based on system preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const root = document.documentElement;
+  const toggleIcon = document.querySelector('.toggle-theme');
+
+  root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+  toggleIcon.textContent = prefersDark ? '☼' : '☾';
+
+  function toggleTheme() {
+    const current = root.getAttribute('data-theme');
+    const isDark = current === 'dark';
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    toggleIcon.textContent = isDark ? '☾' : '☼';
+  }
+</script>
+  
+<script>
+  const svgSources = [
+    { src: 'ligo.svg', size: 90 },
+    { src: 'desi.svg', size: 40 },
+    { src: 'juice.svg', size: 70 },
+    { src: 'ariel.svg', size: 50 }
+  ];
+
+  // Simple shuffle (Fisher-Yates)
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  const grid = document.querySelector('.background-grid');
+
+  // Generate shuffled SVGs and tile them
+  const total = 800;
+  for (let i = 0; i < total; i++) {
+    // Shuffle every full cycle for more variety
+    if (i % svgSources.length === 0) shuffle(svgSources);
+
+    const { src, size } = svgSources[i % svgSources.length];
+    const img = document.createElement('img');
+    img.src = `https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/${src}`;
+    img.className = 'bg-svg';
+    img.style.width = `${size}px`;
+    img.alt = '';
+    grid.appendChild(img);
+  }
+</script>
+  
 </body>
 </html>
