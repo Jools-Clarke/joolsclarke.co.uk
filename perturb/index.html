@@ -310,11 +310,10 @@
     <div class="main-content">
     <!-- Left pane -->
     <div class="bio">
-      <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb2.svg" 
-           alt="Perturb Logo" 
-           class="profile-photo" />
+      <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" alt="Perturb Logo" style="width:100%;border-radius:12px;margin:20px 0;" />
       <div class="subheading">
-        The Perturb framework is under development. Check back here for updates as the project grows.
+        <p>The Perturb framework is under development. We are currently finalising the paper, the draft copy of which will be on the arXiv as soon as it is submitted.</p>
+        <p>We will be open sourcing all the data and code alongside the official publication, so please check back, the repo will be linked below as soon as it is ready.</p>
       </div>
 
       <!-- Divider -->
@@ -332,15 +331,27 @@
     <!-- Right pane -->
     <div class="link-container">
       <div class="blog-post">
-        <h2>Perturb Framework</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placeholder text for future blog content about the Perturb framework.</p>
-        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" alt="Perturb Logo" style="width:100%;border-radius:12px;margin:20px 0;" />
-        <p>More placeholder content. This is where detailed discussion, figures, and updates about Perturb will be added.</p>
+        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb2.svg" 
+        alt="Perturb Logo" 
+        class="profile-photo" />
+        <h2>What is Perturb?</h2>
+        <p>Perturb is an interpretability framework for understanding the predictions made by machine learning retrievals. It is capable of calculating specific critical datapoints that the retrieval relies on, visualising non-linearities and anomalous model response, and overall providing confidence in model performance. Model inference is faster than that of SHAP, with increased stability in high-correlation data environments, and provides significantly greater model transparency than linear model interpretation methods.</p>
+        <hr />
+        <h2>I don't have a machine learning retrieval model, why should I care about Perturb?</h2>
+        <p>Perturb comes packaged with a pre-trained lightweight sample retrieval model, capable of retrieving molecular given observation data. This allows for fast (sub 1s) estimates of atmospheric abundances, with associated full posteriors, while traditional Bayesian retrievals tend to take orders of magnitude longer. The Perturb framework allows for further analysis of these to calculate specific critical datapoints that the retrieval is relying on, compare against expected feature locations and line lists, and assess the reliability of the model.</p>
+        <hr />
+        <h2>I want to use my JWST/HST/Ariel data, is this possible?</h2>
+        <p>The sample retrieval model was trained using simulated samples from an idealised hypothetical instrument in order to demonstrate the performance of Perturb without introducing any instrument bias, so you will not be able to drop your data directly in. However, we will include scripts to allow you to retrain the model to suit your required instrument (which is not as scary as it sounds, we promise!) and you can be predicting on your dataset with about 20 minutes of HPC training. The best bit about this is you can keep and reuse your trained model for any further analysis of different objects, with potentially no further training required. In future, we hope to provide pretrained examples for the major observing modes.</p>
+        <hr />
+        <h2>What is the point of retrieving simulated data?</h2>
+        <p>Retrieving simulated data is a standard way to validate an observation is viable before submitting an observation proposal. Committing to full Bayesian retrievals just to assess target viability can be a significant barrier to entry when trying to turn around a last minute telescope proposal. Perturb can not only save time and resources, but also provide additional information such as identifying loadbearing wavelength regions in the observation, and helping to assess which instruments and observing modes are most critical to a possible detection. This can help inform observation strategies, and ultimately lead to more accurate and reliable results when it comes to analysing actual exoplanet observations.</p>
+        <hr />
       </div>
     </div>
   </div>
 
   </div>
+
 
 <script>
   const root = document.documentElement;
