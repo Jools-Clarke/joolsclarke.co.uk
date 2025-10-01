@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jools Clarke | Conference Materials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Prevent indexing -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    :root {
+      --container-bg: #fdf6e3;
+      --body-bg: #f5e9c8;
+      --text-color: #586e75;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --accent-1: #cb4b16;
+      --accent-2: #b58900;
+      --accent-3: #a984ba;
+      --accent-4: #f5e9c8;
+    }
+    [data-theme="dark"] {
+      --container-bg: #0e1a2b;
+      --body-bg: #0e1a2b;
+      --text-color: #bfbfdb;
+      --card-bg: #1c2b3a;
+      --shadow-color: rgba(230, 218, 255, 0.1);
+      --accent-1: #935047;
+      --accent-2: #9b7b1c;
+      --accent-3: #a984ba;
+      --accent-4: #30143d;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--body-bg);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      color: var(--text-color);
+      min-height: 100vh;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      background: var(--container-bg);
+      color: var(--text-color);
+      padding: 40px 30px;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px var(--shadow-color);
+      text-align: center;
+    }
+    h1 { margin-top: 0; }
+
+    .toggle-theme {
+      cursor: pointer;
+      font-size: 1.5em;
+      user-select: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: inline-block;
+      float: right;
+    }
+    .toggle-theme:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 6px var(--shadow-color);
+    }
+
+    .link-box {
+      display: block;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 1.1em;
+      font-weight: bold;
+      box-shadow: 0 4px 6px var(--shadow-color);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .link-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 12px var(--shadow-color);
+    }
+    .accent-1 { border-left: 6px solid var(--accent-1); }
+    .accent-2 { border-left: 6px solid var(--accent-2); }
+    .accent-3 {
+      background: var(--accent-4);
+      border-left: 6px solid var(--accent-3);
+      font-size: 1.2em;
+  	  padding: 28px;
+	}
+
+
+    .background-wrapper {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+    }
+    .background-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 40px;
+      width: 100%; height: 100%;
+      justify-items: center; align-items: center;
+      padding: 20px;
+      z-index: -1;
+    }
+    .bg-svg {
+      width: 100px;
+      height: auto;
+      opacity: 0.2;
+      fill: var(--text-color);
+      filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+      transition: filter 0.3s ease;
+    }
+    [data-theme="dark"] .bg-svg {
+      filter: invert(100%);
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-wrapper">
+    <div class="background-grid"></div>
+  </div>
+
+  <div class="container">
+    <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
+    <h1>Conference Materials</h1>
+    <p>Download the <b>resources</b> from my presentation</p>
+    <a href="jools_clarke_slides.pptx" class="link-box accent-1" download>
+      Download Slides (PPTX)
+    </a>
+
+    <a href="jools_clarke_poster.pdf" class="link-box accent-2" download>
+      Download Poster (PDF)
+    </a>
+    <p>or, check out the rest of my website to see more of my <b>recent work</b> and to <b>get in touch</b>.</p>
+    <a href="https://www.joolsclarke.co.uk" class="link-box accent-3">
+      Go to homepage
+      
+  <script>
+    const root = document.documentElement;
+    const toggleIcon = document.querySelector('.toggle-theme');
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    root.setAttribute('data-theme', initialTheme);
+    toggleIcon.textContent = initialTheme === 'dark' ? '☼' : '☾';
+
+    function toggleTheme() {
+      const current = root.getAttribute('data-theme');
+      const isDark = current === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', newTheme);
+      toggleIcon.textContent = newTheme === 'dark' ? '☼' : '☾';
+      localStorage.setItem('theme', newTheme);
+    }
+  </script>
+
+  <script>
+    const svgSources = [
+      { src: 'ligo.svg', size: 90 },
+      { src: 'desi.svg', size: 40 },
+      { src: 'juice.svg', size: 70 },
+      { src: 'ariel.svg', size: 50 }
+    ];
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+    const grid = document.querySelector('.background-grid');
+    const total = 200;
+    for (let i = 0; i < total; i++) {
+      if (i % svgSources.length === 0) shuffle(svgSources);
+      const { src, size } = svgSources[i % svgSources.length];
+      const img = document.createElement('img');
+      img.src = `https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/${src}`;
+      img.className = 'bg-svg';
+      img.style.width = `${size}px`;
+      img.alt = '';
+      grid.appendChild(img);
+    }
+  </script>
+</body>
+</html>
