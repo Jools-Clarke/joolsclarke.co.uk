@@ -271,17 +271,26 @@
     }
 
     .perturb-image {
-      max-width: 200px;
-      width: 80%;
+      max-width: 160px;
       height: auto;
-      margin-bottom: 10px;
+      margin: 0 auto;
       transition: transform 0.2s ease;
       cursor: pointer;
     }
 
-    .perturb-image:hover {
+    .perturb-box:hover .perturb-image {
       transform: translateY(-5px);
     }
+    
+    .perturb-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+
   
   </style>
 </head>
@@ -312,12 +321,14 @@
         <!-- Divider -->
   		<hr />
         <div class="perturb-section">
-          <a href="https://www.joolsclarke.co.uk/perturb">
-            <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" 
-                 alt="Perturbed Framework" 
-                 class="perturb-image" />
+          <a href="https://www.joolsclarke.co.uk/perturb" class="link-box accent-3 perturb-box" target="_blank">
+            <img 
+              src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" 
+              alt="Perturb Framework"
+              class="perturb-image"
+            />
+            <p>See more about the Perturb framework</p>
           </a>
-          <p>See more about the Perturb framework</p>
         </div>
         <!-- Divider -->
   		<hr />
