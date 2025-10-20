@@ -289,6 +289,71 @@
       text-align: center;
       gap: 10px;
     }
+    
+    /* Conference Map preview box */
+    .conf-map-box {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      display: block;
+      text-decoration: none;
+      color: var(--text-color);
+      background: var(--card-bg);
+      box-shadow: 0 4px 6px var(--shadow-color);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .conf-map-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 12px var(--shadow-color);
+    }
+
+    /* Inner preview container */
+    .conf-map-preview {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 7.5px;
+    }
+
+    .conf-map-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(80%) saturate(0.5);
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .conf-map-box:hover img {
+      transform: scale(1.05);
+      filter: brightness(70%) saturate(1.1);
+    }
+
+    /* Text overlay */
+    .conf-map-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    }
+
+    .conf-map-overlay h3 {
+      margin: 0;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
+    .conf-map-overlay p {
+      margin: 5px 0 0 0;
+      font-size: 1em;
+      opacity: 0.9;
+    }
 
 
   
@@ -318,6 +383,23 @@
         <div class="subheading">
           Hi! I am a PhD student at UCL in London. My primary research interests are <b>machine learning</b> and <b>exoplanet atmospheres</b>. I am currently working with the upcoming ESA Ariel Space Telescope to finalise data processing pipelines for the mission launch in 2029. See my recent work and get in touch with me below.
         </div>
+        <hr />
+        
+        <!-- Conference Map Preview Link -->
+        <a href="https://joolsclarke.co.uk/conferences" class="link-box accent-4 conf-map-box" target="_blank">
+          <div class="conf-map-preview">
+            <img 
+              src="https://github.com/Jools-Clarke/joolsclarke.co.uk/blob/main/conferences/conference_preview.png?raw=true" 
+              alt="Conference Map Preview"
+            />
+            <div class="conf-map-overlay">
+              <h3>Conference Map</h3>
+              <p>See where I have been</p>
+            </div>
+          </div>
+        </a>
+
+        
         <!-- Divider -->
   		<hr />
         <div class="perturb-section">
