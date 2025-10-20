@@ -222,6 +222,22 @@
     height: 100%;
     width: 100%;
   }
+
+  .home-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.8em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 6px 8px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+
+  .home-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+  
 </style>
 </head>
 <body>
@@ -231,7 +247,7 @@
 
   <div class="container">
     <div class="header">
-      <h1>☆｡⋆ Conferences ⋆°★</h1>
+      <a href="https://joolsclarke.co.uk/" class="home-link" title="Go to homepage">◀︎</a>
       <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
     </div>
     <hr />
