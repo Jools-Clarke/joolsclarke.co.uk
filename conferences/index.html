@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jools Clarke | Conference and Summer School Map</title>
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Theme + Styles -->
+<style>
+  :root {
+    --container-bg: #fdf6e3;
+    --body-bg: #f5e9c8;
+    --text-color: #586e75;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-1: #cb4b16;
+    --accent-2: #b58900;
+    --accent-3: #859900;
+    --accent-4: #2aa198;
+    --accent-5: #268bd2;
+    --accent-6: #6c71c4;
+  }
+  [data-theme="dark"] {
+    --container-bg: #0e1a2b;
+    --body-bg: #0e1a2b;
+    --text-color: #bfbfdb;
+    --card-bg: #1c2b3a;
+    --shadow-color: rgba(230, 218, 255, 0.1);
+    --accent-1: #935047;
+    --accent-2: #9b7b1c;
+    --accent-3: #728f3f;
+    --accent-4: #2e8582;
+    --accent-5: #4677aa;
+    --accent-6: #8a7fc4;
+  }
+
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background: var(--body-bg);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    background: var(--container-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--shadow-color);
+    max-width: 1300px;
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  .toggle-theme {
+    cursor: pointer;
+    font-size: 1.5em;
+    user-select: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  .toggle-theme:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 15px 0 20px;
+  }
+
+  /* Layout */
+  .map-layout {
+    display: flex;
+    flex-direction: row;
+    height: 75vh;
+    gap: 20px;
+  }
+
+  #sidebar {
+    width: 320px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    overflow-y: auto;
+    padding: 15px;
+  }
+
+  #sidebar h2 {
+    text-align: center;
+    margin: 5px 0 15px;
+  }
+
+  #confList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .conf-item {
+    padding: 10px;
+    border-left: 6px solid var(--accent-5);
+    border-radius: 8px;
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .conf-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+  }
+
+  .conf-item.active {
+    border-left-color: var(--accent-3);
+    background: rgba(133, 153, 0, 0.12);
+  }
+
+  /* MADE 100% TRANSPARENT */
+  .conf-details {
+    display: none;
+    margin-top: 8px;
+    border-radius: 8px;
+    background: transparent; /* fully transparent so the parent tint shows */
+    padding: 0; 
+    color: var(--text-color);
+  }
+
+  .conf-item.active .conf-details {
+    display: block;
+  }
+
+  .conf-details img {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .conf-details p {
+    margin: 8px 0 0 0;
+    padding: 0 4px 8px 0;
+  }
+
+  #map {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px var(--shadow-color);
+  }
+
+  @media (max-width: 900px) {
+    .map-layout {
+      flex-direction: column;
+    }
+    #sidebar {
+      width: 100%;
+      height: 40vh;
+      order: 2;
+    }
+    #map {
+      order: 1;
+      height: 60vh;
+    }
+  }
+
+  /* Background pattern */
+  .background-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    display: grid;
+    place-items: center;
+  }
+  .background-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .bg-svg {
+    width: 100px;
+    height: auto;
+    opacity: 0.2;
+    fill: var(--text-color);
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    transition: filter 0.3s ease;
+  }
+  [data-theme="dark"] .bg-svg {
+    filter: invert(100%);
+    opacity: 0.4;
+  }
+
+  /* Basic leaflet container sizing (keeps attribution visible) */
+  .leaflet-container {
+    height: 100%;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="background-wrapper">
+    <div class="background-grid"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h1>☆｡⋆ Conferences ⋆°★</h1>
+      <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
+    </div>
+    <hr />
+
+    <div class="map-layout">
+      <div id="sidebar">
+        <h2>Conferences</h2>
+        <div id="confList"></div>
+      </div>
+      <div id="map"></div>
+    </div>
+  </div>
+
+<script>
+  // THEME TOGGLE + MAP THEME HOOK
+  const root = document.documentElement;
+  const toggleIcon = document.querySelector('.toggle-theme');
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', initialTheme);
+  toggleIcon.textContent = initialTheme === 'dark' ? '☼' : '☾';
+
+  function toggleTheme() {
+    const current = root.getAttribute('data-theme');
+    const newTheme = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', newTheme);
+    toggleIcon.textContent = newTheme === 'dark' ? '☼' : '☾';
+    localStorage.setItem('theme', newTheme);
+    setMapTheme(newTheme);
+  }
+</script>
+
+<script>
+  // BACKGROUND SVG GRID
+  const svgSources = [
+    { src: 'ligo.svg', size: 90 },
+    { src: 'desi.svg', size: 40 },
+    { src: 'juice.svg', size: 70 },
+    { src: 'ariel.svg', size: 50 }
+  ];
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  const grid = document.querySelector('.background-grid');
+  for (let i=0;i<400;i++){
+    if (i%svgSources.length===0) shuffle(svgSources);
+    const {src,size}=svgSources[i%svgSources.length];
+    const img=document.createElement('img');
+    img.src=`https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/${src}`;
+    img.className='bg-svg';
+    img.style.width=`${size}px`;
+    grid.appendChild(img);
+  }
+</script>
+
+<script>
+  // LEAFLET MAP SETUP WITH DYNAMIC DARK/LIGHT TILE LAYERS
+  const map = L.map('map', { preferCanvas: true, zoomControl: true }).setView([50, 10], 4);
+
+  // Light (default) - OpenStreetMap
+  const lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  });
+
+  // Dark tiles - CartoDB Dark Matter (widely used dark basemap)
+  const darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CartoDB'
+  });
+
+  // Start with the appropriate basemap depending on theme
+  function setMapTheme(theme) {
+    if (theme === 'dark') {
+      if (map.hasLayer(lightTiles)) map.removeLayer(lightTiles);
+      if (!map.hasLayer(darkTiles)) map.addLayer(darkTiles);
+    } else {
+      if (map.hasLayer(darkTiles)) map.removeLayer(darkTiles);
+      if (!map.hasLayer(lightTiles)) map.addLayer(lightTiles);
+    }
+  }
+
+  // initialize map layer from initial theme
+  setMapTheme(initialTheme);
+
+  const london = [51.5074, -0.1278];
+  const places = [
+    
+    { id: 'portugal2024', name: 'Ariel Consortium Meeting - Lisbon 2024', coords: [38.72, -9.139],
+      img: 'https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/lisbon24.png',
+      desc: 'Presented my machine learning retrieval methods to Ariel consortium & attended the early careers open discussion.' },
+    { id: 'leiden25', name: 'Ariel Consortium Meeting - Leiden 2025', coords: [52.1636, 4.4802],
+      img: '',
+      desc: 'Presented my interpretability methods to Ariel consortium & attended the early careers open discussion.' },
+    { id: 'frejus25', name: 'Ariel Summer School Fréjus 2025', coords: [43.4345, 6.7379],
+      img: '',
+      desc: 'Summer school on data reduction and retrieval techniques, with hands on component' },
+    { id: 'iceland25', name: 'BEACON Reykjavík 2025', coords: [64.1470, -21.9408],
+      img: '',
+      desc: 'Presented work on machine learning atmospheric retrievals and interpretability in the context of biosignature detection, and participated in crossdiciplinerary discussions with astrobiologists' },
+    { id: 'lake25', name: 'Exoplanets by the Lake 2025', coords: [47.9960, 11.1745],
+      img: '',
+      desc: 'Presented in depth session on my research into machine learning interpretability and uncertainity quantification, attended workshops on data reduction and retrieval methodologies and how to mitigate their inaccuracies. Also participated in data recovery hackathon style challenge.' },
+      { id: 'madrid2025',
+      name: 'Ariel Consortium Meeting - Madrid 2025',
+      coords: [40.4168, -3.7038],
+      img: '',
+      desc: 'Presented introduction to my PERTURB framework and lead discussions to gain community feedback' },
+  ];
+
+  const listContainer = document.getElementById('confList');
+  const markers = {};
+  let selectedId = null;
+
+  const londonMarker = L.circleMarker(london, {
+    radius: 8, color: '#aaaaaa', fillColor: '#aaaaa', fillOpacity: 1
+  }).addTo(map).bindPopup('<b>London (Home Base)</b>');
+
+  // Build sidebar and markers
+  places.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'conf-item';
+    div.id = `item-${p.id}`;
+    div.innerHTML = `<strong>${p.name}</strong>
+      <div class="conf-details">
+        <img src="${p.img}" alt="">
+        <p>${p.desc}</p>
+      </div>`;
+    listContainer.appendChild(div);
+
+    const marker = L.circleMarker(p.coords, {
+      radius: 8, color: '#cb4b16', fillColor: '#cb4b16', fillOpacity: 0.9
+    }).addTo(map);
+
+    marker.popup = L.popup({ closeButton: false, autoClose: true })
+      .setContent(`<b>${p.name}</b>`);
+
+    // --- Create a curved arc between London and destination --- //
+    function createArc(from, to, curvature = 0.5) {
+      const latlngs = [];
+      const lat1 = from[0], lon1 = from[1];
+      const lat2 = to[0], lon2 = to[1];
+
+      // Midpoint between London and destination
+      const midLat = (lat1 + lat2) / 2;
+      const midLon = (lon1 + lon2) / 2;
+
+      // Determine upward (northward) offset for arc
+      const dx = lon2 - lon1;
+      const dy = lat2 - lat1;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const radius = dist * curvature; // adjust curvature strength
+
+      // Offset midpoint northward for "upward" arc
+      const controlLat = midLat + Math.abs(radius); 
+      const controlLon = midLon;
+
+      // Generate curved coordinates using a quadratic Bezier interpolation
+      const steps = 100;
+      for (let t = 0; t <= 1; t += 1 / steps) {
+        const x = (1 - t) * (1 - t) * lon1 + 2 * (1 - t) * t * controlLon + t * t * lon2;
+        const y = (1 - t) * (1 - t) * lat1 + 2 * (1 - t) * t * controlLat + t * t * lat2;
+        latlngs.push([y, x]);
+      }
+      return L.polyline(latlngs, { color: '#cb4b16', weight: 2, opacity: 0.5 });
+    }
+
+    const line = createArc(london, p.coords, 0.2).addTo(map);
+
+    markers[p.id] = { marker, div, line, isOpen: false };
+
+    // Hover effect
+    marker.on('mouseover', () => {
+      map.openPopup(marker.popup, p.coords);
+      applyStyles(p.id, true);
+      scrollToItem(p.id);
+    });
+    marker.on('mouseout', () => {
+      map.closePopup();
+      restoreSelection();
+    });
+
+    marker.on('click', () => toggleConference(p.id));
+    div.addEventListener('click', () => toggleConference(p.id));
+  });
+
+  map.on('click', e => {
+    if (!e.originalEvent.target.closest('.leaflet-interactive')) clearSelection();
+  });
+
+  function toggleConference(id) {
+    const obj = markers[id];
+    const wasOpen = obj.isOpen;
+    clearSelection();
+    if (!wasOpen) {
+      obj.isOpen = true;
+      selectedId = id;
+      applyStyles(id, true);
+      obj.div.classList.add('active');
+      scrollToItem(id);
+      map.setView(obj.marker.getLatLng(), 5, { animate: true });
+      map.openPopup(obj.marker.popup, obj.marker.getLatLng());
+    } else selectedId = null;
+  }
+
+  function clearSelection() {
+    Object.values(markers).forEach(o => {
+      o.isOpen = false;
+      o.div.classList.remove('active');
+      o.marker.setStyle({ color: '#cb4b16', fillColor: '#cb4b16' });
+      o.line.setStyle({ color: '#cb4b16', weight: 2, opacity: 0.7 });
+    });
+    selectedId = null;
+    map.closePopup();
+  }
+
+  function restoreSelection() {
+    if (selectedId) applyStyles(selectedId, true);
+    else clearSelection();
+  }
+
+  function applyStyles(id, active) {
+    Object.values(markers).forEach(o => {
+      o.marker.setStyle({ color: '#cb4b16', fillColor: '#cb4b16' });
+      o.line.setStyle({ color: '#cb4b16', weight: 2, opacity: 0.7 });
+      o.div.classList.remove('active');
+    });
+    if (active) {
+      const { marker, line, div } = markers[id];
+      marker.setStyle({ color: '#859900', fillColor: '#859900' });
+      line.setStyle({ color: '#859900', weight: 4, opacity: 0.9 });
+      div.classList.add('active');
+    }
+  }
+
+  function scrollToItem(id) {
+    const { div } = markers[id];
+    div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Ensure map layer matches theme if system theme preference changes while page is open
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const saved = localStorage.getItem('theme');
+    if (!saved) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', newTheme);
+      toggleIcon.textContent = newTheme === 'dark' ? '☼' : '☾';
+      setMapTheme(newTheme);
+    }
+  });
+</script>
+</body>
+</html>
