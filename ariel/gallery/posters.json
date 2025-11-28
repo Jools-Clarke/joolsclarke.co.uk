@@ -13,6 +13,14 @@
     "title": "3D Model of the Ariel Telescope",
     "author": "Jools Clarke",
     "downloadable": true
+  },
+
+  {
+    "file": "ArielSpaceMission-Regular.otf",
+    "thumbnail": "ariel_space_mision_font.png",
+    "title": "Unofficial Font of the Ariel Mission - in beta, please report any issues!",
+    "author": "Jools Clarke",
+    "downloadable": true
   }
 
 ]
