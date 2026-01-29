@@ -290,6 +290,35 @@
       box-shadow: 0 4px 6px var(--shadow-color);
     }
     
+    
+    .confetti {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  opacity: 0;
+  animation: confetti-fall 1.2s ease-out forwards;
+  border-radius: 2px;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(80px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+    
 
   </style>
 </head>
@@ -312,20 +341,33 @@
     <div class="bio">
       <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" alt="Perturb Logo" style="width:100%;border-radius:12px;margin:20px 0;" />
       <div class="subheading">
-        <p>The Perturb framework is under development. We are currently finalising the paper, the draft copy of which will be on the arXiv as soon as it is submitted.</p>
-        <p>We will be open sourcing all the data and code alongside the official publication, so please check back, the repo will be linked below as soon as it is ready.</p>
+        <p>The Perturb paper has been submitted and is live on ArXiv in preprint! Go and check it out - this is the stage to get your feedback to us if you have any!</p>
+        <p>We will be open sourcing all the data and code alongside the official journal publication, so please check back, the repo will be linked below as soon as it is ready.</p>
       </div>
 
       <!-- Divider -->
       <hr />
+      
+      
+<div class="link-container">
 
-      <!-- Placeholder link box -->
-      <div class="link-container">
-        <div class="link-box accent-1 not-ready">
-          <h2>Perturb GitHub</h2>
-          <p>Repository coming soon...</p>
-        </div>
-      </div>
+  <!-- Perturb paper link -->
+  <a href="https://joolsclarke.co.uk/perturb/perturb-c_arxiv_hook"
+     class="link-box accent-2 has-confetti"
+     target="_blank"
+     style="position: relative;">
+    <h2>Perturb paper</h2>
+    <p>Read the preprint on arXiv.</p>
+  </a>
+
+  <!-- Placeholder GitHub link -->
+  <div class="link-box accent-1 not-ready">
+    <h2>Perturb GitHub</h2>
+    <p>Repository coming soon...</p>
+  </div>
+
+</div>
+
     </div>
 
     <!-- Right pane -->
@@ -409,6 +451,56 @@
     grid.appendChild(img);
   }
 </script>
+
+<script>
+  const confettiTargets = document.querySelectorAll('.has-confetti');
+
+  const confettiColors = [
+    'var(--accent-1)',
+    'var(--accent-2)',
+    'var(--accent-3)',
+    'var(--accent-4)',
+    'var(--accent-5)',
+    'var(--accent-6)'
+  ];
+
+  function launchConfetti(container) {
+    const count = 25;
+
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.top = Math.random() * 20 + '%';
+      piece.style.backgroundColor =
+        confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      piece.style.animationDelay = Math.random() * 0.2 + 's';
+
+      container.appendChild(piece);
+      piece.addEventListener('animationend', () => piece.remove());
+    }
+  }
+
+  confettiTargets.forEach(el => {
+    let confetti = el.querySelector('.confetti');
+    if (!confetti) {
+      confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      el.appendChild(confetti);
+    }
+
+    el.addEventListener('mouseenter', () => launchConfetti(confetti));
+  });
+
+  window.addEventListener('load', () => {
+    confettiTargets.forEach(el => {
+      const confetti = el.querySelector('.confetti');
+      if (confetti) launchConfetti(confetti);
+    });
+  });
+</script>
+
   
 <!-- TRACKING by Simple Analytics -->
 <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
