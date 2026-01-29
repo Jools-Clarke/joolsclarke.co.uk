@@ -356,6 +356,42 @@
     }
 
 
+
+
+
+
+  /* Confetti container */
+  .confetti {
+    position: absolute;
+    inset: -20px;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  /* Individual confetti pieces */
+  .confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    opacity: 0;
+    animation: confetti-fall 1.2s ease-out forwards;
+    border-radius: 2px;
+  }
+
+  /* Animation */
+  @keyframes confetti-fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(80px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+
+
   
   </style>
 </head>
@@ -383,7 +419,27 @@
         <div class="subheading">
           Hi! I am a PhD student at UCL in London. My primary research interests are <b>machine learning</b> and <b>exoplanet atmospheres</b>. I am currently working with the upcoming ESA Ariel Space Telescope to finalise data processing pipelines for the mission launch in 2029. See my recent work and get in touch with me below.
         </div>
-        <hr />
+
+
+        
+        <!-- Divider -->
+  		<hr />
+        <div class="perturb-section">
+          <a href="https://www.joolsclarke.co.uk/perturb"
+   class="link-box accent-3 perturb-box"
+   style="position: relative;">
+  <div class="confetti"></div>
+
+            <img 
+              src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" 
+              alt="Perturb Framework"
+              class="perturb-image"
+            />
+            <p>The perturb paper is live in preprint!</p>
+          </a>
+        </div>
+        
+                <hr />
         
         <!-- Conference Map Preview Link -->
         <a href="https://joolsclarke.co.uk/conferences" class="link-box accent-4 conf-map-box">
@@ -399,19 +455,6 @@
           </div>
         </a>
 
-        
-        <!-- Divider -->
-  		<hr />
-        <div class="perturb-section">
-          <a href="https://www.joolsclarke.co.uk/perturb" class="link-box accent-3 perturb-box">
-            <img 
-              src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" 
-              alt="Perturb Framework"
-              class="perturb-image"
-            />
-            <p>See more about the Perturb framework</p>
-          </a>
-        </div>
         <!-- Divider -->
   		<hr />
       </div>
@@ -514,6 +557,44 @@
 </script>
 <!-- TRACKING by Simple Analytics -->
 <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script>
+  const perturbBox = document.querySelector('.perturb-box');
+  const confettiContainer = perturbBox.querySelector('.confetti');
+
+  const colors = [
+    'var(--accent-1)',
+    'var(--accent-2)',
+    'var(--accent-3)',
+    'var(--accent-4)',
+    'var(--accent-5)',
+    'var(--accent-6)'
+  ];
+
+  function launchConfetti() {
+    const count = 25;
+
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.top = Math.random() * 20 + '%';
+      piece.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDelay = (Math.random() * 0.2) + 's';
+
+      confettiContainer.appendChild(piece);
+
+      // Cleanup
+      piece.addEventListener('animationend', () => piece.remove());
+    }
+  }
+
+  // Trigger on hover
+  perturbBox.addEventListener('mouseenter', launchConfetti);
+
+  window.addEventListener('load', launchConfetti);
+</script>
 
 </body>
 </html>
