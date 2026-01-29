@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perturb Paper | ArXiv</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --container-bg: #fdf6e3;
+      --body-bg: #f5e9c8;
+      --text-color: #586e75;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --accent: #b58900;
+    }
+
+    [data-theme="dark"] {
+      --container-bg: #0e1a2b;
+      --body-bg: #0e1a2b;
+      --text-color: #bfbfdb;
+      --card-bg: #1c2b3a;
+      --shadow-color: rgba(230, 218, 255, 0.1);
+      --accent: #9b7b1c;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: var(--body-bg);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: var(--container-bg);
+      padding: 50px 40px;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px var(--shadow-color);
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2em;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+
+    .time-box {
+      background: var(--card-bg);
+      padding: 15px 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px var(--shadow-color);
+      min-width: 80px;
+    }
+
+    .label {
+      display: block;
+      font-size: 0.6em;
+      font-weight: normal;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    .note {
+      margin-top: 35px;
+      font-size: 0.95em;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>PERTURB-c: Correlation Aware Perturbation Explainability for Regression Techniques to Understand Retrieval Black-boxes </h1>
+
+    <p>
+      The paper will be live on arXiv at<br />
+      <strong>10:00&nbsp;GMT · 30 January</strong><br />
+      Come back then.
+    </p>
+
+    <div class="countdown" id="countdown">
+      <div class="time-box">
+        <span id="days">–</span>
+        <span class="label">days</span>
+      </div>
+      <div class="time-box">
+        <span id="hours">–</span>
+        <span class="label">hours</span>
+      </div>
+      <div class="time-box">
+        <span id="minutes">–</span>
+        <span class="label">minutes</span>
+      </div>
+      <div class="time-box">
+        <span id="seconds">–</span>
+        <span class="label">seconds</span>
+      </div>
+    </div>
+
+    <div class="note">
+      Page will update automatically after release.
+    </div>
+  </div>
+
+  <script>
+    const targetTime = Date.UTC(2026, 0, 30, 10, 0, 0); // 30 Jan 2026, 10:00 GMT
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = targetTime - now;
+
+      if (diff <= 0) {
+        daysEl.textContent = 0;
+        hoursEl.textContent = 0;
+        minutesEl.textContent = 0;
+        secondsEl.textContent = 0;
+        return;
+      }
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
