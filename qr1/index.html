@@ -3,13 +3,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Jools Clarke | Conference Materials</title>
+  <title>Jools Clarke | Astro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Prevent indexing -->
-  <meta name="robots" content="noindex, nofollow">
-
   <style>
+
     :root {
       --container-bg: #fdf6e3;
       --body-bg: #f5e9c8;
@@ -18,9 +15,12 @@
       --shadow-color: rgba(0, 0, 0, 0.1);
       --accent-1: #cb4b16;
       --accent-2: #b58900;
-      --accent-3: #a984ba;
-      --accent-4: #f5e9c8;
+      --accent-3: #859900;
+      --accent-4: #2aa198;
+      --accent-5: #268bd2;
+      --accent-6: #6c71c4;
     }
+
     [data-theme="dark"] {
       --container-bg: #0e1a2b;
       --body-bg: #0e1a2b;
@@ -29,96 +29,196 @@
       --shadow-color: rgba(230, 218, 255, 0.1);
       --accent-1: #935047;
       --accent-2: #9b7b1c;
-      --accent-3: #a984ba;
-      --accent-4: #30143d;
+      --accent-3: #728f3f;
+      --accent-4: #2e8582;
+      --accent-5: #4677aa;
+      --accent-6: #8a7fc4;
     }
-
+        /* Outer body */
     body {
       margin: 0;
       font-family: sans-serif;
-      background-color: var(--body-bg);
+      background-color: var(--body-bg); /* ← update this line */
       display: flex;
       justify-content: center;
       padding: 40px 20px;
       color: var(--text-color);
-      min-height: 100vh;
     }
+
+
     .container {
-      position: relative;
-      z-index: 1;
+      position: relative; /* needed for z-index to work */
+  	  z-index: 1; /* higher than background */
       background: var(--container-bg);
       color: var(--text-color);
       padding: 40px 30px;
-      max-width: 700px;
+      max-width: 1300px;
       width: 100%;
       border-radius: 10px;
       box-shadow: 0 0 20px var(--shadow-color);
-      text-align: left;
     }
-    h1 { margin-top: 0; 
-    	text-align: center;}
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    
+    .right-justified {
+      text-align: right;
+      font-size: 0.9em;
+      color: var(--text-color)
+    }
 
     .toggle-theme {
       cursor: pointer;
       font-size: 1.5em;
       user-select: none;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      padding: 6px 12px;
+      padding: 6px 8px;
       border-radius: 8px;
       display: inline-block;
-      float: right;
     }
+
     .toggle-theme:hover {
       transform: translateY(-3px);
       box-shadow: 0 4px 6px var(--shadow-color);
     }
+    
+
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 10px 0 20px;
+    }
+
+    .subheading {
+      margin-bottom: 30px;
+      font-size: 1.1em;
+      color: var(--text-color);
+    }
+
+    .link-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
 
     .link-box {
-      display: block;
       background: var(--card-bg);
       border-radius: 12px;
       padding: 20px;
-      margin: 20px 0;
       text-decoration: none;
       color: var(--text-color);
-      font-size: 1.1em;
-      font-weight: bold;
       box-shadow: 0 4px 6px var(--shadow-color);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .link-box:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 12px var(--shadow-color);
     }
+
+    .link-box h2 {
+      margin: 0 0 5px;
+      font-size: 1.2em;
+    }
+
+    .link-box p {
+      margin: 0;
+      font-size: 0.95em;
+    }
+
     .accent-1 { border-left: 6px solid var(--accent-1); }
     .accent-2 { border-left: 6px solid var(--accent-2); }
-    .accent-3 {
-      background: var(--accent-4);
-      border-left: 6px solid var(--accent-3);
-      font-size: 1.2em;
-  	  padding: 28px;
-	}
+    .accent-3 { border-left: 6px solid var(--accent-3); }
+    .accent-4 { border-left: 6px solid var(--accent-4); }
+    .accent-5 { border-left: 6px solid var(--accent-5); }
+    .accent-6 { border-left: 6px solid var(--accent-6); }
+    
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
 
+    /* Split into two columns on wider screens */
+    @media (min-width: 800px) {
+      .main-content {
+        flex-direction: row;
+        align-items: flex-start;
+      }
 
+      .bio {
+        flex: 1;
+        margin-right: 30px;
+      }
+
+      .link-container {
+        flex: 1.2;
+      }
+    }
+    /* Default: narrow view */
+    .full-name {
+      display: none;
+    }
+    .short-name {
+      display: inline;
+    }
+
+    /* On wide viewports, show fancy version */
+    @media (min-width: 500px) {
+      .full-name {
+        display: inline;
+      }
+      .short-name {
+        display: none;
+      }
+    }
+    .profile-photo {
+      width: 50%;
+      max-width: 100px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      object-fit: cover;
+      object-position: top;
+      
+    }
+    
     .background-wrapper {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
       overflow: hidden;
       pointer-events: none;
       display: grid;
       place-items: center;
     }
+
     .background-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
       gap: 40px;
-      width: 100%; height: 100%;
-      justify-items: center; align-items: center;
+      width: 100%;
+      height: 100%;
+      justify-items: center;
+      align-items: center;
       padding: 20px;
       z-index: -1;
     }
+
     .bg-svg {
       width: 100px;
       height: auto;
@@ -127,79 +227,313 @@
       filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
       transition: filter 0.3s ease;
     }
+
     [data-theme="dark"] .bg-svg {
       filter: invert(100%);
       opacity: 0.4;
     }
+
+    .ligo  { bottom: 20%; left: 5%; width: 210px;}
+    .desi  { bottom: 3%; right: 5%; width: 100px;}
+    .juice { top: 30%; right: 5%; width: 200px;}
+    .ariel { top: 5%; left: 5%; width: 130px;}
+    
+    .perturb-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .perturb-image {
+      max-width: 200px;
+      width: 80%;
+      height: auto;
+      margin-bottom: 10px;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .perturb-image:hover {
+      transform: translateY(-5px);
+    }
+    
+    .not-ready {
+      cursor: not-allowed;
+      opacity: 0.7;
+      transition: transform 0.2s;
+    }
+
+    .not-ready:hover {
+      animation: shake 0.3s;
+      animation-iteration-count: 1;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    
+    .home-link {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 1.8em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 6px 8px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .home-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 6px var(--shadow-color);
+    }
+    
+  .poster-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--accent-5);
+    color: white;
+    text-align: center;
+    padding: 10px 15px;
+    font-size: 0.95em;
+    z-index: 1000;
+  }
+
+  .poster-banner a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  .poster-banner a:hover {
+    text-decoration: none;
+  }
+    
+    
+    .confetti {
+      position: absolute;
+      inset: -20px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 12px;
+      opacity: 0;
+      animation: confetti-fall 1.2s ease-out forwards;
+      border-radius: 2px;
+    }
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(80px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+    
+
   </style>
 </head>
 <body>
+
+  <div class="poster-banner">
+    You're coming from the QR code in my poster. 
+    To see a PDF version of the poster, 
+    <a href="JClarke_PERTURB.pdf" download>click here</a>.
+  </div>
+  
   <div class="background-wrapper">
-    <div class="background-grid"></div>
+    <div class="background-grid">
+    <!-- nothing here, its added via js -->
+    </div>
+  </div>
+  <div class="container">
+    <div class="header">
+      <a href="https://joolsclarke.co.uk/" class="home-link" title="Go to homepage">◀︎</a>
+      <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
+    </div>
+
+    <hr />
+
+    <div class="main-content">
+    <!-- Left pane -->
+    <div class="bio">
+      <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb.svg" alt="Perturb Logo" style="width:100%;border-radius:12px;margin:20px 0;" />
+      <div class="subheading">
+        <p>The Perturb paper has been submitted and is live on ArXiv in preprint! Go and check it out - this is the stage to get your feedback to us if you have any!</p>
+        <p>We will be open sourcing all the data and code alongside the official journal publication, so please check back, the repo will be linked below as soon as it is ready.</p>
+      </div>
+
+      <!-- Divider -->
+      <hr />
+      
+      
+<div class="link-container">
+
+  <!-- Perturb paper link -->
+  <a href="https://joolsclarke.co.uk/perturb/perturb-c_arxiv_hook"
+     class="link-box accent-2 has-confetti"
+     target="_blank"
+     style="position: relative;">
+    <h2>Perturb paper</h2>
+    <p>Read the preprint on arXiv.</p>
+  </a>
+
+  <!-- Placeholder GitHub link -->
+  <div class="link-box accent-1 not-ready">
+    <h2>Perturb GitHub</h2>
+    <p>Repository coming soon...</p>
   </div>
 
-  <div class="container">
-    <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
-	<p>If you're an industry partner, and you want me for your project, then you know what you have to do 👀</p>
-    <h1>Conference Materials</h1>
-    <p>Couldn't see the screen? Want something to jog your memory later? Download the <b>resources</b> from my presentation and poster</p>
-    <a href="jools_clarke_partner_day_slides.pdf" class="link-box accent-1" download>
-      Download Slides (PDF)
-    </a>
+</div>
 
-    <a href="jools_clarke_poster.pdf" class="link-box accent-2" download>
-      Download Poster (PDF)
-    </a>
-    <p>If you're still on the fence about whether I'm the right fit for your project, check out the rest of my website to see more of my <b>recent work</b> and to <b>get in touch</b>.</p>
-    <a href="https://www.joolsclarke.co.uk" class="link-box accent-3">
-      Go to homepage
-      
-  <script>
-    const root = document.documentElement;
-    const toggleIcon = document.querySelector('.toggle-theme');
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-    root.setAttribute('data-theme', initialTheme);
-    toggleIcon.textContent = initialTheme === 'dark' ? '☼' : '☾';
+    </div>
 
-    function toggleTheme() {
-      const current = root.getAttribute('data-theme');
-      const isDark = current === 'dark';
-      const newTheme = isDark ? 'light' : 'dark';
-      root.setAttribute('data-theme', newTheme);
-      toggleIcon.textContent = newTheme === 'dark' ? '☼' : '☾';
-      localStorage.setItem('theme', newTheme);
-    }
-  </script>
+    <!-- Right pane -->
+    <div class="link-container">
+      <div class="blog-post">
+        <img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/perturb2.svg" 
+        alt="Perturb Logo" 
+        class="profile-photo" />
+        <h2>What is Perturb?</h2>
+        <p>Perturb is an interpretability framework for understanding the predictions made by machine learning retrievals. It is capable of calculating specific critical datapoints that the retrieval relies on, visualising non-linearities and anomalous model response, and overall providing confidence in model performance. Model inference is faster than that of SHAP, with increased stability in high-correlation data environments, and provides significantly greater model transparency than linear model interpretation methods.</p>
+        <hr />
+        <h2>I don't have a machine learning retrieval model, why should I care about Perturb?</h2>
+        <p>Perturb comes packaged with a pre-trained lightweight sample retrieval model, capable of retrieving molecular given observation data. This allows for fast (sub 1s) estimates of atmospheric abundances, with associated full posteriors, while traditional Bayesian retrievals tend to take orders of magnitude longer. The Perturb framework allows for further analysis of these to calculate specific critical datapoints that the retrieval is relying on, compare against expected feature locations and line lists, and assess the reliability of the model.</p>
+        <hr />
+        <h2>I want to use my JWST/HST/Ariel data, is this possible?</h2>
+        <p>The sample retrieval model was trained using simulated samples from an idealised hypothetical instrument in order to demonstrate the performance of Perturb without introducing any instrument bias, so you will not be able to drop your data directly in. However, we will include scripts to allow you to retrain the model to suit your required instrument (which is not as scary as it sounds, we promise!) and you can be predicting on your dataset with about 20 minutes of HPC training. The best bit about this is you can keep and reuse your trained model for any further analysis of different objects, with potentially no further training required. In future, we hope to provide pretrained examples for the major observing modes.</p>
+        <hr />
+        <h2>What is the point of retrieving simulated data?</h2>
+        <p>Retrieving simulated data is a standard way to validate an observation is viable before submitting an observation proposal. Committing to full Bayesian retrievals just to assess target viability can be a significant barrier to entry when trying to turn around a last minute telescope proposal. Perturb can not only save time and resources, but also provide additional information such as identifying loadbearing wavelength regions in the observation, and helping to assess which instruments and observing modes are most critical to a possible detection. This can help inform observation strategies, and ultimately lead to more accurate and reliable results when it comes to analysing actual exoplanet observations.</p>
+        <hr />
+      </div>
+    </div>
+  </div>
 
-  <script>
-    const svgSources = [
-      { src: 'ligo.svg', size: 90 },
-      { src: 'desi.svg', size: 40 },
-      { src: 'juice.svg', size: 70 },
-      { src: 'ariel.svg', size: 50 }
-    ];
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
+  </div>
+
+
+<script>
+  const root = document.documentElement;
+  const toggleIcon = document.querySelector('.toggle-theme');
+
+  // Load saved preference or system default
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+  root.setAttribute('data-theme', initialTheme);
+  toggleIcon.textContent = initialTheme === 'dark' ? '☼' : '☾';
+
+  function toggleTheme() {
+    const current = root.getAttribute('data-theme');
+    const isDark = current === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', newTheme);
+    toggleIcon.textContent = newTheme === 'dark' ? '☼' : '☾';
+    localStorage.setItem('theme', newTheme);
+  }
+</script>
+  
+<script>
+  const svgSources = [
+    { src: 'ligo.svg', size: 90 },
+    { src: 'desi.svg', size: 40 },
+    { src: 'juice.svg', size: 70 },
+    { src: 'ariel.svg', size: 50 }
+  ];
+
+  // Simple shuffle (Fisher-Yates)
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-    const grid = document.querySelector('.background-grid');
-    const total = 200;
-    for (let i = 0; i < total; i++) {
-      if (i % svgSources.length === 0) shuffle(svgSources);
-      const { src, size } = svgSources[i % svgSources.length];
-      const img = document.createElement('img');
-      img.src = `https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/${src}`;
-      img.className = 'bg-svg';
-      img.style.width = `${size}px`;
-      img.alt = '';
-      grid.appendChild(img);
+    return array;
+  }
+
+  const grid = document.querySelector('.background-grid');
+
+  // Generate shuffled SVGs and tile them
+  const total = 800;
+  for (let i = 0; i < total; i++) {
+    // Shuffle every full cycle for more variety
+    if (i % svgSources.length === 0) shuffle(svgSources);
+
+    const { src, size } = svgSources[i % svgSources.length];
+    const img = document.createElement('img');
+    img.src = `https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/${src}`;
+    img.className = 'bg-svg';
+    img.style.width = `${size}px`;
+    img.alt = '';
+    grid.appendChild(img);
+  }
+</script>
+
+<script>
+  const confettiTargets = document.querySelectorAll('.has-confetti');
+
+  const confettiColors = [
+    'var(--accent-1)',
+    'var(--accent-2)',
+    'var(--accent-3)',
+    'var(--accent-4)',
+    'var(--accent-5)',
+    'var(--accent-6)'
+  ];
+
+  function launchConfetti(container) {
+    const count = 25;
+
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.top = Math.random() * 20 + '%';
+      piece.style.backgroundColor =
+        confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      piece.style.animationDelay = Math.random() * 0.2 + 's';
+
+      container.appendChild(piece);
+      piece.addEventListener('animationend', () => piece.remove());
     }
-  </script>
+  }
+
+  confettiTargets.forEach(el => {
+    let confetti = el.querySelector('.confetti');
+    if (!confetti) {
+      confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      el.appendChild(confetti);
+    }
+
+    el.addEventListener('mouseenter', () => launchConfetti(confetti));
+  });
+
+  window.addEventListener('load', () => {
+    confettiTargets.forEach(el => {
+      const confetti = el.querySelector('.confetti');
+      if (confetti) launchConfetti(confetti);
+    });
+  });
+</script>
+
+  
+<!-- TRACKING by Simple Analytics -->
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
 </body>
 </html>
-
