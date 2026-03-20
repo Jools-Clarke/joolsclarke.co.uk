@@ -1,5 +1,27 @@
 [
   {
+    "file": "deploy.png",
+    "thumbnail": "deploy.png",
+    "title": "Deploy (Ariel Open Conference Art Competition Submission)",
+    "author": "Jools Clarke",
+    "downloadable": true
+  },
+  {
+    "file": "decode.png",
+    "thumbnail": "decode.png",
+    "title": "Decode (Ariel Open Conference Art Competition Submission)",
+    "author": "Jools Clarke",
+    "downloadable": true
+  },
+  {
+    "file": "discover.png",
+    "thumbnail": "discover.png",
+    "title": "Discover (Ariel Open Conference Art Competition Submission)",
+    "author": "Jools Clarke",
+    "downloadable": true
+  },
+  
+  {
     "file": "discovering_exoplanet_atmospheres-jools_clarke.pdf",
     "thumbnail": "discovering_exoplanet_atmospheres_low_res.png",
     "title": "Discovering Exoplanet Atmospheres",
