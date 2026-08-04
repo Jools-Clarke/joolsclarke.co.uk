@@ -1,1 +1,106 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jools Clarke | Climate Change Committee Placement</title>
+<style>
+:root{
+--container-bg:#fdf6e3;--body-bg:#f5e9c8;--text-color:#586e75;
+--card-bg:#fff;--shadow-color:rgba(0,0,0,.1);
+--accent-1:#cb4b16;--accent-2:#b58900;--accent-3:#859900;
+--accent-4:#2aa198;--accent-5:#268bd2;
+}
+[data-theme="dark"]{
+--container-bg:#0e1a2b;--body-bg:#0e1a2b;--text-color:#bfbfdb;
+--card-bg:#1c2b3a;--shadow-color:rgba(230,218,255,.1);
+}
+body{margin:0;font-family:sans-serif;background:var(--body-bg);display:flex;justify-content:center;padding:40px 20px;color:var(--text-color);}
+.container{background:var(--container-bg);max-width:1300px;width:100%;padding:40px 30px;border-radius:10px;box-shadow:0 0 20px var(--shadow-color);}
+.header{display:flex;justify-content:space-between;align-items:center;}
+.home-link,.toggle-theme{text-decoration:none;color:var(--text-color);font-size:1.5em}
+.main-content{display:flex;flex-direction:column;gap:30px}
+@media(min-width:800px){.main-content{flex-direction:row}.bio{flex:1;margin-right:30px}.links{flex:1.2}}
+.link-box{display:block;background:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:15px;text-decoration:none;color:var(--text-color);border-left:6px solid var(--accent-2);box-shadow:0 4px 6px var(--shadow-color)}
+.profile-photo{width:120px;float:left;margin:0 20px 10px 0}
+hr{border:none;border-top:1px solid #ccc;margin:20px 0}
+.link-box {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.link-box:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 10px 18px var(--shadow-color);
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<a class="home-link" href="https://joolsclarke.co.uk/">◀︎</a>
+<div class="toggle-theme" onclick="toggleTheme()">☾</div>
+</div>
+<hr>
+<div class="main-content">
+<div class="bio">
+<img src="https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ccc/ClimateChangeCommittee.png" style="width:100%;border-radius:12px;margin:20px 0;">
+<div>
+<p>From February through to August 2026 I worked with the UK Climate Change Committee (CCC) on an internal model review project.</p>
+<p>I was also involved in the publication of the official parliamentry UK Progress Report, which can be read by clicking below.</p>
+</div>
+<hr>
+<div class="links">
+<a href="https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2026-report-to-parliament/"
+   class="link-box accent-2"
+   target="_blank"
+   rel="noopener">
+
+  <h2>UKPR26</h2>
+  <p>
+    Read the Climate Change Committee's annual assessment of the UK's progress
+    towards reducing greenhouse gas emissions and achieving Net Zero.
+  </p>
+
+</a>
+</div>
+</div>
+<div class="links">
+
+<h2>About my role</h2>
+<p>Over a six-month engagement, I served as the primary technical expert for a team delivering the transition of a suit of climate models from Excel to Python.<br><br>
+
+My responsibilities included:
+<ul>
+  <li>Led the technical delivery of the migration and acted as the primary Python expert for a team of five.</li>
+  <li>Assessed the technical and operational risks associated with migrating the modelling ecosystem from Excel to Python.</li>
+  <li>Established development standards, coding practices, and governance for Python-based models.</li>
+  <li>Designed and implemented a reusable framework to enable future model migrations using a consistent, scalable approach.</li>
+  <li>Advised on the team's Python training strategy and mentored colleagues with little or no prior Python experience through code reviews, pair programming, and technical guidance.</li>
+</ul>
+
+</p>
+<h2>Impact</h2>
+<p>
+
+Beyond delivering the initial migration, I focused on creating sustainable engineering practices that would support future projects. The result was not just a successful model transition, but a repeatable development framework, improved technical capability across the team, and a solid foundation for the organisation's wider adoption of Python for model development.</p>
+
+<hr>
+</div>
+</div>
+</div>
+<script>
+const r=document.documentElement,i=document.querySelector('.toggle-theme');
+const s=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+r.setAttribute('data-theme',s);i.textContent=s==='dark'?'☼':'☾';
+function toggleTheme(){const d=r.getAttribute('data-theme')==='dark';const n=d?'light':'dark';r.setAttribute('data-theme',n);i.textContent=n==='dark'?'☼':'☾';localStorage.setItem('theme',n);}
+</script>
+</body>
+</html>
