@@ -303,7 +303,7 @@
 </script>
 
 <script>
-  // LEAFLET MAP SETUP WITH DYNAMIC DARK/LIGHT TILE LAYERS
+  // LEAFLET MAP SETUP WITH FREE LIGHT TILE LAYER ONLY
   const map = L.map('map', { preferCanvas: true, zoomControl: true }).setView([50, 10], 4);
 
   // Light (default) - OpenStreetMap
@@ -311,24 +311,13 @@
     attribution: '&copy; OpenStreetMap contributors'
   });
 
-  // Dark tiles - CartoDB Dark Matter (widely used dark basemap)
-  const darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CartoDB'
-  });
-
-  // Start with the appropriate basemap depending on theme
-  function setMapTheme(theme) {
-    if (theme === 'dark') {
-      if (map.hasLayer(lightTiles)) map.removeLayer(lightTiles);
-      if (!map.hasLayer(darkTiles)) map.addLayer(darkTiles);
-    } else {
-      if (map.hasLayer(darkTiles)) map.removeLayer(darkTiles);
-      if (!map.hasLayer(lightTiles)) map.addLayer(lightTiles);
-    }
+  // Keep the free OpenStreetMap basemap active regardless of UI theme.
+  function setMapTheme() {
+    if (!map.hasLayer(lightTiles)) map.addLayer(lightTiles);
   }
 
-  // initialize map layer from initial theme
-  setMapTheme(initialTheme);
+  // initialize map layer
+  setMapTheme();
 
   const london = [51.5074, -0.1278];
   const places = [
