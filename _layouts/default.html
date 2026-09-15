@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% if page.description %}<meta name="description" content="{{ page.description }}" />{% endif %}
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}" />{% endif %}
+  {% if page.author %}<meta name="author" content="{{ page.author }}" />{% endif %}
+  {% if page.robots %}<meta name="robots" content="{{ page.robots }}" />{% endif %}
+  {% if page.meta_refresh %}<meta http-equiv="refresh" content="{{ page.meta_refresh }}" />{% endif %}
+
+  <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/components/background-grid.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/components/link-box.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/components/conf-map.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/components/confetti.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/components/banner.css' | relative_url }}" />
+  {% for css in page.styles %}
+  <link rel="stylesheet" href="{{ css | relative_url }}" />
+  {% endfor %}
+
+  {% for inc in page.head_includes %}
+  {% include {{ inc }} %}
+  {% endfor %}
+</head>
+<body class="{% if page.banner %}has-top-banner{% endif %} {{ page.body_class }}">
+  {% if page.banner %}{% include banner.html banner=page.banner %}{% endif %}
+  {% if page.background_grid %}
+  {% include background-grid.html total=page.background_grid.total %}
+  {% endif %}
+
+  {% if page.use_container != false %}
+  <div class="container{% if page.container_class %} {{ page.container_class }}{% endif %}">
+    {% if page.header %}{% include header.html header=page.header %}{% endif %}
+    {{ content }}
+  </div>
+  {% else %}
+  {{ content }}
+  {% endif %}
+
+  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/background-grid.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/confetti.js' | relative_url }}"></script>
+  {% for js in page.scripts %}
+  <script src="{{ js | relative_url }}"></script>
+  {% endfor %}
+
+  {% if page.include_analytics %}
+  <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  {% endif %}
+</body>
+</html>

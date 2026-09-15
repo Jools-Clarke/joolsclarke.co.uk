@@ -1,0 +1,17 @@
+<div class="header">
+  {% if include.header.home_link %}
+  <a href="{{ include.header.home_link }}" class="home-link" title="{{ include.header.home_title | default: 'Go to homepage' }}">◀︎</a>
+  {% endif %}
+
+  {% if include.header.title_full or include.header.title_short %}
+  <h1>
+    {% if include.header.title_full %}<span class="full-name">{{ include.header.title_full }}</span>{% endif %}
+    {% if include.header.title_short %}<span class="short-name">{{ include.header.title_short }}</span>{% endif %}
+  </h1>
+  {% endif %}
+
+  {% if include.header.show_toggle != false %}
+  <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
+  {% endif %}
+</div>
+{% if include.header.hr_after != false %}<hr />{% endif %}

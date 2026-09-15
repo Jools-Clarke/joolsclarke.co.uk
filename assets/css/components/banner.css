@@ -1,0 +1,52 @@
+.top-banner,
+.poster-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.top-banner {
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 0.8em;
+  padding: 6px calc(12px + env(safe-area-inset-right)) 6px 12px;
+  text-align: right;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+@supports (padding-right: env(scrollbar-width)) {
+  .top-banner {
+    padding-right: 32px;
+  }
+}
+
+.top-banner a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.top-banner a:hover {
+  text-decoration: underline;
+}
+
+.poster-banner {
+  background: var(--accent-5);
+  color: white;
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 0.95em;
+  z-index: 1000;
+}
+
+.poster-banner a {
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.poster-banner a:hover {
+  text-decoration: none;
+}

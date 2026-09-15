@@ -1,0 +1,10 @@
+{% assign t = include.tag | default: 'a' %}
+{% if t == 'a' %}
+<a href="{{ include.href }}" class="link-box {{ include.accent }}{% if include.classes %} {{ include.classes }}{% endif %}"{% if include.target %} target="{{ include.target }}"{% endif %}{% if include.rel %} rel="{{ include.rel }}"{% endif %}{% if include.download %} download{% endif %}{% if include.style %} style="{{ include.style }}"{% endif %}>
+  {{ include.content }}
+</a>
+{% else %}
+<div class="link-box {{ include.accent }}{% if include.classes %} {{ include.classes }}{% endif %}"{% if include.style %} style="{{ include.style }}"{% endif %}>
+  {{ include.content }}
+</div>
+{% endif %}

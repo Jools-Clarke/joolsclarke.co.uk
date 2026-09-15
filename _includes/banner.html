@@ -1,0 +1,6 @@
+{% assign b = include.banner %}
+<div class="{{ b.class | default: 'top-banner' }}">
+  {{ b.prefix }}
+  {% if b.href %}<a href="{{ b.href }}"{% if b.download %} download{% endif %}>{{ b.link_text }}</a>{% endif %}
+  {{ b.suffix }}
+</div>
