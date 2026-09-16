@@ -1,0 +1,46 @@
+.redirect-card {
+  max-width: 700px;
+  width: 100%;
+  padding: 50px 40px;
+}
+
+.redirect-card h1 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+.redirect-card p {
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.time-box {
+  background: var(--card-bg);
+  padding: 15px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  min-width: 80px;
+}
+
+.label {
+  display: block;
+  font-size: 0.6em;
+  font-weight: normal;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.note {
+  margin-top: 35px;
+  font-size: 0.95em;
+  opacity: 0.8;
+}

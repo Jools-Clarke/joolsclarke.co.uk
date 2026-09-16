@@ -1,0 +1,40 @@
+:root {
+  --accent-1: #cb4b16;
+  --accent-2: #b58900;
+  --accent-3: #a984ba;
+  --accent-4: #f5e9c8;
+}
+
+[data-theme="dark"] {
+  --accent-1: #935047;
+  --accent-2: #9b7b1c;
+  --accent-3: #a984ba;
+  --accent-4: #30143d;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 700px;
+  text-align: left;
+}
+
+.toggle-theme {
+  padding: 6px 12px;
+  float: right;
+}
+
+.link-box {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.link-box.accent-4 {
+  background: var(--accent-4);
+  border-left: 6px solid var(--accent-1);
+  font-size: 1.2em;
+  padding: 28px;
+}

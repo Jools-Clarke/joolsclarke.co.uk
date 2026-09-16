@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jools Clarke | Conference and Summer School Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  
+  
+  
+  
+
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components/background-grid.css" />
+  <link rel="stylesheet" href="/assets/css/components/link-box.css" />
+  <link rel="stylesheet" href="/assets/css/components/conf-map.css" />
+  <link rel="stylesheet" href="/assets/css/components/confetti.css" />
+  <link rel="stylesheet" href="/assets/css/components/banner.css" />
+  
+  <link rel="stylesheet" href="/assets/css/pages/conferences.css" />
+  
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  
+</head>
+<body class=" ">
+  
+  
+  <div class="background-wrapper">
+  <div class="background-grid" data-bg-total="400"></div>
+</div>
+
+  
+
+  
+  <div class="container">
+    <div class="header">
+  
+  <a href="https://joolsclarke.co.uk/" class="home-link" title="Go to homepage">◀︎</a>
+  
+
+  
+
+  
+  <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
+  
+</div>
+<hr />
+
+    <div class="map-layout">
+  <div id="sidebar">
+    <h2>Conferences</h2>
+    <div id="confList"></div>
+  </div>
+  <div id="map"></div>
+</div>
+
+<script id="conferences-data" type="application/json">[{"id":"portugal2024","name":"Ariel Consortium Meeting - Lisbon 2024","coords":[38.72,-9.139],"img":"https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/lisbon24.png","desc":"Presented my machine learning retrieval methods to Ariel consortium & attended the early careers open discussion."},{"id":"leiden25","name":"Ariel Consortium Meeting - Leiden 2025","coords":[52.1636,4.4802],"img":"","desc":"Presented my interpretability methods to Ariel consortium & attended the early careers open discussion."},{"id":"frejus25","name":"Ariel Summer School Fréjus 2025","coords":[43.4345,6.7379],"img":"https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ARIEL-SCHOOL.jpg","desc":"Summer school on data reduction and retrieval techniques, with hands on component"},{"id":"iceland25","name":"BEACON Reykjavík 2025","coords":[64.147,-21.9408],"img":"","desc":"Presented work on machine learning atmospheric retrievals and interpretability in the context of biosignature detection, and participated in crossdiciplinerary discussions with astrobiologists"},{"id":"lake25","name":"Exoplanets by the Lake 2025","coords":[47.996,11.1745],"img":"","desc":"Presented in depth session on my research into machine learning interpretability and uncertainity quantification, attended workshops on data reduction and retrieval methodologies and how to mitigate their inaccuracies. Also participated in data recovery hackathon style challenge."},{"id":"madrid2025","name":"Ariel Consortium Meeting - Madrid 2025","coords":[40.4168,-3.7038],"img":"https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ml_splinter_madrid.jpg","desc":"Presented introduction to my PERTURB framework and lead discussions to gain community feedback"},{"id":"vienna2026","name":"Ariel Consortium Meeting - Vienna 2026","coords":[48.2082,16.3738],"img":"","desc":"Presented work on interpretability using TauREx in lieu of black-box retreival methods."}]</script>
+
+  </div>
+  
+
+  <script src="/assets/js/theme-toggle.js"></script>
+  <script src="/assets/js/background-grid.js"></script>
+  <script src="/assets/js/confetti.js"></script>
+  
+  <script src="/assets/js/pages/conferences.js"></script>
+  
+
+  
+</body>
+</html>

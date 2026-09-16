@@ -1,0 +1,10 @@
+var style = document.createElement('style');
+style.innerHTML = `
+  a:link, a:visited {
+    color: #FF9900 !important;
+  }
+  a:hover {
+    color: #CC6600 !important;
+  }
+`;
+document.head.appendChild(style);
