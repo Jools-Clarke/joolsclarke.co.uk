@@ -10,6 +10,8 @@
   --accent-4: #2aa198;
   --accent-5: #268bd2;
   --accent-6: #6c71c4;
+  --warning-bg-color: #e9c6c281;
+  --warning-tx-color: #751812;
 }
 
 [data-theme="dark"] {
@@ -24,6 +26,8 @@
   --accent-4: #2e8582;
   --accent-5: #4677aa;
   --accent-6: #8a7fc4;
+  --warning-bg-color:  #7f2b2b2b;
+  --warning-tx-color:   #d17b70;
 }
 
 body {
