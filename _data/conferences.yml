@@ -1,7 +1,7 @@
 - id: portugal2024
   name: Ariel Consortium Meeting - Lisbon 2024
   coords: [38.72, -9.139]
-  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/lisbon24.png
+  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main-jekyll/lisbon24.png
   desc: Presented my machine learning retrieval methods to Ariel consortium & attended the early careers open discussion.
 - id: leiden25
   name: Ariel Consortium Meeting - Leiden 2025
@@ -11,7 +11,7 @@
 - id: frejus25
   name: Ariel Summer School Fréjus 2025
   coords: [43.4345, 6.7379]
-  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ARIEL-SCHOOL.jpg
+  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main-jekyll/ARIEL-SCHOOL.jpg
   desc: Summer school on data reduction and retrieval techniques, with hands on component
 - id: iceland25
   name: BEACON Reykjavík 2025
@@ -26,10 +26,10 @@
 - id: madrid2025
   name: Ariel Consortium Meeting - Madrid 2025
   coords: [40.4168, -3.7038]
-  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ml_splinter_madrid.jpg
+  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main-jekyll/ml_splinter_madrid.jpg
   desc: Presented introduction to my PERTURB framework and lead discussions to gain community feedback
 - id: vienna2026
   name: Ariel Consortium Meeting - Vienna 2026
   coords: [48.2082, 16.3738]
-  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ariel_consortium_vienna_2026.jpeg
+  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main-jekyll/ariel_consortium_vienna_2026.jpeg
   desc: Presented work on interpretability using TauREx in lieu of black-box retreival methods.
