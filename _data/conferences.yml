@@ -31,5 +31,5 @@
 - id: vienna2026
   name: Ariel Consortium Meeting - Vienna 2026
   coords: [48.2082, 16.3738]
-  img: ""
+  img: https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/refs/heads/main/ariel_consortium_vienna_2026.jpeg
   desc: Presented work on interpretability using TauREx in lieu of black-box retreival methods.
