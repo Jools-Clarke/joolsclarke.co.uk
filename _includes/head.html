@@ -1,0 +1,45 @@
+{%- comment -%}
+  Everything inside <head>: title, description, link previews, stylesheet,
+  scripts. Driven by page front matter (title, description, image, robots,
+  canonical, redirect_to) with fallbacks from _data/me.yml.
+{%- endcomment -%}
+{%- assign me = site.data.me -%}
+{%- assign title = page.title | default: site.title -%}
+{%- assign description = page.description | default: me.description | strip_html | normalize_whitespace -%}
+{%- assign canonical = page.canonical | default: page.redirect_to | default: page.url | absolute_url -%}
+{%- assign preview = page.image | default: me.photo -%}
+{%- assign version = site.time | date: "%s" -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description | escape }}">
+<meta name="author" content="{{ me.name }}">
+<link rel="canonical" href="{{ canonical }}">
+{%- if page.robots %}
+<meta name="robots" content="{{ page.robots }}">
+{%- endif %}
+{%- if page.redirect_to %}
+<meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
+{%- endif %}
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description | escape }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ preview | absolute_url }}">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ version }}">
+<script>
+  // Pick light/dark before anything is drawn, so the page doesn't flash.
+  try {
+    document.documentElement.dataset.theme = localStorage.getItem("theme") ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  } catch (e) {}
+</script>
+<script src="{{ '/assets/js/site.js' | relative_url }}?v={{ version }}" defer></script>
+{%- if page.url == "/" %}
+{% include schema.html %}
+{%- endif %}

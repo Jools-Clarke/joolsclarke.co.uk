@@ -1,0 +1,30 @@
+# Picture tiles in the left-hand column of the homepage, top to bottom.
+#
+#   url:      page the tile links to (required)
+#   image:    logo or picture. A logo is shown whole; if the tile also has a
+#             title, the picture fills the tile with the title on top of it.
+#   alt:      describes the image (needed when there is no title)
+#   title / subtitle: text written over the picture
+#   accent:   optional colour 1-6 for the left border
+
+- url: /perturb/
+  image: /perturb/perturb.svg
+  alt: Perturb, an interpretability framework for machine learning retrievals
+  accent: 3
+
+- url: /ccc/
+  image: /ccc/ClimateChangeCommittee.png
+  alt: My placement at the Climate Change Committee
+  accent: 2
+
+- url: /conferences/
+  image: /conferences/conference_preview.png   # a screenshot of /conferences/
+  title: Conference Map
+  subtitle: See where I have been
+  accent: 4
+
+- url: /ariel/gallery/
+  image: /ariel/gallery/decode.png
+  title: Gallery
+  subtitle: Check out some of my more creative work
+  accent: 5

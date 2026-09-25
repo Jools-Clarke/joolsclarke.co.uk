@@ -1,0 +1,23 @@
+/* ── Background: faint mission logos tiled behind the page ── */
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 40px;
+  padding: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+.background img {
+  opacity: 0.2;
+}
+
+[data-theme="dark"] .background img {
+  filter: invert(100%);
+  opacity: 0.4;
+}

@@ -1,0 +1,28 @@
+/* ── Click-to-copy (site.js): the "Email address copied" pop-up ── */
+[data-copy],
+a[href="#copy"] {
+  cursor: copy;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 1000;
+  padding: 12px 18px;
+  border-left: 6px solid var(--accent-3);
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-weight: bold;
+  box-shadow: 0 8px 20px var(--shadow-color), 0 0 0 1px var(--shadow-color);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 20px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

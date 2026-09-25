@@ -1,0 +1,31 @@
+# "Links" cards on the homepage. Web profiles here are also given to search
+# engines as "this is the same person" (JSON-LD sameAs) and listed in /llms.txt.
+# Same fields as publications.yml. Comment an entry out with # to hide it.
+
+- title: ORCiD Profile
+  url: https://orcid.org/0009-0004-9533-5387
+  text: |
+    0009-0004-9533-5387
+
+    Keep track of my past publications.
+
+- title: UCL Profile
+  url: https://www.ucl.ac.uk/mathematical-physical-sciences/research-projects/2024/jun/jools-clarke
+  text: See what I am up to at UCL and keep up with my PhD progress.
+
+- title: GitHub
+  url: https://github.com/jools-clarke
+  text: Check out my projects and code.
+
+# - title: Bluesky
+#   url: https://bsky.app/profile/jools-36.bsky.social
+#   text: Follow me for *semi* regular updates and thoughts, and to see what my colleagues and I get up to.
+
+- title: LinkedIn
+  url: https://www.linkedin.com/in/jools-clarke-b82588167/
+  text: Connect with me professionally.
+
+# `copy:` instead of `url:` makes a card that copies that text when clicked.
+- title: Email me
+  copy: j.d.clarke@ucl.ac.uk
+  text: Get in touch with me directly at *j.d.clarke@ucl.ac.uk* (click to copy).
