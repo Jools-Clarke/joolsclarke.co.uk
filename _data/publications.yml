@@ -4,7 +4,7 @@
 #   url:      where the card links to. Site pages start with /
 #   copy:     instead of url: clicking the card copies this text (e.g. an email address)
 #   text:     short line under the title (markdown)
-#   note:     optional red warning box, e.g. "under revision"
+#   note:     optional red warning box
 #   accent:   optional colour 1-6 for the left border (otherwise cycles)
 #   confetti: true for a little celebration on hover
 
