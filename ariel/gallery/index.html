@@ -1,44 +1,40 @@
 ---
-layout: default
-title: Creative Resources | Ariel
-styles:
-  - /assets/css/pages/gallery.css
-scripts:
-  - /assets/js/pages/gallery.js
-header:
-  home_link: https://joolsclarke.co.uk/
-  home_title: Go to homepage
-  show_toggle: true
-  hr_after: true
+title: Ariel Creative Resources | Jools Clarke
+description: Posters, artwork, a 3D model of the Ariel space telescope and an unofficial Ariel mission font, made by Jools Clarke and free to download.
 ---
+{%- comment -%}
+  Items come from _data/gallery.yml. Each shows a small preview; clicking it
+  opens a bigger preview (assets/js/gallery.js). The full file is only
+  fetched when someone presses Download.
+{%- endcomment -%}
+<h1 class="centred">Ariel Creative Resources</h1>
 
-<h1>Ariel Creative Resources</h1>
+<hr>
 
-<hr />
-
-<div class="gallery" id="gallery">
-  {% for item in site.data.ariel-posters %}
-  <div
-    class="poster"
-    data-file="{{ item.file }}"
-    data-thumbnail="{{ item.thumbnail }}"
-    data-title="{{ item.title | escape }}"
-    data-author="{{ item.author | escape }}"
-    data-downloadable="{{ item.downloadable }}"
-  >
-    <img src="{{ item.thumbnail }}" alt="{{ item.title }}" />
-  </div>
-  {% endfor %}
-</div>
-
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <span id="closePopup" style="cursor:pointer; float:right; font-size:1.4em;">✖</span>
-    <h2 id="popupTitle"></h2>
-    <p id="popupAuthor"></p>
-    <div id="popupPreview"></div>
-    <a id="downloadLink" target="_blank" style="display:none;">
-      <button>Download</button>
+<div class="gallery">
+  {%- for item in site.data.gallery %}
+  {%- assign preview = item.image | default: item.file %}
+  {%- assign preview_media = site.data.media[preview] %}
+  {%- assign file_media = site.data.media[item.file] %}
+  {%- assign file_type = item.file | split: "." | last | upcase %}
+  <figure class="poster">
+    <a href="{{ preview_media.thumb | default: preview | relative_url }}" class="poster-preview" title="Bigger preview">
+      {% include img.html src=preview alt=item.title %}
     </a>
-  </div>
+    <figcaption>
+      <strong>{{ item.title }}</strong>
+      {%- if item.text %}<br>{{ item.text }}{% endif %}
+      <br><span class="file-meta">by {{ item.author | default: site.data.me.name }}</span>
+      <br><a href="{{ item.file | relative_url }}" download>Download {{ file_type }}{% if file_media.size %} · {{ file_media.size }}{% endif %}</a>
+    </figcaption>
+  </figure>
+  {%- endfor %}
 </div>
+
+<dialog class="viewer" id="viewer">
+  <form method="dialog"><button class="viewer-close" aria-label="Close">✖</button></form>
+  <img src="" alt="">
+  <div class="viewer-caption"></div>
+</dialog>
+
+<script src="{{ '/assets/js/gallery.js' | relative_url }}" defer></script>

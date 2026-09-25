@@ -1,0 +1,8 @@
+{%- assign me = site.data.me -%}
+<footer class="footer">
+  <hr>
+  ☆ {{ me.name }}
+  · <a href="#copy">{{ me.email }}</a>
+  · last updated {{ site.time | date: "%-d %B %Y" }}
+  · <a href="{{ '/llms.txt' | relative_url }}" title="A plain-text summary of this site for AI assistants">llms.txt</a>
+</footer>

@@ -1,2 +1,45 @@
+# Site-wide settings. After editing this file, restart `scripts/serve.sh`
+# (Jekyll only re-reads _config.yml on start-up). Content about me lives in
+# _data/me.yml instead, which reloads live.
+
 title: Jools Clarke
+url: https://joolsclarke.co.uk   # `jekyll serve` swaps this for localhost automatically
+baseurl: ""                      # site lives at the root of the domain (don't let plugins guess)
+lang: en-GB
+timezone: Europe/London
+repository: Jools-Clarke/joolsclarke.co.uk   # lets local "production" builds match GitHub's
+
+# GitHub Pages adds its default "Primer" theme unless told not to.
+theme: null
+
+# No plugins: sitemap.xml, robots.txt and llms.txt are plain templates in the
+# site root. (If you ever add one, GitHub Pages only runs its approved list.)
+plugins: []
+
+# Simple Analytics (privacy-friendly, no cookies). Set to false to turn off
+# everywhere, or put `analytics: false` in a single page's front matter.
+analytics: true
+
 markdown: kramdown
+kramdown:
+  input: GFM
+
+# Front matter every page gets unless it says otherwise.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Files that are for maintaining the site, not for publishing.
+exclude:
+  - README.md
+  - CLAUDE.md
+  - docs/
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - CNAME
+  - vendor/
+  - node_modules/
+  - .jekyll-cache/

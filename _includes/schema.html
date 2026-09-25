@@ -1,0 +1,39 @@
+{%- comment -%}
+  Structured data for search engines and AI assistants (homepage only).
+  Built from _data/me.yml and _data/links.yml, so there is nothing to edit here.
+{%- endcomment -%}
+{%- assign me = site.data.me -%}
+{%- assign profiles = "" | split: "" -%}
+{%- for link in site.data.links -%}
+  {%- if link.url contains "://" -%}{%- assign profiles = profiles | push: link.url -%}{%- endif -%}
+{%- endfor -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": {{ "/#me" | absolute_url | jsonify }},
+      "name": {{ me.name | jsonify }},
+      "jobTitle": {{ me.job_title | jsonify }},
+      "description": {{ me.description | jsonify }},
+      "email": {{ me.email | prepend: "mailto:" | jsonify }},
+      "url": {{ "/" | absolute_url | jsonify }},
+      "image": {{ me.photo | absolute_url | jsonify }},
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": {{ me.affiliation | jsonify }},
+        "url": {{ me.affiliation_url | jsonify }}
+      },
+      "knowsAbout": {{ me.knows_about | jsonify }},
+      "sameAs": {{ profiles | jsonify }}
+    },
+    {
+      "@type": "WebSite",
+      "url": {{ "/" | absolute_url | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "author": { "@id": {{ "/#me" | absolute_url | jsonify }} }
+    }
+  ]
+}
+</script>

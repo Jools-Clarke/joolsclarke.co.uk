@@ -1,27 +1,23 @@
 ---
-layout: default
-title: Jools Clarke | Ariel Consortium Meeting | VIENNA
+# Landing page for the QR code at the end of my Vienna 2026 talk.
+title: Jools Clarke | Ariel Consortium Meeting | Vienna
+description: Slides from my talk at the Ariel Consortium Meeting in Vienna, 2026.
 robots: noindex, nofollow
-styles:
-  - /assets/css/pages/qr2.css
-include_analytics: true
-background_grid:
-  total: 200
-header:
-  home_link: https://joolsclarke.co.uk/
-  home_title: Go to homepage
-  show_toggle: true
-  hr_after: true
+sitemap: false
+narrow: true
 ---
-
 <h1>Ariel Consortium, Vienna</h1>
 
 <p>Download the <b>slides</b> from my presentation</p>
-<a href="jools_clarke_ariel_consortium_VIENNA.pdf" class="link-box accent-2" download>
-  Download Slides (PDF)
-</a>
+
+{% include file-card.html
+  file="/qr2/jools_clarke_ariel_consortium_VIENNA.pdf"
+  title="Slides: Ariel Consortium Meeting, Vienna 2026"
+  accent=2
+%}
+
 <hr>
+
 <p>Check out the rest of my website to see more of my <b>recent work</b> and to <b>get in touch</b>.</p>
-<a href="https://www.joolsclarke.co.uk/" class="link-box accent-4">
-  Go to homepage
-</a>
+
+{% include card.html url="/" title="Go to homepage" accent=4 big=true %}

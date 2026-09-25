@@ -1,0 +1,71 @@
+/* ── /ariel/gallery/: grid of previews + a pop-up viewer ─── */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.poster {
+  margin: 0;
+}
+
+.poster-preview {
+  display: block;
+  aspect-ratio: 3 / 4.2;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--card-bg);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.poster-preview:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 16px var(--shadow-color);
+}
+
+.poster-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.poster figcaption {
+  padding: 10px 4px 0;
+  font-size: 0.9em;
+}
+
+.viewer {
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  padding: 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  text-align: center;
+  box-shadow: 0 0 20px var(--shadow-color);
+}
+
+.viewer::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.viewer img {
+  display: block;
+  max-height: 70vh;
+  width: auto;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+}
+
+.viewer-close {
+  float: right;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1.4em;
+  cursor: pointer;
+}

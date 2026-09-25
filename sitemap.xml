@@ -1,18 +1,17 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%}
+  Lists every page for search engines. Automatic: a page is left out if its
+  front matter has `sitemap: false`, `redirect_to`, or robots noindex.
+{%- endcomment -%}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
-  <url>
-    <loc>https://www.joolsclarke.co.uk/</loc>
-    <lastmod>2025-09-15</lastmod>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Perturb Framework page -->
-  <url>
-    <loc>https://www.joolsclarke.co.uk/perturb</loc>
-    <lastmod>2025-09-15</lastmod>
-    <priority>0.8</priority>
-  </url>
-
+{%- assign pages = site.html_pages | sort: "url" -%}
+{%- for p in pages -%}
+  {%- if p.sitemap == false or p.redirect_to -%}{%- continue -%}{%- endif -%}
+  {%- if p.robots contains "noindex" -%}{%- continue -%}{%- endif %}
+  <url><loc>{{ p.url | absolute_url | xml_escape }}</loc></url>
+{%- endfor %}
 </urlset>

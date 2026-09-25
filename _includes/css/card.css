@@ -1,0 +1,62 @@
+/* ── Card (_includes/card.html): white box, coloured left edge ── */
+.link-box {
+  display: block;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  text-decoration: none;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.link-box:hover,
+.link-box[data-copy]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 12px var(--shadow-color);
+}
+
+.link-box h3 {
+  margin: 0 0 5px;
+  font-size: 1.2em;
+}
+
+.link-box p {
+  margin: 0 0 0.4em;
+  font-size: 0.95em;
+}
+
+.link-box p:last-child {
+  margin-bottom: 0;
+}
+
+.accent-1 { border-left: 6px solid var(--accent-1); }
+.accent-2 { border-left: 6px solid var(--accent-2); }
+.accent-3 { border-left: 6px solid var(--accent-3); }
+.accent-4 { border-left: 6px solid var(--accent-4); }
+.accent-5 { border-left: 6px solid var(--accent-5); }
+.accent-6 { border-left: 6px solid var(--accent-6); }
+
+/* A single big call to action. */
+.link-box.big {
+  margin: 20px 0;
+  padding: 24px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+/* "Coming soon": greyed out, shakes its head when you hover. */
+.not-ready {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.not-ready:hover {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
