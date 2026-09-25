@@ -28,4 +28,4 @@
 # `copy:` instead of `url:` makes a card that copies that text when clicked.
 - title: Email me
   copy: j.d.clarke@ucl.ac.uk
-  text: Get in touch with me directly at *j.d.clarke@ucl.ac.uk* (click to copy).
+  text: Get in touch with me directly at *j.d.clarke@ucl.ac.uk*.
