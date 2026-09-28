@@ -1,17 +1,16 @@
-<div class="header">
-  {% if include.header.home_link %}
-  <a href="{{ include.header.home_link }}" class="home-link" title="{{ include.header.home_title | default: 'Go to homepage' }}">◀︎</a>
-  {% endif %}
-
-  {% if include.header.title_full or include.header.title_short %}
+{%- comment -%}
+  Top row of every page: either my name (front matter `header: name`) or a
+  back arrow to the homepage, plus the light/dark switch.
+{%- endcomment -%}
+<header class="header">
+{%- if page.header == "name" %}
   <h1>
-    {% if include.header.title_full %}<span class="full-name">{{ include.header.title_full }}</span>{% endif %}
-    {% if include.header.title_short %}<span class="short-name">{{ include.header.title_short }}</span>{% endif %}
+    <span class="full-name">☆｡⋆ {{ site.data.me.name }} ⋆°★</span>
+    <span class="short-name">{{ site.data.me.name | replace: " ", "<br>" }}</span>
   </h1>
-  {% endif %}
-
-  {% if include.header.show_toggle != false %}
-  <div class="toggle-theme" onclick="toggleTheme()" title="Toggle light/dark mode">☾</div>
-  {% endif %}
-</div>
-{% if include.header.hr_after != false %}<hr />{% endif %}
+{%- else %}
+  <a href="{{ '/' | relative_url }}" class="home-link" title="Go to homepage" aria-label="Go to homepage">◀︎</a>
+{%- endif %}
+  <button type="button" class="toggle-theme" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">☾</button>
+</header>
+<hr>

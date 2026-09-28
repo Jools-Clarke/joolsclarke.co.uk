@@ -1,27 +1,29 @@
 ---
-layout: default
-title: Jools Clarke | Conference and Summer School Map
-head_includes:
-  - head/leaflet.html
-styles:
-  - /assets/css/pages/conferences.css
-scripts:
-  - /assets/js/pages/conferences.js
-background_grid:
-  total: 400
-header:
-  home_link: https://joolsclarke.co.uk/
-  home_title: Go to homepage
-  show_toggle: true
-  hr_after: true
+title: Conference and Summer School Map | Jools Clarke
+description: Map and list of the conferences, consortium meetings and summer schools Jools Clarke has attended and presented at, from Lisbon to Reykjavík.
 ---
+{%- comment -%}
+  The list is plain HTML built from _data/conferences.yml (so it works for
+  search engines and without JavaScript). assets/js/conferences.js then
+  draws the map and links each pin to its list entry.
+{%- endcomment -%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 
 <div class="map-layout">
-  <div id="sidebar">
-    <h2>Conferences</h2>
-    <div id="confList"></div>
-  </div>
+  <section class="conf-list" data-home="{{ site.data.me.home_coords | jsonify }}" data-home-name="{{ site.data.me.home }}">
+    <h1>Conferences</h1>
+    {%- for conf in site.data.conferences %}
+    <details class="conf-item" data-coords="{{ conf.coords | jsonify }}">
+      <summary>{{ conf.title }}</summary>
+      {%- if conf.image %}
+      {% include img.html src=conf.image alt=conf.title %}
+      {%- endif %}
+      <p>{{ conf.text }}</p>
+    </details>
+    {%- endfor %}
+  </section>
   <div id="map"></div>
 </div>
 
-<script id="conferences-data" type="application/json">{{ site.data.conferences | jsonify }}</script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+<script src="{{ '/assets/js/conferences.js' | relative_url }}" defer></script>

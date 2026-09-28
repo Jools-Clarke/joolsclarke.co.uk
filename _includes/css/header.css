@@ -1,0 +1,50 @@
+/* ── Header: name or back arrow, plus the light/dark button ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-link,
+.toggle-theme {
+  display: inline-block;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-color);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-link {
+  font-size: 1.8em;
+}
+
+.toggle-theme {
+  font-size: 1.5em;
+}
+
+.home-link:hover,
+.toggle-theme:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+/* Full name on wide screens, "Jools / Clarke" on narrow ones. */
+.full-name {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .full-name {
+    display: inline;
+  }
+
+  .short-name {
+    display: none;
+  }
+}

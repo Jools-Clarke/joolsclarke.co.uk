@@ -1,6 +1,10 @@
-# Allow all crawlers full access
+---
+layout: null
+sitemap: false
+---
+# Search engines and AI assistants are all welcome to read this site.
+# A plain-text summary written for AI assistants is at {{ '/llms.txt' | absolute_url }}
 User-agent: *
-Disallow:
+Allow: /
 
-# Point crawlers to your sitemap
-Sitemap: https://www.joolsclarke.co.uk/sitemap.xml
+Sitemap: {{ '/sitemap.xml' | absolute_url }}

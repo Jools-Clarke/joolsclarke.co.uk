@@ -1,0 +1,12 @@
+{%- comment -%}
+  A picture that loads its small preview from assets/thumbs/ (made by
+  scripts/thumbnails.sh) when one exists, otherwise the file itself.
+    {% include img.html src="/ccc/ClimateChangeCommittee.png" alt="What the picture shows" %}
+  Optional: class="…", eager=true for pictures at the very top of the page
+  (everything else waits until it's scrolled near).
+{%- endcomment -%}
+{%- assign img_media = site.data.media[include.src] -%}
+<img src="{{ img_media.thumb | default: include.src | relative_url }}" alt="{{ include.alt | escape }}"
+  {%- if img_media.width %} width="{{ img_media.width }}" height="{{ img_media.height }}"{% endif %}
+  {%- if include.class %} class="{{ include.class }}"{% endif %}
+  {%- unless include.eager %} loading="lazy"{% endunless %} decoding="async">

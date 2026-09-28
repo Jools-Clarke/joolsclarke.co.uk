@@ -1,0 +1,307 @@
+/* ── Colours ───────────────────────────────────────────────
+   Light is the default; <html data-theme="dark"> switches to dark (set by the
+   script in _includes/head.html and the ☾ button). Use these variables for
+   every colour so both themes keep working. */
+:root {
+  --container-bg: #fdf6e3;
+  --body-bg: #f5e9c8;
+  --text-color: #586e75;
+  --card-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --rule-color: #ccc;
+  --accent-1: #cb4b16;
+  --accent-2: #b58900;
+  --accent-3: #859900;
+  --accent-4: #2aa198;
+  --accent-5: #268bd2;
+  --accent-6: #6c71c4;
+  --warning-bg: #e9c6c281;
+  --warning-text: #751812;
+  --warning-edge: #c0392b;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+[data-theme="dark"] {
+  --container-bg: #0e1a2b;
+  --body-bg: #0e1a2b;
+  --text-color: #bfbfdb;
+  --card-bg: #1c2b3a;
+  --shadow-color: rgba(230, 218, 255, 0.1);
+  --rule-color: #3a4a5c;
+  --accent-1: #935047;
+  --accent-2: #9b7b1c;
+  --accent-3: #728f3f;
+  --accent-4: #2e8582;
+  --accent-5: #4677aa;
+  --accent-6: #8a7fc4;
+  --warning-bg: #7f2b2b2b;
+  --warning-text: #d17b70;
+}
+
+/* ── Page ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  line-height: 1.4;
+  background-color: var(--body-bg);
+  color: var(--text-color);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 40px);
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 40px 30px 24px;
+  background: var(--container-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--shadow-color);
+}
+
+.container.narrow {
+  max-width: 700px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: calc(100% - 16px);
+    margin: 16px auto;
+    padding: 24px 16px 16px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+main h1 {
+  margin-bottom: 0.5em;
+}
+
+hr {
+  clear: both;
+  border: none;
+  border-top: 1px solid var(--rule-color);
+  margin: 10px 0 20px;
+}
+
+:focus-visible {
+  outline: 2px dashed var(--accent-5);
+  outline-offset: 3px;
+}
+
+.centred {
+  text-align: center;
+}
+
+/* ── Layout helpers ───────────────────────────────────── */
+
+/* Two columns side by side on wide screens, one after the other on phones. */
+.columns {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+@media (min-width: 800px) {
+  .columns {
+    flex-direction: row;
+    align-items: flex-start;
+    column-gap: 60px;
+  }
+
+  .columns > * {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .columns > :last-child {
+    flex: 1.2;
+  }
+}
+
+/* A vertical pile of cards/tiles with even gaps. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stack > hr {
+  margin: 5px 0;
+}
+
+/* ── Text ─────────────────────────────────────────────── */
+.subheading {
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+
+.subheading > :last-child {
+  margin-bottom: 0;
+}
+
+.section-header {
+  margin: 0 0 10px;
+  font-size: 0.9em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
+.prose {
+  line-height: 1.5;
+}
+
+.prose h2:first-of-type {
+  margin-top: 0;
+}
+
+.prose li {
+  margin-bottom: 0.4em;
+}
+
+/* A heading that is a logo image (the alt text is the heading's text). */
+.logo-heading {
+  margin: 20px 0;
+}
+
+.logo-heading img {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* Homepage photo + bio. The photo only sits beside the text when there's
+   room for a decent line length next to it; in a narrow column (phones,
+   half-screen windows) it goes centred above the text instead. */
+.intro {
+  container-type: inline-size;
+}
+
+.intro p {
+  text-wrap: pretty;   /* avoid one-word last lines where supported */
+}
+
+.profile-photo {
+  display: block;
+  width: 150px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 10px;
+  border: 4px solid var(--text-color);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+
+@container (min-width: 440px) {
+  .profile-photo {
+    float: left;
+    margin: 0 20px 10px 0;
+  }
+}
+
+.side-logo {
+  float: left;
+  width: 100px;
+  margin: 0 20px 10px 0;
+}
+
+.file-meta {
+  font-family: var(--mono);
+  font-size: 0.8em;
+  opacity: 0.85;
+}
+
+/* Red "heads up" box. Add .big for a standalone one. */
+.warning {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 5px solid var(--warning-edge);
+  border-radius: 8px;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  font-size: 0.9em;
+}
+
+.warning strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.warning p {
+  margin: 0 0 0.6em;
+}
+
+.warning.big {
+  margin: 20px 0;
+  padding: 16px 18px;
+  border-left-width: 6px;
+  font-size: 1em;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.warning.big strong {
+  font-size: 1.05em;
+  margin-bottom: 6px;
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--text-color);
+  color: var(--card-bg);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.redirect {
+  text-align: center;
+}
+
+.footer {
+  margin-top: 30px;
+  font-family: var(--mono);
+  font-size: 0.75em;
+  opacity: 0.75;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* People who've asked their device for less motion get no wobbles. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

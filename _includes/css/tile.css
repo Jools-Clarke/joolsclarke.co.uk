@@ -1,0 +1,68 @@
+/* ── Picture tiles (_includes/tile.html) ─────────────────── */
+
+/* Logo shown whole in a card. */
+.logo-tile {
+  text-align: center;
+}
+
+.logo-tile img {
+  display: block;
+  max-width: 160px;
+  max-height: 120px;
+  width: auto;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.logo-tile:hover img {
+  transform: translateY(-5px);
+}
+
+/* Picture filling the card with a title over it. */
+.cover-tile {
+  padding: 0;
+  overflow: hidden;
+}
+
+.cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-height: 300px;   /* don't get huge when the column is full width */
+  overflow: hidden;
+}
+
+/* Dimmed so the white title is readable over it. */
+.cover > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(80%) saturate(0.5);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.cover-tile:hover .cover > img {
+  transform: scale(1.05);
+  filter: brightness(70%) saturate(1.1);
+}
+
+.cover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.cover-text h3 {
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.cover-text p {
+  margin: 5px 0 0;
+  opacity: 0.9;
+}

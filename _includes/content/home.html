@@ -1,0 +1,34 @@
+{%- comment -%}
+  The homepage body, shown at / and at /qr/ (the QR code in my slides).
+  Everything comes from _data/: me.yml, projects.yml, publications.yml, links.yml.
+{%- endcomment -%}
+{%- assign me = site.data.me -%}
+<div class="columns">
+  <div>
+    <div class="intro">
+      {% include img.html src=me.photo alt=me.photo_alt class="profile-photo" eager=true %}
+      <div class="subheading">
+        {{ me.bio | markdownify }}
+      </div>
+    </div>
+    <hr>
+    <div class="stack">
+      {%- for project in site.data.projects %}
+      {% include tile.html item=project %}
+      {%- endfor %}
+    </div>
+  </div>
+
+  <div class="stack">
+    <h2 class="section-header">Publications</h2>
+    {%- for pub in site.data.publications %}
+    {% include card.html item=pub index=forloop.index0 %}
+    {%- endfor %}
+
+    <hr>
+    <h2 class="section-header">Links</h2>
+    {%- for link in site.data.links %}
+    {% include card.html item=link index=forloop.index0 %}
+    {%- endfor %}
+  </div>
+</div>

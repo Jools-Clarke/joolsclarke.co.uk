@@ -1,0 +1,36 @@
+/* ── File card (_includes/file-card.html): preview + details ── */
+.file-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.file-preview {
+  flex: 0 1 220px;
+}
+
+.file-preview img {
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  transition: transform 0.2s ease;
+}
+
+.file-preview:hover img {
+  transform: translateY(-3px);
+}
+
+.file-info {
+  flex: 1 1 200px;
+}
+
+.file-info .file-meta {
+  margin: 0 0 0.8em;
+}
+
+.file-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1em;
+}

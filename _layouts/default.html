@@ -1,53 +1,38 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: 'en' }}">
+{%- comment -%}
+  The shell every page sits in. Page front matter that changes it:
+    title, description   what search engines / link previews show
+    banner               markdown text for a strip across the top of the page
+    banner_style         quiet (small, right-aligned) or leave out for a loud one
+    header               name  -> big name on the left (homepage style)
+                         none  -> no header row at all
+                         (default: back arrow to the homepage)
+    narrow               true for a slim, centred column
+    background           false to hide the tiled logos
+    analytics            false to skip Simple Analytics on this page
+{%- endcomment %}
+<html lang="{{ site.lang | default: 'en' }}">
 <head>
-  <meta charset="UTF-8" />
-  <title>{{ page.title }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  {% if page.description %}<meta name="description" content="{{ page.description }}" />{% endif %}
-  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}" />{% endif %}
-  {% if page.author %}<meta name="author" content="{{ page.author }}" />{% endif %}
-  {% if page.robots %}<meta name="robots" content="{{ page.robots }}" />{% endif %}
-  {% if page.meta_refresh %}<meta http-equiv="refresh" content="{{ page.meta_refresh }}" />{% endif %}
-
-  <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/components/background-grid.css' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/components/link-box.css' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/components/conf-map.css' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/components/confetti.css' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/components/banner.css' | relative_url }}" />
-  {% for css in page.styles %}
-  <link rel="stylesheet" href="{{ css | relative_url }}" />
-  {% endfor %}
-
-  {% for inc in page.head_includes %}
-  {% include {{ inc }} %}
-  {% endfor %}
+{% include head.html %}
 </head>
-<body class="{% if page.banner %}has-top-banner{% endif %} {{ page.body_class }}">
-  {% if page.banner %}{% include banner.html banner=page.banner %}{% endif %}
-  {% if page.background_grid %}
-  {% include background-grid.html total=page.background_grid.total %}
-  {% endif %}
-
-  {% if page.use_container != false %}
-  <div class="container{% if page.container_class %} {{ page.container_class }}{% endif %}">
-    {% if page.header %}{% include header.html header=page.header %}{% endif %}
-    {{ content }}
-  </div>
-  {% else %}
-  {{ content }}
-  {% endif %}
-
-  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/background-grid.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/confetti.js' | relative_url }}"></script>
-  {% for js in page.scripts %}
-  <script src="{{ js | relative_url }}"></script>
-  {% endfor %}
-
-  {% if page.include_analytics %}
-  <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-  {% endif %}
+<body>
+{%- if page.banner %}
+{% include banner.html %}
+{%- endif %}
+{%- unless page.background == false %}
+{% include background.html %}
+{%- endunless %}
+<div class="container{% if page.narrow %} narrow{% endif %}">
+{%- unless page.header == "none" %}
+{% include header.html %}
+{%- endunless %}
+<main>
+{{ content }}
+</main>
+{% include footer.html %}
+</div>
+{%- if site.analytics and page.analytics != false and jekyll.environment == "production" %}
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+{%- endif %}
 </body>
 </html>

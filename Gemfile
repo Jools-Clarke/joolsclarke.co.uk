@@ -1,11 +1,13 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
-# gem "rails"
+# GitHub Pages builds this site itself, using its own pinned Jekyll (3.x) and
+# plugin versions. Using the same gem locally means a local build behaves
+# exactly like the live one. Plugins we actually use are listed in _config.yml.
+gem "github-pages", group: :jekyll_plugins
 
-gem "jekyll", "~> 4.4"
-
-gem "jekyll-feed", "~> 0.17.0", group: :jekyll_plugins
-gem "jekyll-seo-tag", "~> 2.9", group: :jekyll_plugins
-gem "jekyll-sitemap", "~> 1.4", group: :jekyll_plugins
+# Ruby 3+ no longer bundles these, but `jekyll serve` / Jekyll 3 still need them.
+gem "webrick"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "logger"

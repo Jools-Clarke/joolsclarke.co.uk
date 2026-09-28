@@ -1,0 +1,24 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%}
+  The whole site's CSS, glued together at build time into this one file (one
+  download, cached for every page). Each piece lives in _includes/css/ next to
+  the HTML block it styles: _includes/card.html <-> _includes/css/card.css.
+  To add a piece: create the file there and add a line below.
+{%- endcomment -%}
+{% include css/base.css %}
+{% include css/header.css %}
+{% include css/banner.css %}
+{% include css/background.css %}
+{% include css/card.css %}
+{% include css/tile.css %}
+{% include css/file-card.css %}
+{% include css/confetti.css %}
+{% include css/toast.css %}
+
+/* ── page-specific ─────────────────────────────────────── */
+{% include css/pages/conferences.css %}
+{% include css/pages/gallery.css %}
+{% include css/pages/countdown.css %}
