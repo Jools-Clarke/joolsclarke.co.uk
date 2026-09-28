@@ -1,0 +1,48 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%}
+  A plain-text (markdown) summary of the site for AI assistants and other
+  tools, following https://llmstxt.org. Built from _data/ and page front
+  matter, so it stays up to date by itself.
+{%- endcomment -%}
+{%- assign me = site.data.me -%}
+# {{ me.name }}
+
+> {{ me.description }}
+
+{{ me.name }} is a {{ me.job_title }} at {{ me.affiliation }}, based in {{ me.home }}.
+Research interests: {{ me.knows_about | join: ", " }}.
+Contact: {{ me.email }}
+
+## About
+
+{{ me.bio }}
+## Publications and reports
+{% for pub in site.data.publications %}
+- [{{ pub.title }}]({{ pub.url | absolute_url }}){% if pub.note %}: {{ pub.note }}{% endif %}
+{%- endfor %}
+
+## Pages on this site
+{% assign pages = site.html_pages | sort: "url" -%}
+{%- for p in pages -%}
+  {%- if p.sitemap == false or p.redirect_to -%}{%- continue -%}{%- endif -%}
+  {%- if p.robots contains "noindex" -%}{%- continue -%}{%- endif %}
+- [{{ p.title | split: " | " | first }}]({{ p.url | absolute_url }}){% if p.description %}: {{ p.description }}{% endif %}
+{%- endfor %}
+
+## Conferences and talks
+{% for conf in site.data.conferences %}
+- {{ conf.title }}: {{ conf.text }}
+{%- endfor %}
+
+## Creative work (free to download)
+{% for item in site.data.gallery %}
+- [{{ item.title }}]({{ item.file | absolute_url }}){% if item.text %}: {{ item.text }}{% endif %}
+{%- endfor %}
+
+## Elsewhere
+{% for link in site.data.links %}{% if link.url %}
+- [{{ link.title }}]({{ link.url }})
+{%- endif %}{% endfor %}

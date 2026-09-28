@@ -1,0 +1,11 @@
+{%- comment -%}
+  The faint mission logos tiled behind every page. site.js shuffles copies of
+  these to fill the screen. To add a logo: put the SVG in
+  assets/img/background/ and add a line here (width = how wide it's drawn, px).
+{%- endcomment -%}
+<div class="background" aria-hidden="true">
+  <img src="{{ '/assets/img/background/ligo.svg' | relative_url }}" width="90" alt="">
+  <img src="{{ '/assets/img/background/desi.svg' | relative_url }}" width="40" alt="">
+  <img src="{{ '/assets/img/background/juice.svg' | relative_url }}" width="70" alt="">
+  <img src="{{ '/assets/img/background/ariel.svg' | relative_url }}" width="50" alt="">
+</div>

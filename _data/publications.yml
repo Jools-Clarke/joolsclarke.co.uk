@@ -1,0 +1,23 @@
+# "Publications" cards on the homepage (newest first). Also listed in /llms.txt.
+#
+#   title:    card heading (required)
+#   url:      where the card links to. Site pages start with /
+#   copy:     instead of url: clicking the card copies this text (e.g. an email address)
+#   text:     short line under the title (markdown)
+#   note:     optional red warning box
+#   accent:   optional colour 1-6 for the left border (otherwise cycles)
+#   confetti: true for a little celebration on hover
+
+- title: Progress in Reducing Emissions 2026 Report to Parliament
+  url: https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2026-report-to-parliament/
+  text: Read the full report on the Climate Change Committee website.
+  confetti: true
+
+- title: "PERTURB-c: Correlation Aware Perturbation Explainability for Regression Techniques to Understand Retrieval Black-boxes"
+  url: /perturb/perturb-c_arxiv_hook/
+  text: Get the preprint on ArXiv.
+  note: "Note: This manuscript is currently being revised."
+
+- title: "NeurIPS 2024: Efficient Model Compression Techniques with FishLeg"
+  url: https://arxiv.org/abs/2412.02328
+  text: Get the full PDF of the paper on ArXiv.

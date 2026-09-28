@@ -1,0 +1,34 @@
+# Items on /ariel/gallery/. Put the files in ariel/gallery/ and run
+# scripts/thumbnails.sh so small previews are made (the full file is only
+# downloaded when someone asks for it).
+#
+#   title:  (required)
+#   file:   the thing people download (required)
+#   image:  preview picture. Not needed for PNG/JPG/PDF files, which get an
+#           automatic preview; needed for anything else (3D models, fonts…)
+#   text:   optional extra line
+#   author: defaults to me
+
+- title: Deploy
+  text: Ariel Open Conference art competition submission
+  file: /ariel/gallery/deploy.png
+
+- title: Decode
+  text: Ariel Open Conference art competition submission
+  file: /ariel/gallery/decode.png
+
+- title: Discover
+  text: Ariel Open Conference art competition submission
+  file: /ariel/gallery/discover.png
+
+- title: Discovering Exoplanet Atmospheres
+  file: /ariel/gallery/discovering_exoplanet_atmospheres-jools_clarke.pdf
+
+- title: 3D Model of the Ariel Telescope
+  file: /ariel/gallery/Ariel_Model-Jools_Clarke.stl
+  image: /ariel/gallery/Ariel-Model_Jools-Clarke.png
+
+- title: Unofficial Font of the Ariel Mission
+  text: In beta, please report any issues!
+  file: /ariel/gallery/ArielSpaceMission-Regular.otf
+  image: /ariel/gallery/ariel_space_mision_font.png

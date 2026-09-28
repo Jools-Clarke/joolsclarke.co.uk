@@ -1,0 +1,30 @@
+{%- comment -%}
+  A card for a big file (PDF slides, posters…): shows a small preview of the
+  first page, the file type, page count and size, and View / Download buttons.
+  The file itself is only fetched if someone clicks.
+    {% include file-card.html file="/qr2/slides.pdf" title="Slides" text="Optional markdown" accent=2 %}
+  After adding a new file, run scripts/thumbnails.sh to make its preview and
+  record its size.
+{%- endcomment -%}
+{%- assign file_media = site.data.media[include.file] -%}
+{%- assign file_type = include.file | split: "." | last | upcase -%}
+<div class="link-box file-card accent-{{ include.accent | default: 2 }}">
+  {%- if file_media.thumb %}
+  <a href="{{ include.file | relative_url }}" class="file-preview" tabindex="-1">{% include img.html src=include.file alt="" %}</a>
+  {%- endif %}
+  <div class="file-info">
+    <h3>{{ include.title }}</h3>
+    <p class="file-meta">
+      {{- file_type -}}
+      {%- if file_media.pages %} · {{ file_media.pages }} page{% if file_media.pages != 1 %}s{% endif %}{% endif -%}
+      {%- if file_media.size %} · {{ file_media.size }}{% endif -%}
+    </p>
+    {%- if include.text %}
+    {{ include.text | markdownify }}
+    {%- endif %}
+    <p class="file-actions">
+      <a href="{{ include.file | relative_url }}" class="button">View</a>
+      <a href="{{ include.file | relative_url }}" class="button" download>Download</a>
+    </p>
+  </div>
+</div>

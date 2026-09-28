@@ -1,0 +1,39 @@
+/* ── Banner: strip across the top (front matter `banner:`) ── */
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 10px 15px;
+  background: var(--accent-5);
+  color: white;
+  text-align: center;
+  font-size: 0.95em;
+}
+
+.banner a {
+  color: white;
+  font-weight: bold;
+}
+
+.banner a:hover {
+  text-decoration: none;
+}
+
+.banner-quiet {
+  padding: 6px max(12px, env(safe-area-inset-right)) 6px 12px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  text-align: right;
+  font-size: 0.8em;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.banner-quiet a {
+  color: var(--text-color);
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.banner-quiet a:hover {
+  text-decoration: underline;
+}

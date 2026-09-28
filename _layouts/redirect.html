@@ -1,10 +1,16 @@
 ---
 layout: default
-use_container: false
-background_grid: false
+narrow: true
+background: false
+sitemap: false
+analytics: false
 ---
-<div class="redirect-shell">
-  <div class="redirect-card">
-    {{ content }}
-  </div>
+{%- comment -%}
+  Sends visitors straight on to `redirect_to` (set in the page's front matter).
+  The page's own text is shown for the split second before it goes, or if the
+  browser doesn't redirect. Search engines are told the target is the real page.
+{%- endcomment -%}
+<div class="redirect">
+{{ content }}
+<p>If nothing happens, <a href="{{ page.redirect_to }}">click here</a>.</p>
 </div>

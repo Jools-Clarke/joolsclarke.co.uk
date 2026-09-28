@@ -1,6 +1,8 @@
-{% assign b = include.banner %}
-<div class="{{ b.class | default: 'top-banner' }}">
-  {{ b.prefix }}
-  {% if b.href %}<a href="{{ b.href }}"{% if b.download %} download{% endif %}>{{ b.link_text }}</a>{% endif %}
-  {{ b.suffix }}
+{%- comment -%}
+  Strip across the top of the page. Front matter:
+    banner: "You came from my poster! [Get the PDF](/qr1/poster.pdf)."   (markdown)
+    banner_style: quiet    # small and right-aligned; leave out for a loud coloured one
+{%- endcomment -%}
+<div class="banner{% if page.banner_style %} banner-{{ page.banner_style }}{% endif %}">
+  {{ page.banner | markdownify | remove: "<p>" | remove: "</p>" | strip }}
 </div>

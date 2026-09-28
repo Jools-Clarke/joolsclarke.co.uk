@@ -1,0 +1,40 @@
+{%- comment -%}
+  A card with a coloured left edge: the site's main building block.
+  Pass a data item:   {% include card.html item=pub index=forloop.index0 %}
+  or fields directly: {% include card.html title="GitHub" url="https://github.com/…" text="My code." %}
+
+    title     heading
+    url       where it links (leave out for a card that isn't a link).
+              Links to other sites open in a new tab.
+    copy      instead of url: clicking the card copies this text (e.g. my
+              email address) and says so in a little pop-up
+    text      markdown under the title (don't put links in it: the whole card is a link)
+    note      red warning box
+    accent    1-6, colour of the left edge. Otherwise it cycles using `index`.
+    confetti  true for confetti on hover
+    disabled  true for a greyed-out "coming soon" card that shakes
+    big       true for a chunkier, bold card (good for a single call to action)
+{%- endcomment -%}
+{%- assign card = include.item | default: include -%}
+{%- assign card_accent = card.accent | default: include.accent -%}
+{%- unless card_accent -%}
+  {%- assign card_accent = include.index | default: 0 | modulo: 6 | plus: 1 -%}
+{%- endunless -%}
+{%- assign card_tag = "a" -%}
+{%- if card.url == nil or card.disabled -%}{%- assign card_tag = "div" -%}{%- endif -%}
+<div>{% comment %} plain wrapper so the card also works inside Markdown pages {% endcomment %}
+<{{ card_tag }} class="link-box accent-{{ card_accent }}
+  {%- if card.confetti %} has-confetti{% endif %}
+  {%- if card.disabled %} not-ready{% endif %}
+  {%- if card.big %} big{% endif %}"
+  {%- if card_tag == "a" %} href="{{ card.url | relative_url }}"{% if card.url contains "://" %} target="_blank" rel="noopener"{% endif %}{% endif %}
+  {%- if card.copy %} data-copy="{{ card.copy | escape }}" role="button" tabindex="0"{% endif %}>
+  {%- if card.title %}
+  <h3>{{ card.title }}</h3>
+  {%- endif %}
+  {{ card.text | markdownify }}
+  {%- if card.note %}
+  <div class="warning"><strong>{{ card.note }}</strong></div>
+  {%- endif %}
+</{{ card_tag }}>
+</div>
