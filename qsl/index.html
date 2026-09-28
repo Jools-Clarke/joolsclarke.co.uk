@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>J36 QSL Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ==========================================================
+       FINE-TUNING: positions are measured on the LANDSCAPE artwork
+       (0% = left / top edge, 100% = right / bottom edge).
+       The text sits inside the artwork's frame, so on phones the
+       whole thing rotates together and these same numbers apply.
+       Each element is positioned by its CENTRE point.
+       ========================================================== */
+
+    /* Public key: horizontal on web, vertical on phones */
+    --key-x: 64%;
+    --key-y: 48%;
+    --key-size: 1.7cqw;          /* font size (cqw = % of artwork width) */
+    --key-width: 22ch;           /* characters per line (44 chars -> 3 lines) */
+    --key-color: #2a1240;
+    --key-rot: 0deg;             /* extra rotation if you want it */
+
+    /* Date / time: vertical on web (reads bottom-to-top), horizontal on phones */
+    --time-x: 89%;             /* nearer 100% = closer to the phone's bottom edge */
+    --time-y: 60%;
+    --time-size: 4.5cqw;
+    --time-color: #2a1240;
+    --time-shadow: 0 0 3cqw rgba(20,5,35,.95), 0 0 5cqw rgba(20,5,35,.8);
+    --time-rot: -90deg;
+
+    --bg: #1b1030;
+    --mono: "Fira Mono", ui-monospace, Menlo, Consolas, "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: var(--bg);
+    font-family: var(--mono);
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100dvh;
+    padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  }
+
+  .card {
+    position: relative;
+    width: min(96vw, 1100px);
+    aspect-ratio: 4638 / 2357;
+    container-type: inline-size;
+    filter: drop-shadow(0 10px 24px rgba(0,0,0,.5));
+  }
+  /* the stage is the landscape artwork + its text; on phones it is rotated as one piece */
+  .stage {
+    position: absolute; inset: 0;
+    container-type: inline-size;
+  }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .txt {
+    position: absolute;
+    margin: 0;
+    line-height: 1.3;
+    opacity: 0; transition: opacity .3s;
+  }
+  .card.ready .txt { opacity: 1; }
+
+  .key {
+    left: var(--key-x); top: var(--key-y);
+    width: var(--key-width);
+    font-size: var(--key-size);
+    color: var(--key-color);
+    text-align: center;
+    word-break: break-all;
+    transform: translate(-50%, -50%) rotate(var(--key-rot));
+  }
+  .time {
+    left: var(--time-x); top: var(--time-y);
+    font-size: var(--time-size);
+    color: var(--time-color); --time-y
+    text-shadow: var(--time-shadow);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    transform: translate(-50%, -50%) rotate(var(--time-rot));
+  }
+
+  /* phones (portrait): rotate the whole stage 90deg clockwise */
+  @media (orientation: portrait) {
+    .card { width: min(92vw, 44dvh); aspect-ratio: 2357 / 4638; }
+    .stage {
+      inset: auto; top: 0; left: 100cqw;
+      width: 196.77cqw; height: 100cqw;
+      transform-origin: 0 0;
+      transform: rotate(90deg);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="stage">
+    <!-- Absolute site path; falls back to the raw GitHub file -->
+    <img src="qsl.webp" width="4638" height="2357"
+         onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/Jools-Clarke/joolsclarke.co.uk/main-jekyll/qsl/qsl.webp'"
+         alt="QSL card for J36, London UK. Meshtastic, LongFast, 869.525 MHz.">
+
+    <p class="txt key" id="outKey">Xk3vQ9mZp2LrT7aYb1NcW8eHfD4gJ6sUoV0iAq5RtKE=</p>
+    <p class="txt time" id="outTime">----------&nbsp;--:--:--</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var card = document.getElementById('card');
+
+  // Set once, when the page is opened (UTC) - does not update afterwards
+  var iso = new Date().toISOString();
+  document.getElementById('outTime').innerHTML = iso.slice(0, 10) + '<br>' + iso.slice(11, 19) + ' UTC';
+
+  // Reveal text once the font is ready (with a fallback timer)
+  var show = function () { card.classList.add('ready'); };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(show);
+  setTimeout(show, 1500);
+})();
+</script>
+</body>
+</html>
