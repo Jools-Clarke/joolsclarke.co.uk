@@ -15,7 +15,7 @@ things work.
 ```bash
 scripts/serve.sh        # http://localhost:4000, live reload (restart after editing _config.yml)
 scripts/check.sh        # production build into a temp dir + link/alt/size checks. Must pass before committing.
-scripts/thumbnails.sh   # after adding/replacing any PNG/JPG/PDF; commit assets/thumbs/ and _data/media.yml
+scripts/thumbnails.sh   # after adding/replacing any PNG/JPG/WebP/PDF; commit assets/thumbs/ and _data/media.yml
 ```
 
 The scripts use Ruby from the conda env `/opt/homebrew/anaconda3/envs/jekyll`
@@ -74,6 +74,10 @@ only has `"url": "http://localhost:4000"`.
 
 ## Gotchas
 
+- `<!-- -->` inside a `{% include … %}` tag is a Liquid syntax error that
+  fails the GitHub build (it happened on 28 Sep 2026). Delete the parameter
+  or set it to `false` instead. When the live site doesn't update, look at
+  the Actions tab → "pages build and deployment" → build → "Build with Jekyll".
 - Liquid `assign` is global even inside includes: prefix variables per
   include (`card_`, `tile_`, `img_`, `file_`).
 - Front matter on a *layout* isn't visible as `page.x`. Put settings on the

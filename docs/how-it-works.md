@@ -134,6 +134,10 @@ and the `perturb/perturb-c_*` redirects are printed on posters and slides.
 - Liquid `assign` variables are global, even inside includes. The includes
   use prefixed names (`card_…`, `tile_…`, `img_…`) so they don't overwrite
   each other's variables.
+- Never put `<!-- -->` inside a `{% … %}` tag: it fails the whole build.
+  Delete the option or set it to `false`. If the live site stops updating,
+  the error is in the Actions tab → "pages build and deployment" → build →
+  "Build with Jekyll".
 - In Markdown pages, keep `{% include %}` lines on their own with a blank
   line either side.
 - Don't put links inside a card's `text`: the whole card is already a link.

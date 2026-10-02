@@ -4,7 +4,7 @@
 #
 #   title:  (required)
 #   file:   the thing people download (required)
-#   image:  preview picture. Not needed for PNG/JPG/PDF files, which get an
+#   image:  preview picture. Not needed for PNG/JPG/WebP/PDF files, which get an
 #           automatic preview; needed for anything else (3D models, fonts…)
 #   text:   optional extra line
 #   author: defaults to me
