@@ -25,6 +25,10 @@ and installs the gems it needs on first run. Making image previews also needs
 
 ## Before you push
 
+**Never put an HTML comment `<!-- -->` inside a `{% … %}` tag.** To switch
+an option off, delete the line or set it to `false`. A comment there stops
+the whole build, and GitHub quietly keeps the old site live.
+
 ```bash
 scripts/check.sh
 ```
@@ -69,7 +73,7 @@ and re-run `scripts/thumbnails.sh`.
 
 Big files are fine: pages only ever load a small preview, and the original is
 fetched only when someone clicks to view or download it. After adding or
-replacing any PNG, JPG or PDF, run:
+replacing any PNG, JPG, WebP or PDF, run:
 
 ```bash
 scripts/thumbnails.sh
@@ -81,6 +85,8 @@ Commit both. Then:
 
 - **Show a picture on a page:**
   `{% include img.html src="/folder/picture.jpg" alt="What it shows" %}`
+  (in a standalone HTML page with no front matter, like `/qsl/`, point
+  straight at the preview: `/assets/thumbs/folder/picture.webp`)
 - **Offer a PDF with a preview, its size and page count:**
   `{% include file-card.html file="/qr2/slides.pdf" title="My slides" %}`
 - **Gallery item:** add it to `_data/gallery.yml`. Files that aren't

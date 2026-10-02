@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Make small, fast-loading WebP previews of every image and PDF on the site,
+# Make small, fast-loading WebP previews of every image (PNG/JPG/WebP) and PDF,
 # and write their details (preview size, file size, page count) to
 # _data/media.yml, which the templates read.
 #
@@ -24,6 +24,7 @@ FORCE=${1:-}
 width_for() {
   case "$1" in
     ccc/ClimateChangeCommittee.png) echo 1400 ;;  # full-width banner on /ccc/
+    qsl/qsl.webp) echo 2200 ;;                    # fills the screen on /qsl/
     *) echo "$WIDTH" ;;
   esac
 }
@@ -74,7 +75,7 @@ touch "$tmp/expected"
 
 # Every tracked or new (not ignored) file we might show or offer for download.
 git ls-files -co --exclude-standard \
-  | grep -Ei '\.(png|jpe?g|pdf|stl|otf|ttf|zip)$' \
+  | grep -Ei '\.(png|jpe?g|webp|pdf|stl|otf|ttf|zip)$' \
   | grep -Ev "^($OUT|_site|vendor)/" \
   | sort \
   | while IFS= read -r src; do
@@ -86,7 +87,7 @@ git ls-files -co --exclude-standard \
         echo "  size: $(human_size "$bytes")"
       } >> "$tmp/media.yml"
 
-      case "$ext" in png|jpg|jpeg|pdf) ;; *) continue ;; esac
+      case "$ext" in png|jpg|jpeg|webp|pdf) ;; *) continue ;; esac
 
       thumb="$OUT/${src%.*}.webp"
       echo "$thumb" >> "$tmp/expected"

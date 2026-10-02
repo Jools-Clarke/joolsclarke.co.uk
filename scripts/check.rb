@@ -4,7 +4,7 @@
 # Errors (exit 1):
 #   - a link/image/script pointing at a page or file that doesn't exist
 #   - links to this site written as https://joolsclarke.co.uk/... (use /path/)
-#   - files loaded from raw.githubusercontent.com / github.com/.../raw
+#   - files loaded from raw.githubusercontent.com / github.com/.../raw, anywhere in the page
 #   - images without alt text, pages without a <title>
 # Warnings:
 #   - pages without a description
@@ -37,6 +37,11 @@ Dir.glob("**/*.html", base: SITE).sort.each do |page|
   errors << "#{page}: no <title>" unless html =~ %r{<title>\s*\S}
   warnings << "#{page}: no meta description" unless redirect || html.include?('name="description"')
 
+  # Files pulled from GitHub anywhere in the page: src, onerror fallbacks, CSS, scripts…
+  html.scan(%r{https?://(?:raw\.githubusercontent\.com/[^\s"'()<>]*|github\.com/[^\s"'()<>]*(?:/raw/|[?&]raw=true)[^\s"'()<>]*)}).uniq.each do |url|
+    errors << "#{page}: loads #{url} from GitHub - put the file in the repo and use a /path/"
+  end
+
   html.scan(/<(a|img|script|link|source|iframe)\b([^>]*)>/im) do |tag, attrs|
     next if tag == "link" && attrs =~ /rel="(canonical|alternate)"/
     errors << "#{page}: <img> without alt: #{attrs.strip[0, 80]}" if tag == "img" && attrs !~ /\balt=/
@@ -48,8 +53,6 @@ Dir.glob("**/*.html", base: SITE).sort.each do |page|
       host = URI.parse(url.start_with?("//") ? "https:#{url}" : url).host rescue nil
       if OWN_HOSTS.include?(host)
         errors << "#{page}: link to the live site #{url} - write it as a site path, e.g. #{URI.parse(url).path}"
-      elsif host == "raw.githubusercontent.com" || url =~ %r{github\.com/.*/(raw|blob)/}
-        errors << "#{page}: loads #{url} from GitHub - put the file in the repo and link it with a /path/"
       end
       next
     end
@@ -60,8 +63,10 @@ Dir.glob("**/*.html", base: SITE).sort.each do |page|
     if !File.exist?(file)
       errors << "#{page}: broken link #{url}"
     elsif tag == "img" && File.size(file) > BIG_IMAGE
-      warnings << "#{page}: shows the full-size #{path} (#{File.size(file) / 1024} KB) - " \
-                  "run scripts/thumbnails.sh and use {% include img.html src=\"#{path}\" %}"
+      thumb = "/assets/thumbs#{path.sub(/\.[^.]+\z/, ".webp")}"
+      warnings << "#{page}: shows the full-size #{path} (#{File.size(file) / 1024} KB) - run " \
+                  "scripts/thumbnails.sh, then use {% include img.html src=\"#{path}\" %} " \
+                  "(or src=\"#{thumb}\" in a page with no front matter)"
     end
   end
 end
