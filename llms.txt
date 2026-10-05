@@ -21,7 +21,7 @@ Contact: {{ me.email }}
 {{ me.bio }}
 ## Publications and reports
 {% for pub in site.data.publications %}
-- [{{ pub.title }}]({{ pub.url | absolute_url }}){% if pub.note %}: {{ pub.note }}{% endif %}
+- {% if pub.disabled %}{{ pub.title }} (coming soon){% else %}[{{ pub.title }}]({{ pub.url | absolute_url }}){% endif %}{% if pub.note %}: {{ pub.note }}{% endif %}
 {%- endfor %}
 
 ## Pages on this site

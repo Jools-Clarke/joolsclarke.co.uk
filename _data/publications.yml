@@ -6,12 +6,17 @@
 #   text:     short line under the title (markdown)
 #   note:     optional red warning box
 #   accent:   optional colour 1-6 for the left border (otherwise cycles)
+#   disabled: true for a not-yet-live card (no url needed): greyed out, shakes on hover
 #   confetti: true for a little celebration on hover
+
+- title: "Leveraging Machine Learning for the Ariel Space Mission: A White Paper from the Ariel Machine Learning Working Group"
+  disabled: true
+  text: Whitepaper currently in review for publication in the RASTI Ariel special issue. Check back for updates.
+  confetti: true
 
 - title: Progress in Reducing Emissions 2026 Report to Parliament
   url: https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2026-report-to-parliament/
   text: Read the full report on the Climate Change Committee website.
-  confetti: true
 
 - title: "PERTURB-c: Correlation Aware Perturbation Explainability for Regression Techniques to Understand Retrieval Black-boxes"
   url: /perturb/perturb-c_arxiv_hook/
