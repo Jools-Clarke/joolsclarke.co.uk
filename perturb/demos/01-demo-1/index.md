@@ -1,7 +1,7 @@
 ---
 layout: demo
-title: Demo 1 | Gaussian Perturb | Jools Clarke
-description: PLACEHOLDER. One or two sentences saying what demo 1 shows.
+title: Get started with Perturb | Gaussian Perturb | Jools Clarke
+description: Quick start guide to using the Perturb package to interpret a simple neural network.
 colab:
 ---
 PLACEHOLDER: paste the notebook's Markdown cells here, with code cells as ```python blocks.

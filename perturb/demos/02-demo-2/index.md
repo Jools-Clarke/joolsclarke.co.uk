@@ -1,6 +1,6 @@
 ---
 layout: demo
-title: Demo 2 | Gaussian Perturb | Jools Clarke
+title: Perturb for Observations | Gaussian Perturb | Jools Clarke
 description: PLACEHOLDER. One or two sentences saying what demo 2 shows.
 colab:
 ---

@@ -6,19 +6,20 @@
 #             greyed out ("coming soon"). repo is also the demos' "Package repo" button.
 
 summary: |
-  PLACEHOLDER: what Gaussian Perturb is, what it does, and how to install it.
+  Perturb is an interpretability framework for understanding the predictions made by machine learning retrievals. It is capable of calculating specific critical datapoints that the retrieval relies on, visualising non-linearities and anomalous model response, and overall providing confidence in model performance. We will be open sourcing all the data and code alongside the official journal publication, so please check back, the repo will be linked below as soon as it is ready!
+
 
 paper:
   title: Read the paper
   url:
-  text: PLACEHOLDER. The Gaussian Perturb paper.
+  text: Get access to the preprint of the Gaussian Perturb paper on arXiv.
 
 repo:
   title: Get the package
   url:
-  text: PLACEHOLDER. The package repository on GitHub.
+  text: Get the Gaussian Perturb package on GitHub.
 
 replication:
   title: Replicate the paper
   url:
-  text: PLACEHOLDER. Everything needed to reproduce the paper's results.
+  text: Access the full code and data used to generate the figures in the Gaussian Perturb paper.
