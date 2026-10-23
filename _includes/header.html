@@ -1,6 +1,7 @@
 {%- comment -%}
   Top row of every page: either my name (front matter `header: name`) or a
-  back arrow to the homepage, plus the light/dark switch.
+  back arrow plus a home button, then the light/dark switch. The back arrow
+  goes to the page's `back:` (front matter or _config.yml defaults), else home.
 {%- endcomment -%}
 <header class="header">
 {%- if page.header == "name" %}
@@ -9,7 +10,12 @@
     <span class="short-name">{{ site.data.me.name | replace: " ", "<br>" }}</span>
   </h1>
 {%- else %}
-  <a href="{{ '/' | relative_url }}" class="home-link" title="Go to homepage" aria-label="Go to homepage">◀︎</a>
+  <nav class="header-nav">
+    <a href="{{ page.back | default: '/' | relative_url }}" class="home-link" title="Go back" aria-label="Go back">◀︎</a>
+    <a href="{{ '/' | relative_url }}" class="home-link" title="Go to homepage" aria-label="Go to homepage">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M3 11 12 3l9 8M5 9.5V21h5v-6h4v6h5V9.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </nav>
 {%- endif %}
   <button type="button" class="toggle-theme" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">☾</button>
 </header>

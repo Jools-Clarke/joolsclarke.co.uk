@@ -3,12 +3,14 @@
 #   url:      page the tile links to (required)
 #   image:    logo or picture. A logo is shown whole; if the tile also has a
 #             title, the picture fills the tile with the title on top of it.
+#   image_dark: optional version of a logo for dark mode
 #   alt:      describes the image (needed when there is no title)
 #   title / subtitle: text written over the picture
 #   accent:   optional colour 1-6 for the left border
 
 - url: /perturb/
-  image: /perturb/perturb.svg
+  image: /perturb/perturb-full-light.svg
+  image_dark: /perturb/perturb-full-dark.svg
   alt: Perturb, an interpretability framework for machine learning retrievals
   accent: 3
 

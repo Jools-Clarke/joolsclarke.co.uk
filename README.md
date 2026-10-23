@@ -51,6 +51,8 @@ the top explaining its fields. Edit, save, look at localhost, push.
 | Change my bio, job title, photo, email | `_data/me.yml` |
 | Change the tiles down the homepage's left side | `_data/projects.yml` |
 | Change the Perturb page | `_includes/content/perturb.html` |
+| Add the Perturb repo/paper links, or the llms.txt summary | `_data/perturb.yml` |
+| Add a Perturb demo | see below |
 | Change the banner at the top of a page | that page's `banner:` line |
 | Point the arXiv link somewhere new | `redirect_to:` in `perturb/perturb-c_arxiv_hook/index.html` |
 | Change colours | the variables at the top of `_includes/css/base.css` |
@@ -91,6 +93,19 @@ Commit both. Then:
   `{% include file-card.html file="/qr2/slides.pdf" title="My slides" %}`
 - **Gallery item:** add it to `_data/gallery.yml`. Files that aren't
   pictures (3D models, fonts…) also need an `image:` to use as their preview.
+
+### Add a Perturb demo
+
+Copy a folder in `perturb/demos/` (e.g. `01-demo-1/`) and rename it. The
+folder name sets the order on `/perturb/` and the address
+(`perturb/demos/04-fitting/` becomes `/perturb/demos/04-fitting/`). In its
+`index.md`, set `title`, `description` (also shown on the card) and `colab:`
+(the Colab link). Below the front matter, paste the notebook's Markdown cells,
+with code as ` ```python ` blocks and outputs as plain ` ``` ` blocks. Save
+plots next to `index.md` and show them with `![What it shows](plot.png)`.
+A card for every demo appears on `/perturb/` by itself; delete the folder to
+remove one. If a code block contains `{{` or `{%`, wrap it in
+`{% raw %}` … `{% endraw %}` or the build fails.
 
 ### Add a new page
 

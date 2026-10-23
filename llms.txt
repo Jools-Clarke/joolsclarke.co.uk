@@ -24,6 +24,18 @@ Contact: {{ me.email }}
 - {% if pub.disabled %}{{ pub.title }} (coming soon){% else %}[{{ pub.title }}]({{ pub.url | absolute_url }}){% endif %}{% if pub.note %}: {{ pub.note }}{% endif %}
 {%- endfor %}
 
+## Gaussian Perturb
+
+{{ site.data.perturb.summary }}
+More at [the Perturb page]({{ '/perturb/' | absolute_url }}).
+{% assign perturb_links = "paper,repo,replication" | split: "," %}{% for key in perturb_links %}{% assign link = site.data.perturb[key] %}{% if link.url %}
+- [{{ link.title }}]({{ link.url | absolute_url }})
+{%- endif %}{% endfor %}
+{%- assign demos = site.pages | where: "layout", "demo" | sort: "path" %}
+{%- for demo in demos %}
+- [{{ demo.title | split: " | " | first }}]({{ demo.url | absolute_url }}){% if demo.description %}: {{ demo.description }}{% endif %}
+{%- endfor %}
+
 ## Pages on this site
 {% assign pages = site.html_pages | sort: "url" -%}
 {%- for p in pages -%}

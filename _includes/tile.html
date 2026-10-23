@@ -17,6 +17,9 @@
       {%- endif %}
     </div>
   </div>
+{%- elsif tile.image_dark %}
+  {% include img.html src=tile.image alt=tile.alt class="light-only" %}
+  {% include img.html src=tile.image_dark alt=tile.alt class="dark-only" %}
 {%- else %}
   {% include img.html src=tile.image alt=tile.alt %}
 {%- endif %}

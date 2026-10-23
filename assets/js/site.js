@@ -33,8 +33,10 @@
     const logos = Array.from(background.children);
     const needed = Math.ceil(window.screen.width / 100) * Math.ceil(window.screen.height / 80);
     const pile = [];
+    // dark-only copies are hidden in light mode (and light-only in dark), so make extra to still fill the screen
+    const shown = logos.filter((logo) => !logo.classList.contains("dark-only")).length;
 
-    while (pile.length < needed) {
+    while (pile.length < needed * logos.length / shown) {
       const round = logos.slice();
       for (let i = round.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));

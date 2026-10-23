@@ -13,7 +13,8 @@ The lines between `---` at the top of a page.
 | `title` | Browser tab / search result title. Convention: `Page name \| Jools Clarke` |
 | `description` | One or two sentences for search results, link previews and `llms.txt`. Defaults to `description` in `_data/me.yml` |
 | `image` | Picture for link previews (defaults to my photo) |
-| `header` | `name` = big name on the left (homepage); `none` = no header row; leave out for the ◀︎ back arrow |
+| `header` | `name` = big name on the left (homepage); `none` = no header row; leave out for the ◀︎ back arrow and home button |
+| `back` | Where the ◀︎ back arrow goes (default: homepage; demo pages get `/perturb/` from `_config.yml`) |
 | `banner` | Markdown text for a strip across the top of the page |
 | `banner_style` | `quiet` for a small right-aligned strip; leave out for a loud coloured one |
 | `narrow` | `true` for a slim centred column (QR pages, 404) |
@@ -36,6 +37,7 @@ The lines between `---` at the top of a page.
 | `subheading` | Slightly larger intro text |
 | `section-header` | Small gold uppercase heading ("PUBLICATIONS") |
 | `logo-heading` | An `<h1>` that is a logo image (its alt text is the heading) |
+| `light-only` / `dark-only` | Only shown in that theme (logos with a dark-mode version) |
 | `warning` / `warning big` | Red "heads up" box, small (in a card) or standalone |
 | `button` | Solid button-looking link |
 | `centred` | Centre text |
@@ -65,11 +67,12 @@ Accent colours: 1 orange, 2 gold, 3 green, 4 teal, 5 blue, 6 violet.
 ## `tile.html`: picture tiles (homepage left column)
 
 ```liquid
-{% include tile.html url="/perturb/" image="/perturb/perturb.svg" alt="Perturb" accent=3 %}
+{% include tile.html url="/perturb/" image="/perturb/perturb-full-light.svg" image_dark="/perturb/perturb-full-dark.svg" alt="Perturb" accent=3 %}
 {% include tile.html url="/ariel/gallery/" image="/ariel/gallery/decode.png" title="Gallery" subtitle="My creative work" %}
 ```
 
-Without `title`: the image is shown whole (logos). With `title`: the image
+Without `title`: the image is shown whole (logos), and `image_dark` swaps
+in a dark-mode version. With `title`: the image
 fills a 16:9 tile, dimmed, with the title and `subtitle` written over it.
 The homepage reads these from `_data/projects.yml`.
 
@@ -114,7 +117,7 @@ or in HTML `<a href="#copy">j.d.clarke@ucl.ac.uk</a>`. Cards use `copy:`
 | `schema.html` | JSON-LD about me (homepage only), built from `me.yml` + `links.yml` |
 | `banner.html` | The strip from `banner:` |
 | `background.html` | The tiled mission logos. To add a logo, put an SVG in `assets/img/background/` and add an `<img>` line here with its width |
-| `header.html` | Name or back arrow, plus the ☾/☼ button |
+| `header.html` | Name, or back arrow + home button, plus the ☾/☼ button |
 | `footer.html` | Name, email (click to copy), last-updated date, link to `llms.txt` |
 
 ## Shared page bodies (`_includes/content/`)
@@ -123,7 +126,15 @@ Pages shown at more than one address keep their body here, so each copy
 stays in sync:
 
 - `content/home.html`: `/` and `/qr/`
-- `content/perturb.html`: `/perturb/` and `/qr1/`
+- `content/perturb.html`: `/perturb/` and `/qr1/`. Its links come from
+  `_data/perturb.yml`, and it lists every page with `layout: demo`.
+
+## `demo` layout: Perturb demos
+
+`perturb/demos/*/index.md` with `layout: demo`: a notebook-style page
+(Markdown text, ` ```python ` code, images) with "Open in Colab"
+(front matter `colab:`) and "Package repo" (`repo` in `_data/perturb.yml`)
+buttons, greyed out until their links are set.
 
 ## JavaScript
 

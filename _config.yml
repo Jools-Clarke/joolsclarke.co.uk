@@ -30,6 +30,10 @@ defaults:
       path: ""
     values:
       layout: default
+  - scope:
+      path: "perturb/demos"
+    values:
+      back: /perturb/      # the header's back arrow
 
 # Files that are for maintaining the site, not for publishing.
 exclude:

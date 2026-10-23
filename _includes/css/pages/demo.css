@@ -1,0 +1,55 @@
+/* ── Perturb demo pages (_layouts/demo.html): notebook-style text, code, images ── */
+.demo {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.demo-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 30px;
+}
+
+.demo-pager {
+  display: flex;
+  gap: 10px;
+}
+
+.demo-next {
+  margin-left: auto;
+}
+
+.demo img {
+  display: block;
+  margin: 1em auto;
+}
+
+/* Code blocks (```python … ```), coloured by Jekyll's built-in highlighter. */
+.demo pre {
+  overflow-x: auto;
+  padding: 14px 16px;
+  border-left: 4px solid var(--perturb-2);
+  border-radius: 8px;
+  background: var(--card-bg);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  font-size: 0.85em;
+  line-height: 1.45;
+}
+
+.demo code {
+  font-family: var(--mono);
+}
+
+.demo :not(pre) > code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--card-bg);
+  font-size: 0.9em;
+}
+
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .sd { opacity: 0.6; font-style: italic; }
+.highlight .k, .highlight .kn, .highlight .kd, .highlight .kc, .highlight .ow { color: var(--accent-6); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .si { color: var(--accent-3); }
+.highlight .mi, .highlight .mf, .highlight .m { color: var(--accent-1); }
+.highlight .nf, .highlight .nc, .highlight .nb, .highlight .bp { color: var(--accent-5); }

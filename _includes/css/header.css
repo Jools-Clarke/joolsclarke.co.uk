@@ -24,6 +24,16 @@
   font-size: 1.8em;
 }
 
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-link svg {
+  display: block;
+}
+
 .toggle-theme {
   font-size: 1.5em;
 }

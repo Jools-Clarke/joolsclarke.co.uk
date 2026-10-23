@@ -21,3 +21,9 @@
   filter: invert(100%);
   opacity: 0.4;
 }
+
+/* Colour logos (the Perturb one): half visible, never inverted. */
+.background img.bg-colour {
+  opacity: 0.5;
+  filter: none;
+}

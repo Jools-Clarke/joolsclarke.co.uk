@@ -1,0 +1,15 @@
+/* ── Perturb page (_includes/content/perturb.html): styleguide colours ── */
+.perturb-page {
+  --accent-1: var(--perturb-3);
+  --accent-2: var(--perturb-1);
+  --accent-3: var(--perturb-2);
+}
+
+.perturb-page h2 {
+  color: var(--perturb-2);
+}
+
+.perturb-page hr {
+  border-top-color: var(--perturb-1);
+  opacity: 0.5;
+}

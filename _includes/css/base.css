@@ -18,6 +18,10 @@
   --warning-bg: #e9c6c281;
   --warning-text: #751812;
   --warning-edge: #c0392b;
+  /* Perturb styleguide (perturb/ logos), used on the Perturb page */
+  --perturb-1: #d18534;
+  --perturb-2: #7b6ea5;
+  --perturb-3: #666666;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -36,6 +40,9 @@
   --accent-6: #8a7fc4;
   --warning-bg: #7f2b2b2b;
   --warning-text: #d17b70;
+  --perturb-1: #e3a55b;
+  --perturb-2: #948cb9;
+  --perturb-3: #b3b3b3;
 }
 
 /* ── Page ─────────────────────────────────────────────── */
@@ -55,7 +62,7 @@ body {
   position: relative;
   z-index: 1;
   width: calc(100% - 40px);
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 40px auto;
   padding: 40px 30px 24px;
   background: var(--container-bg);
@@ -215,6 +222,12 @@ hr {
     float: left;
     margin: 0 20px 10px 0;
   }
+}
+
+/* Pictures with a light and a dark version: show the one for the theme. */
+[data-theme="dark"] .light-only,
+:root:not([data-theme="dark"]) .dark-only {
+  display: none;
 }
 
 .side-logo {

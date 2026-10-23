@@ -1,0 +1,24 @@
+# Gaussian Perturb: the links and summary used on /perturb/, on every demo
+# page (/perturb/demos/…) and in /llms.txt.
+#
+#   summary:  a few sentences about the package for AI assistants (llms.txt)
+#   paper / repo / replication:  cards on /perturb/. A card with no url is
+#             greyed out ("coming soon"). repo is also the demos' "Package repo" button.
+
+summary: |
+  PLACEHOLDER: what Gaussian Perturb is, what it does, and how to install it.
+
+paper:
+  title: Read the paper
+  url:
+  text: PLACEHOLDER. The Gaussian Perturb paper.
+
+repo:
+  title: Get the package
+  url:
+  text: PLACEHOLDER. The package repository on GitHub.
+
+replication:
+  title: Replicate the paper
+  url:
+  text: PLACEHOLDER. Everything needed to reproduce the paper's results.
