@@ -60,7 +60,7 @@ in distribution up to |xi| = 0.75 sigma
 
 ![Correlation matrix of every data point: coarse cells for the filters, fine ones for the spectrographs](correlation-matrix.png){: loading="lazy"}
 
-![Map of the fit's response for every position and nudge size, with the trusted region outlined in black](in-distribution-map.png){: loading="lazy"}
+![Map of the fit's response for every position and nudge size, with the trusted region outlined](in-distribution-map.png){: loading="lazy"}
 
 ![Fraction of positions still trusted against nudge size, falling off below 1 sigma](in-distribution-curve.png){: loading="lazy"}
 

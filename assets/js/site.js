@@ -14,6 +14,15 @@
   function showTheme() {
     const dark = root.dataset.theme === "dark";
     toggles.forEach((button) => { button.textContent = dark ? "☼" : "☾"; });
+
+    // Demo plots come in pairs, plot.png and plot-dark.png; plot.png stays if there's no dark one.
+    document.querySelectorAll(".demo article img[src$='.png']").forEach((img) => {
+      if (!img.dataset.light) {
+        img.dataset.light = img.getAttribute("src");
+        img.addEventListener("error", () => { img.src = img.dataset.light; });
+      }
+      img.src = dark ? img.dataset.light.replace(/\.png$/, "-dark.png") : img.dataset.light;
+    });
   }
 
   toggles.forEach((button) => {

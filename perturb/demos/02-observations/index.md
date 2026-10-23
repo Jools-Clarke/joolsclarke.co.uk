@@ -76,7 +76,7 @@ curve = pt.in_distribution_curve(wide, forward, tol=0.3)
 plotting.ood_map(curve, wide)
 ```
 
-![Map of the fit's response for every position and nudge size, with the trusted region outlined in black](in-distribution-map.png){: loading="lazy"}
+![Map of the fit's response for every position and nudge size, with the trusted region outlined](in-distribution-map.png){: loading="lazy"}
 
 ```python
 XI_MAX = pt.max_magnitude(curve)

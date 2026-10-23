@@ -102,7 +102,9 @@ folder name sets the order on `/perturb/` and the address
 `index.md`, set `title`, `description` (also shown on the card) and `colab:`
 (the Colab link). Below the front matter, paste the notebook's Markdown cells,
 with code as ` ```python ` blocks and outputs as plain ` ``` ` blocks. Save
-plots next to `index.md` and show them with `![What it shows](plot.png)`.
+plots next to `index.md` and show them with `![What it shows](plot.png){: loading="lazy"}`.
+Save them with a transparent background; add a `plot-dark.png` beside a plot and
+dark mode shows that instead.
 A card for every demo appears on `/perturb/` by itself; delete the folder to
 remove one. If a code block contains `{{` or `{%`, wrap it in
 `{% raw %}` … `{% endraw %}` or the build fails.

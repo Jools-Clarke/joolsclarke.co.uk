@@ -71,10 +71,10 @@ curve = pt.in_distribution_curve(wide, forward, tol=0.1)   # forward: amplitudes
 plotting.ood_map(curve, wide)
 ```
 
-Each column is a nudge centred at one point, each row a size of nudge (in units of the noise, σ). Inside the black
-line the network responds as it does to small nudges.
+Each column is a nudge centred at one point, each row a size of nudge (in units of the noise, σ). Inside the line
+the network responds as it does to small nudges.
 
-![Map of the network's response for every position and nudge size, with a black line enclosing the trusted region](in-distribution-map.png){: loading="lazy"}
+![Map of the network's response for every position and nudge size, with a line enclosing the trusted region](in-distribution-map.png){: loading="lazy"}
 
 `max_magnitude` reads off the largest nudge at which nearly every position is still trusted.
 

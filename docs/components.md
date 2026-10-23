@@ -134,7 +134,8 @@ stays in sync:
 `perturb/demos/*/index.md` with `layout: demo`: a notebook-style page
 (Markdown text, ` ```python ` code, images) with "Open in Colab"
 (front matter `colab:`) and "Package repo" (`repo` in `_data/perturb.yml`)
-buttons, greyed out until their links are set.
+buttons, greyed out until their links are set. In dark mode `site.js` swaps each
+`plot.png` for a `plot-dark.png` beside it, when there is one.
 
 ## JavaScript
 
