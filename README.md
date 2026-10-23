@@ -96,7 +96,7 @@ Commit both. Then:
 
 ### Add a Perturb demo
 
-Copy a folder in `perturb/demos/` (e.g. `01-demo-1/`) and rename it. The
+Copy a folder in `perturb/demos/` (e.g. `01-get-started/`) and rename it. The
 folder name sets the order on `/perturb/` and the address
 (`perturb/demos/04-fitting/` becomes `/perturb/demos/04-fitting/`). In its
 `index.md`, set `title`, `description` (also shown on the card) and `colab:`
