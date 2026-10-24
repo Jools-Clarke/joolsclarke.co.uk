@@ -10,6 +10,8 @@
     narrow               true for a slim, centred column
     background           false to hide the tiled logos
     analytics            false to skip Simple Analytics on this page
+    blocks               what's on the page, drawn by _includes/blocks.html
+    blocks_from          another page's address: show its blocks instead (QR copies)
 {%- endcomment %}
 <html lang="{{ site.lang | default: 'en' }}">
 <head>
@@ -28,6 +30,12 @@
 {%- endunless %}
 <main>
 {{ content }}
+{%- if page.blocks_from %}
+  {%- assign blocks_page = site.pages | where: "url", page.blocks_from | first %}
+{% include blocks.html blocks=blocks_page.blocks %}
+{%- else %}
+{% include blocks.html blocks=page.blocks %}
+{%- endif %}
 </main>
 {% include footer.html %}
 </div>

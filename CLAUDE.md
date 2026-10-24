@@ -5,7 +5,7 @@ Plain Jekyll, built and hosted by **GitHub Pages' own builder** from the
 `main-jekyll` branch. No Actions, no deploy step: pushing publishes.
 
 Read [docs/how-it-works.md](docs/how-it-works.md) (structure + reasons) and
-[docs/components.md](docs/components.md) (every include and its options)
+[docs/components.md](docs/components.md) (every block and its options)
 before non-trivial changes. The [README](README.md) holds the
 "how do I add X" recipes. Keep all three up to date when you change how
 things work.
@@ -15,7 +15,7 @@ things work.
 ```bash
 scripts/serve.sh        # http://localhost:4000, live reload (restart after editing _config.yml)
 scripts/check.sh        # production build into a temp dir + link/alt/size checks. Must pass before committing.
-scripts/thumbnails.sh   # after adding/replacing any PNG/JPG/WebP/PDF; commit assets/thumbs/ and _data/media.yml
+scripts/thumbnails.sh   # after adding/replacing any PNG/JPG/WebP/PDF; commit assets/thumbs/ and _includes/content/data/media.yml
 ```
 
 The scripts use Ruby from the conda env `/opt/homebrew/anaconda3/envs/jekyll`
@@ -32,12 +32,18 @@ only has `"url": "http://localhost:4000"`.
    `{{ '/path/' | relative_url }}` in templates). Never
    `https://joolsclarke.co.uk/...`, `raw.githubusercontent.com` or
    `github.com/.../raw`. `check.sh` fails on these.
-2. **Lists live in `_data/`** (publications, links, projects, conferences,
-   gallery, me). Pages are front matter plus a few includes. Don't hard-code
-   something that already exists in a data file (e.g. use `site.data.me.email`).
-3. **Images go through `img.html` / `file-card.html`** so the small preview
-   is used. Never put a big original in an `<img>`. `_data/media.yml` is
-   generated: re-run the script, don't edit it.
+2. **Words, blocks and layout are kept apart.** All text is Markdown in
+   `_includes/content/<page>/`; lists (publications, links, projects,
+   conferences, gallery, me) are YAML in `_includes/content/data/`
+   (`data_dir` in `_config.yml`, still `site.data.*`). HTML lives in
+   `_includes/blocks/`, one file per block type. A page's `index.html` is
+   front matter only: settings plus a `blocks:` list. Don't put prose in page
+   YAML (headings and card titles are fine) and don't hard-code something a
+   data file has (e.g. use `site.data.me.email`).
+3. **Images go through `img.html` / the `image` and `file-card` blocks** so
+   the small preview is used. Never put a big original in an `<img>`.
+   `_includes/content/data/media.yml` is generated: re-run the script, don't
+   edit it.
 4. **Styles:** one file per block in `_includes/css/`, all glued into
    `assets/css/site.css` (add new files to its list). Plain CSS only, no Sass.
    Colours only via the variables in `_includes/css/base.css`; check both
@@ -79,7 +85,12 @@ only has `"url": "http://localhost:4000"`.
   or set it to `false` instead. When the live site doesn't update, look at
   the Actions tab → "pages build and deployment" → build → "Build with Jekyll".
 - Liquid `assign` is global even inside includes: prefix variables per
-  include (`card_`, `tile_`, `img_`, `file_`).
+  include (`card_`, `tile_`, `img_`, `file_`). Blocks that hold blocks
+  (`columns`, `stack`) re-enter `blocks.html`, so they must only read
+  `include.item`, never a variable they assigned before the nested include.
+- Markdown in `_includes/content/` is pulled in with `{% include %}`, so it
+  can use Liquid, and `{{`/`{%` in code samples needs `{% raw %}`. A wrong
+  `file:` stops the build ("Could not locate the included file").
 - Front matter on a *layout* isn't visible as `page.x`. Put settings on the
   page, or handle them where they're used (see `redirect_to` in `head.html`
   and `sitemap.xml`).
@@ -88,8 +99,10 @@ only has `"url": "http://localhost:4000"`.
   production builds and every asset link breaks.
 - Never build into `_site/` while `serve.sh` is running (`check.sh` uses a
   temp dir for this reason).
-- Includes that output `<a>` blocks (`card`, `tile`) are wrapped in a
-  `<div>` so they survive inside Markdown pages.
+- `card` and `tile` wrap their `<a>` in a `<div>` so they survive inside
+  Markdown.
+- Relative image links in demo Markdown (`plot.png`) stay relative: they
+  resolve because demo URLs end in `/`.
 - `thumbnails.sh` applies EXIF rotation (phone photos) because `cwebp`
   ignores it, and writes previews atomically so the dev server never copies
   a half-written file.

@@ -1,0 +1,16 @@
+{%- comment -%}
+  Two columns side by side on wide screens (the right one a bit wider),
+  one above the other on phones.
+    - type: columns
+      class: perturb-page      # optional extra CSS class
+      left:  [blocks…]
+      right: [blocks…]
+{%- endcomment -%}
+<div class="columns{% if include.item.class %} {{ include.item.class }}{% endif %}">
+  <div>
+{% include blocks.html blocks=include.item.left %}
+  </div>
+  <div>
+{% include blocks.html blocks=include.item.right %}
+  </div>
+</div>

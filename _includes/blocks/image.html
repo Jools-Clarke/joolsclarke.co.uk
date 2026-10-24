@@ -1,0 +1,24 @@
+{%- comment -%}
+  A picture (its small preview, see img.html).
+    - type: image
+      src: /perturb/perturb-full-light.svg
+      dark: /perturb/perturb-full-dark.svg   # optional version for dark mode
+      alt: Perturb                           # "" for a decorative picture
+      class: side-logo                       # optional
+      heading: true                          # optional: the picture is the page's <h1> (a logo)
+{%- endcomment -%}
+{%- assign image_eager = include.item.eager | default: include.item.heading -%}
+{%- if include.item.heading %}
+<h1 class="logo-heading">
+{%- endif %}
+{%- if include.item.dark %}
+  {%- assign image_class = include.item.class | append: " light-only" | strip %}
+  {% include img.html src=include.item.src alt=include.item.alt class=image_class eager=image_eager %}
+  {%- assign image_class = include.item.class | append: " dark-only" | strip %}
+  {% include img.html src=include.item.dark alt=include.item.alt class=image_class eager=image_eager %}
+{%- else %}
+  {% include img.html src=include.item.src alt=include.item.alt class=include.item.class eager=image_eager %}
+{%- endif %}
+{%- if include.item.heading %}
+</h1>
+{%- endif %}

@@ -6,8 +6,9 @@ layout: default
   code blocks and images. Every page using this layout gets a card on /perturb/.
   Page front matter:
     title, description   as usual (the description is also the card's text)
+    text                 the demo's Markdown, a file in _includes/content/
     colab                link to open the notebook in Colab (button greyed out without it)
-  The "Package repo" button uses `repo` in _data/perturb.yml. Previous/next
+  The "Package repo" button uses `repo` in data/perturb.yml. Previous/next
   links follow the folder order of perturb/demos/.
 {%- endcomment -%}
 <div class="demo perturb-page">
@@ -27,7 +28,8 @@ layout: default
   </p>
 
   <article class="prose">
-{{ content }}
+{%- capture demo_md %}{% include content/{{ page.text }} %}{% endcapture %}
+{{ demo_md | markdownify }}
   </article>
 
   {%- assign demos = site.pages | where: "layout", "demo" | sort: "path" %}

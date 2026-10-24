@@ -1,5 +1,5 @@
 // /conferences/: draws the Leaflet map and links each pin to its entry in the
-// list (the <details> items built from _data/conferences.yml). Hovering a pin
+// list (the <details> items built from data/conferences.yml). Hovering a pin
 // highlights its entry; clicking either one opens it and flies the map there.
 (function () {
   "use strict";

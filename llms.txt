@@ -4,8 +4,8 @@ sitemap: false
 ---
 {%- comment -%}
   A plain-text (markdown) summary of the site for AI assistants and other
-  tools, following https://llmstxt.org. Built from _data/ and page front
-  matter, so it stays up to date by itself.
+  tools, following https://llmstxt.org. Built from _includes/content/ and page
+  front matter, so it stays up to date by itself.
 {%- endcomment -%}
 {%- assign me = site.data.me -%}
 # {{ me.name }}
@@ -18,15 +18,15 @@ Contact: {{ me.email }}
 
 ## About
 
-{{ me.bio }}
+{% include content/home/bio.md %}
 ## Publications and reports
 {% for pub in site.data.publications %}
-- {% if pub.disabled %}{{ pub.title }} (coming soon){% else %}[{{ pub.title }}]({{ pub.url | absolute_url }}){% endif %}{% if pub.note %}: {{ pub.note }}{% endif %}
+- {% if pub.disabled or pub.url == nil %}{{ pub.title }} (coming soon){% else %}[{{ pub.title }}]({{ pub.url | absolute_url }}){% endif %}{% if pub.note %}: {{ pub.note }}{% endif %}
 {%- endfor %}
 
 ## Gaussian Perturb
 
-{{ site.data.perturb.summary }}
+{% include content/perturb/intro.md %}
 More at [the Perturb page]({{ '/perturb/' | absolute_url }}).
 {% assign perturb_links = "paper,repo,replication" | split: "," %}{% for key in perturb_links %}{% assign link = site.data.perturb[key] %}{% if link.url %}
 - [{{ link.title }}]({{ link.url | absolute_url }})

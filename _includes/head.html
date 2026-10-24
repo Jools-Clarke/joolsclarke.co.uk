@@ -1,7 +1,7 @@
 {%- comment -%}
   Everything inside <head>: title, description, link previews, stylesheet,
   scripts. Driven by page front matter (title, description, image, robots,
-  canonical, redirect_to) with fallbacks from _data/me.yml.
+  canonical, redirect_to) with fallbacks from data/me.yml.
 {%- endcomment -%}
 {%- assign me = site.data.me -%}
 {%- assign title = page.title | default: site.title -%}

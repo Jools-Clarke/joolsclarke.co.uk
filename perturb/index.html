@@ -1,5 +1,41 @@
 ---
 title: Perturb | Interpretability for Machine Learning Retrievals | Jools Clarke
 description: Perturb is an interpretability framework for machine learning atmospheric retrievals of exoplanets, finding the critical datapoints a retrieval relies on. Paper, code and demos of the Gaussian Perturb package.
+blocks:
+  - type: columns
+    class: perturb-page      # Perturb's own colours (css/pages/perturb.css)
+    left:
+      - type: image
+        heading: true
+        src: /perturb/perturb-full-light.svg
+        dark: /perturb/perturb-full-dark.svg
+        alt: Perturb
+      - type: text
+        file: perturb/intro.md
+        class: subheading
+      - type: rule
+      - type: stack
+        blocks:
+          - type: card
+            from: perturb.paper
+          - type: demo-cards
+            limit: 1
+            accent: 2
+          - type: card
+            from: perturb.repo
+          - type: rule
+          - type: demo-cards
+            offset: 1
+            accent: 2
+          - type: card
+            from: perturb.replication
+    right:
+      - type: image
+        src: /perturb/perturb-G-round-light.svg
+        dark: /perturb/perturb-G-round-dark.svg
+        alt: ""
+        class: side-logo
+      - type: text
+        file: perturb/gaussian.md
+        class: prose
 ---
-{% include content/perturb.html %}

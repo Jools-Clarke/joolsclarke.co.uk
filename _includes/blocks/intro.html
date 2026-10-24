@@ -1,0 +1,11 @@
+{%- comment -%}
+  My photo (from data/me.yml) with a Markdown file beside it (homepage).
+    - type: intro
+      file: home/bio.md
+{%- endcomment -%}
+<div class="intro">
+  {% include img.html src=site.data.me.photo alt=site.data.me.photo_alt class="profile-photo" eager=true %}
+  <div class="subheading">
+{% include blocks/text.html item=include.item %}
+  </div>
+</div>

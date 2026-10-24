@@ -5,7 +5,7 @@ sitemap: false
 {%- comment -%}
   The whole site's CSS, glued together at build time into this one file (one
   download, cached for every page). Each piece lives in _includes/css/ next to
-  the HTML block it styles: _includes/card.html <-> _includes/css/card.css.
+  the HTML block it styles: _includes/blocks/card.html <-> _includes/css/card.css.
   To add a piece: create the file there and add a line below.
 {%- endcomment -%}
 {% include css/base.css %}

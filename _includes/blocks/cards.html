@@ -1,0 +1,13 @@
+{%- comment -%}
+  A card for every entry in a list in _includes/content/data/.
+    - type: cards
+      list: publications       # data/publications.yml
+      heading: Publications    # optional small gold heading above them
+  Put it in a stack for even gaps.
+{%- endcomment -%}
+{%- if include.item.heading %}
+<h2 class="section-header">{{ include.item.heading }}</h2>
+{%- endif %}
+{%- for card_item in site.data[include.item.list] %}
+{% include blocks/card.html item=card_item index=forloop.index0 %}
+{%- endfor %}

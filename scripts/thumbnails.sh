@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Make small, fast-loading WebP previews of every image (PNG/JPG/WebP) and PDF,
 # and write their details (preview size, file size, page count) to
-# _data/media.yml, which the templates read.
+# _includes/content/data/media.yml, which the templates read.
 #
 #   scripts/thumbnails.sh          # (re)make previews that are missing or out of date
 #   scripts/thumbnails.sh --force  # remake all of them
@@ -17,7 +17,7 @@ cd "$(dirname "$0")/.."
 
 WIDTH=800   # default preview width in px: sharp at ~400px on a retina screen
 OUT=assets/thumbs
-DATA=_data/media.yml
+DATA=_includes/content/data/media.yml
 FORCE=${1:-}
 
 # A few images are shown bigger than usual and need a wider preview.

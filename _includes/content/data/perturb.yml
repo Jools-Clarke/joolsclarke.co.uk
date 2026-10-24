@@ -1,0 +1,24 @@
+# Gaussian Perturb: the cards on /perturb/ (and /qr1/), the demos' "Package
+# repo" button, and the links in /llms.txt. The intro text is in
+# _includes/content/perturb/intro.md.
+#
+#   paper / repo / replication:  card fields (see publications.yml). A card
+#             with no url is greyed out ("coming soon").
+
+paper:
+  title: Read the paper
+  url:
+  text: Get access to the preprint of the Gaussian Perturb paper on arXiv.
+  accent: 3
+
+repo:
+  title: Get the package
+  url:
+  text: Get the Gaussian Perturb package on GitHub.
+  accent: 1
+
+replication:
+  title: Replicate the paper
+  url:
+  text: Access the full code and data used to generate the figures in the Gaussian Perturb paper.
+  accent: 3

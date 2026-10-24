@@ -1,8 +1,9 @@
 # Building blocks
 
-Every reusable piece of the site, what it's for, and the options it takes.
-Each block's HTML is in `_includes/<name>.html` and its styles in
-`_includes/css/<name>.css`. Use them in any page with `{% include … %}`.
+Every page is a list of **blocks**. Each block type is one HTML file in
+`_includes/blocks/<type>.html` (its styles, if it has its own, are in
+`_includes/css/<type>.css`). The words they show come from
+`_includes/content/`: Markdown files for text, and `data/` for lists.
 
 ## Page settings (front matter)
 
@@ -11,7 +12,7 @@ The lines between `---` at the top of a page.
 | Setting | What it does |
 |---|---|
 | `title` | Browser tab / search result title. Convention: `Page name \| Jools Clarke` |
-| `description` | One or two sentences for search results, link previews and `llms.txt`. Defaults to `description` in `_data/me.yml` |
+| `description` | One or two sentences for search results, link previews and `llms.txt`. Defaults to `description` in `data/me.yml` |
 | `image` | Picture for link previews (defaults to my photo) |
 | `header` | `name` = big name on the left (homepage); `none` = no header row; leave out for the ◀︎ back arrow and home button |
 | `back` | Where the ◀︎ back arrow goes (default: homepage; demo pages get `/perturb/` from `_config.yml`) |
@@ -23,7 +24,9 @@ The lines between `---` at the top of a page.
 | `sitemap` | `false` to leave the page out of `sitemap.xml` and `llms.txt` |
 | `robots` | e.g. `noindex, nofollow` to ask search engines not to list it |
 | `analytics` | `false` to skip Simple Analytics on this page |
-| `layout` | Leave out (defaults to `default`). `redirect` for redirect pages, `null` for a page that is its own complete HTML file |
+| `blocks` | The list of blocks on the page, top to bottom (below) |
+| `blocks_from` | Another page's address (`/perturb/`): show its blocks instead. For QR copies of a page |
+| `layout` | Leave out (defaults to `default`). `redirect` for redirect pages, `demo` for Perturb demos, `null` for a page that is its own complete HTML file |
 | `redirect_to` | With `layout: redirect`: where to send people |
 | `permalink` | Override the page's address (only the 404 page needs this) |
 
@@ -43,63 +46,158 @@ The lines between `---` at the top of a page.
 | `centred` | Centre text |
 | `file-meta` | Small monospace detail text ("PDF · 21 pages · 2.6 MB") |
 
-## `card.html`: the card with a coloured left edge
+## Blocks
 
-```liquid
-{% include card.html title="GitHub" url="https://github.com/jools-clarke" text="Check out my code." %}
-{% include card.html item=pub index=forloop.index0 %}   {# from a _data list #}
+Each entry in `blocks:` has a `type` (the file in `_includes/blocks/`) and
+that block's options. Paths to Markdown files are inside `_includes/content/`;
+list names are files in `_includes/content/data/`.
+
+### `text`: a Markdown file
+
+```yaml
+- type: text
+  file: ccc/role.md        # _includes/content/ccc/role.md
+  class: prose             # optional: prose (long text), subheading (bigger intro), centred
 ```
+
+The file can use Liquid (`[{{ site.data.me.email }}](#copy)`) and kramdown
+extras, e.g. `[Try it ▶︎](/perturb/demos/01-get-started/){: .button}` for a
+button-looking link. A wrong file name stops the build.
+
+### `columns`: two side by side
+
+```yaml
+- type: columns
+  class: perturb-page      # optional extra CSS class on the row
+  left:
+    - type: text
+      file: ccc/intro.md
+  right:
+    - type: text
+      file: ccc/role.md
+```
+
+Stacked on phones; the right one is a bit wider on big screens.
+
+### `stack`: a pile with even gaps
+
+```yaml
+- type: stack
+  blocks:
+    - type: cards
+      list: publications
+    - type: rule
+```
+
+### `card`: the card with a coloured left edge
+
+```yaml
+- type: card
+  title: GitHub
+  url: https://github.com/jools-clarke
+  text: Check out my code.
+```
+
+or one entry of a data file: `from: perturb.paper` (`paper` in `data/perturb.yml`).
 
 | Option | |
 |---|---|
 | `title` | Heading |
-| `url` | Where it links. `https://…` links open in a new tab; site paths (`/ccc/`) don't. Leave out for a plain box |
+| `url` | Where it links. `https://…` links open in a new tab; site paths (`/ccc/`) don't. No `url` (and no `copy`): a greyed-out "coming soon" card |
 | `copy` | Instead of `url`: clicking copies this text and pops up "Email address copied" |
 | `text` | Markdown under the title. No links inside it: the whole card is the link |
 | `note` | Red warning box inside the card |
-| `accent` | 1 to 6, the colour of the left edge. Otherwise it cycles with `index` |
+| `accent` | 1 to 6, the colour of the left edge. Otherwise it cycles down a list |
 | `confetti` | `true` for confetti on page load and hover |
-| `disabled` | `true` for a greyed-out "coming soon" card that shakes |
+| `disabled` | `true` for a greyed-out "coming soon" card that shakes, even with a `url` |
 | `big` | `true` for a chunky bold card (a single call to action) |
 
 Accent colours: 1 orange, 2 gold, 3 green, 4 teal, 5 blue, 6 violet.
 
-## `tile.html`: picture tiles (homepage left column)
+### `cards`: a card for every entry in a list
 
-```liquid
-{% include tile.html url="/perturb/" image="/perturb/perturb-full-light.svg" image_dark="/perturb/perturb-full-dark.svg" alt="Perturb" accent=3 %}
-{% include tile.html url="/ariel/gallery/" image="/ariel/gallery/decode.png" title="Gallery" subtitle="My creative work" %}
+```yaml
+- type: cards
+  list: publications       # data/publications.yml (same fields as `card`)
+  heading: Publications    # optional small gold heading
 ```
 
-Without `title`: the image is shown whole (logos), and `image_dark` swaps
-in a dark-mode version. With `title`: the image
-fills a 16:9 tile, dimmed, with the title and `subtitle` written over it.
-The homepage reads these from `_data/projects.yml`.
+### `tile` and `tiles`: picture tiles (homepage left column)
 
-## `img.html`: any picture
-
-```liquid
-{% include img.html src="/conferences/photos/vienna-2026.jpeg" alt="What's in the photo" %}
+```yaml
+- type: tiles
+  list: projects           # data/projects.yml
 ```
 
-Uses the small preview from `assets/thumbs/` if `scripts/thumbnails.sh` has
-made one, sets its width/height, and waits until it's scrolled near before
-loading. Options: `class="…"`, `eager=true` for pictures at the very top of
-the page. SVGs are used as they are.
+A single one: `type: tile` with `url`, `image`, and either `alt` (a logo,
+shown whole; `image_dark` swaps in a dark-mode version) or `title` +
+`subtitle` (the picture fills a 16:9 tile, dimmed, with the title written
+over it). Fields are explained at the top of `data/projects.yml`.
 
-## `file-card.html`: a download with a preview
+### `image`: a picture
 
-```liquid
-{% include file-card.html file="/qr2/jools_clarke_ariel_consortium_VIENNA.pdf" title="Slides" text="Optional markdown" accent=2 %}
+```yaml
+- type: image
+  src: /perturb/perturb-full-light.svg
+  dark: /perturb/perturb-full-dark.svg   # optional dark-mode version
+  alt: Perturb                           # "" for a decorative picture
+  heading: true                          # optional: the picture is the page's <h1> (a logo)
+  class: side-logo                       # optional
+```
+
+Uses the small preview (see `img.html` below). Headings load straight away,
+other pictures when scrolled near (`eager: true` to load straight away).
+
+### `file-card`: a download with a preview
+
+```yaml
+- type: file-card
+  file: /qr2/jools_clarke_ariel_consortium_VIENNA.pdf
+  title: Slides
+  text: Optional markdown
+  accent: 2
 ```
 
 Shows page 1 (or the picture), "PDF · 21 pages · 2.6 MB", and View /
 Download buttons. The file is only fetched if clicked. Needs
 `scripts/thumbnails.sh` to have been run after adding the file.
 
+### `rule`: a dividing line
+
+```yaml
+- type: rule
+```
+
+### Blocks made for one page
+
+| Block | Options | |
+|---|---|---|
+| `intro` | `file` | My photo (from `data/me.yml`) with a Markdown file beside it (homepage) |
+| `demo-cards` | `limit`, `offset`, `accent` | A card for every page with `layout: demo`, in folder order (Perturb page) |
+| `conference-map` | `heading` | The list from `data/conferences.yml` and the map (`/conferences/`) |
+| `gallery` | `heading` | Everything in `data/gallery.yml` with the pop-up viewer (`/ariel/gallery/`) |
+
+### Making a new block type
+
+Add `_includes/blocks/<type>.html`; it gets the block's options as
+`include.item.<option>`. Put its comment at the top (what it is, a YAML
+example), its styles in `_includes/css/<type>.css` (and list that in
+`assets/css/site.css`), and add it here. Prefix any variable you `assign`
+(Liquid variables are global), and if it holds other blocks, draw them with
+`{% include blocks.html blocks=include.item.something %}`.
+
+## `img.html`: any picture, in a block
+
+`{% include img.html src="/conferences/photos/vienna-2026.jpeg" alt="…" %}`
+is what the blocks use to show a picture. It uses the small preview from
+`assets/thumbs/` if `scripts/thumbnails.sh` has made one, sets its
+width/height, and waits until it's scrolled near before loading. Options:
+`class="…"`, `eager=true`. SVGs are used as they are.
+
 ## Click to copy
 
-Link any text to `#copy` and clicking it copies that text instead:
+In any Markdown file, link the text to `#copy` and clicking it copies that
+text instead:
 
 ```markdown
 email me at [j.d.clarke@ucl.ac.uk](#copy)
@@ -120,20 +218,12 @@ or in HTML `<a href="#copy">j.d.clarke@ucl.ac.uk</a>`. Cards use `copy:`
 | `header.html` | Name, or back arrow + home button, plus the ☾/☼ button |
 | `footer.html` | Name, email (click to copy), last-updated date, link to `llms.txt` |
 
-## Shared page bodies (`_includes/content/`)
-
-Pages shown at more than one address keep their body here, so each copy
-stays in sync:
-
-- `content/home.html`: `/` and `/qr/`
-- `content/perturb.html`: `/perturb/` and `/qr1/`. Its links come from
-  `_data/perturb.yml`, and it lists every page with `layout: demo`.
-
 ## `demo` layout: Perturb demos
 
-`perturb/demos/*/index.md` with `layout: demo`: a notebook-style page
+`perturb/demos/*/index.md` with `layout: demo` and `text:` (its Markdown
+file in `_includes/content/perturb/demos/`): a notebook-style page
 (Markdown text, ` ```python ` code, images) with "Open in Colab"
-(front matter `colab:`) and "Package repo" (`repo` in `_data/perturb.yml`)
+(front matter `colab:`) and "Package repo" (`repo` in `data/perturb.yml`)
 buttons, greyed out until their links are set. In dark mode `site.js` swaps each
 `plot.png` for a `plot-dark.png` beside it, when there is one.
 
