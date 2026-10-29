@@ -107,7 +107,7 @@ or one entry of a data file: `from: perturb.paper` (`paper` in `data/perturb.yml
 | `text` | Markdown under the title. No links inside it: the whole card is the link |
 | `note` | Red warning box inside the card |
 | `label` | Small uppercase word above the title (the demo cards use `Demo`) |
-| `accent` | 1 to 6, the colour of the left edge. Otherwise it cycles down a list |
+| `accent` | 1 to 6, the colour of the left edge. Otherwise 1, or cycling down the list in a `cards` block |
 | `confetti` | `true` for confetti on page load and hover |
 | `disabled` | `true` for a greyed-out "coming soon" card that shakes, even with a `url` |
 | `big` | `true` for a chunky bold card (a single call to action) |

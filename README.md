@@ -43,7 +43,7 @@ Three places, each with one job:
 
 | Where | What's in it |
 |---|---|
-| `_includes/content/` | **All the words.** Markdown files with each page's text (`ccc/role.md`), and `data/` with the lists: publications, links, conferences, gallery, tiles, me |
+| `_includes/content/` | **All the words.** Markdown files with each page's text (`ccc/role.md`), and `data/` with the lists: publications, links, conferences, gallery, projects (homepage tiles), perturb (Perturb page cards), me |
 | `_includes/blocks/` | **The building blocks.** One HTML file per kind of block: `text`, `card`, `columns`, `stack`… |
 | a page's `index.html` | **The layout.** Only settings between `---` lines: the title, description, and a `blocks:` list saying which blocks go where and which content they show |
 
@@ -198,7 +198,7 @@ title: Perturb | Jools Clarke
 canonical: /perturb/          # tells Google the real page is /perturb/
 sitemap: false
 blocks_from: /perturb/        # show that page's blocks
-banner: "You're coming from my poster! [Get the PDF here](/qr1/poster.pdf) (PDF, 5 MB)."
+banner: "You're coming from my poster! [Get the PDF here](/qr1/jools_clarke_poster.pdf) (PDF, 5 MB)."
 ---
 ```
 

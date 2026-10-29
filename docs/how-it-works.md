@@ -141,8 +141,8 @@ with JavaScript off all get the full content.
 title, description, canonical URL and link-preview tags (`head.html`); the
 homepage has JSON-LD saying who I am and linking my profiles
 (`schema.html`); `llms.txt` is a plain-text summary of everything, built from
-the same content files; `sitemap.xml` leaves out redirects, QR duplicates and
-`noindex` pages by itself. QR pages point search engines at the real page
+the same content files; `sitemap.xml` leaves out redirects and
+`noindex` pages by itself, and QR duplicates because they set `sitemap: false`. QR pages point search engines at the real page
 with `canonical:` so they don't count as duplicates.
 
 **No `mailto:` links.** Email addresses copy themselves to the clipboard
