@@ -82,6 +82,7 @@
   }
 
   #map {
+    flex: none;          /* flex: 1 would override the height in a column */
     order: 1;
     height: 60vh;
   }
