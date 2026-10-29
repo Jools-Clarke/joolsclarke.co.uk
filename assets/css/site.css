@@ -24,3 +24,4 @@ sitemap: false
 {% include css/pages/countdown.css %}
 {% include css/pages/perturb.css %}
 {% include css/pages/demo.css %}
+{% include css/pages/home.css %}

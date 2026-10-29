@@ -1,0 +1,28 @@
+/* Homepage: on phones (one column) the last tile, the Gallery, drops to the
+   bottom of the page. display: contents lets it leave the left column so
+   `order` can move it after the right one. The tiles are then spaced by
+   .columns, so its gap becomes the stack's 15px and the right column gets
+   the extra 15px back as margin. */
+@media (max-width: 799px) {
+  .home-page {
+    gap: 15px;
+  }
+
+  .home-page > :first-child,
+  .home-page > :first-child > .stack {
+    display: contents;
+  }
+
+  /* minus the 15px gap, so the rule keeps its usual 10px/20px spacing */
+  .home-page > :first-child > hr {
+    margin: -5px 0 5px;
+  }
+
+  .home-page > :last-child {
+    margin-top: 15px;
+  }
+
+  .home-page > :first-child > .stack > :last-child {
+    order: 1;
+  }
+}
