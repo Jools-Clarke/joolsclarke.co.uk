@@ -128,6 +128,8 @@ Accent colours: 1 orange, 2 gold, 3 green, 4 teal, 5 blue, 6 violet.
 - type: tiles
   list: projects           # data/projects.yml
   heading: Projects        # optional small gold heading
+  offset: 2                # optional: skip the first N tiles
+  limit: 2                 # optional: show at most N
 ```
 
 A single one: `type: tile` with `url`, `image`, and either `alt` (a logo,
