@@ -37,6 +37,17 @@ a.link-box:hover,
 .accent-5 { border-left: 6px solid var(--accent-5); }
 .accent-6 { border-left: 6px solid var(--accent-6); }
 
+/* Small word above the title, e.g. "Demo" on the Perturb demo cards. */
+.card-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.75em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
 /* A single big call to action. */
 .link-box.big {
   margin: 20px 0;

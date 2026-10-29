@@ -9,5 +9,5 @@
 {%- assign demo_pages = site.pages | where: "layout", "demo" | sort: "path" %}
 {%- for demo_page in demo_pages offset: include.item.offset limit: include.item.limit %}
 {%- assign demo_title = demo_page.title | split: " | " | first %}
-{% include blocks/card.html title=demo_title url=demo_page.url text=demo_page.description accent=include.item.accent %}
+{% include blocks/card.html title=demo_title url=demo_page.url text=demo_page.description label="Demo" accent=include.item.accent %}
 {%- endfor %}

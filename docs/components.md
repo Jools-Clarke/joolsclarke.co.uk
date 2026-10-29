@@ -107,6 +107,7 @@ or one entry of a data file: `from: perturb.paper` (`paper` in `data/perturb.yml
 | `copy` | Instead of `url`: clicking copies this text and pops up "Email address copied" |
 | `text` | Markdown under the title. No links inside it: the whole card is the link |
 | `note` | Red warning box inside the card |
+| `label` | Small uppercase word above the title (the demo cards use `Demo`) |
 | `accent` | 1 to 6, the colour of the left edge. Otherwise it cycles down a list |
 | `confetti` | `true` for confetti on page load and hover |
 | `disabled` | `true` for a greyed-out "coming soon" card that shakes, even with a `url` |
@@ -173,7 +174,7 @@ Download buttons. The file is only fetched if clicked. Needs
 | Block | Options | |
 |---|---|---|
 | `intro` | `file` | My photo (from `data/me.yml`) with a Markdown file beside it (homepage) |
-| `demo-cards` | `limit`, `offset`, `accent` | A card for every page with `layout: demo`, in folder order (Perturb page) |
+| `demo-cards` | `limit`, `offset`, `accent` | A card for every page with `layout: demo`, in folder order, labelled Demo (Perturb page) |
 | `conference-map` | `heading` | The list from `data/conferences.yml` and the map (`/conferences/`) |
 | `gallery` | `heading` | Everything in `data/gallery.yml` with the pop-up viewer (`/ariel/gallery/`) |
 

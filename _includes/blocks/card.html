@@ -14,6 +14,7 @@
               email address) and says so in a little pop-up
     text      markdown under the title (don't put links in it: the whole card is a link)
     note      red warning box
+    label     small word above the title, e.g. Demo
     accent    1-6, colour of the left edge. Otherwise it cycles using `index`.
     confetti  true for confetti on hover
     disabled  true for a greyed-out "coming soon" card that shakes, even with a url
@@ -40,6 +41,9 @@
   {%- if card.big %} big{% endif %}"
   {%- if card_tag == "a" %} href="{{ card.url | relative_url }}"{% if card.url contains "://" %} target="_blank" rel="noopener"{% endif %}{% endif %}
   {%- if card.copy %} data-copy="{{ card.copy | escape }}" role="button" tabindex="0"{% endif %}>
+  {%- if card.label %}
+  <span class="card-label">{{ card.label }}</span>
+  {%- endif %}
   {%- if card.title %}
   <h3>{{ card.title }}</h3>
   {%- endif %}
