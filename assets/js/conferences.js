@@ -7,7 +7,10 @@
   const list = document.querySelector(".conf-list");
   if (!list || typeof L === "undefined") return;
 
+  // Fixed colours, not the theme's: the map tiles stay light in dark mode too.
   const colour = { idle: "#cb4b16", active: "#859900", home: "#aaaaaa" };
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scroll = still ? "auto" : "smooth";
   const home = JSON.parse(list.dataset.home);
   const map = L.map("map", { preferCanvas: true }).setView([50, 10], 4);
 
@@ -64,8 +67,9 @@
     pin.item.addEventListener("toggle", () => {
       if (pin.item.open) {
         pins.forEach((other) => { if (other !== pin) other.item.open = false; });
-        map.flyTo(pin.coords, 5, { duration: 0.8 });
-        pin.item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        if (still) map.setView(pin.coords, 5);
+        else map.flyTo(pin.coords, 5, { duration: 0.8 });
+        pin.item.scrollIntoView({ behavior: scroll, block: "nearest" });
       }
       refresh();
     });
@@ -73,7 +77,7 @@
     pin.marker.on("click", () => { pin.item.open = !pin.item.open; });
     pin.marker.on("mouseover", () => {
       pin.item.classList.add("highlight");
-      pin.item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      pin.item.scrollIntoView({ behavior: scroll, block: "nearest" });
       refresh();
     });
     pin.marker.on("mouseout", () => {
