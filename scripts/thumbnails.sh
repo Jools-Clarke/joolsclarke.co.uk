@@ -74,9 +74,10 @@ touch "$tmp/expected"
 } > "$tmp/media.yml"
 
 # Every tracked or new (not ignored) file we might show or offer for download.
+# (Not the demo plots: demo pages show them as-is.)
 git ls-files -co --exclude-standard \
   | grep -Ei '\.(png|jpe?g|webp|pdf|stl|otf|ttf|zip)$' \
-  | grep -Ev "^($OUT|_site|vendor)/" \
+  | grep -Ev "^($OUT|_site|vendor|perturb/demos)/" \
   | sort \
   | while IFS= read -r src; do
       [ -f "$src" ] || continue
