@@ -2,8 +2,12 @@
   A picture tile for every entry in a list in _includes/content/data/.
     - type: tiles
       list: projects           # data/projects.yml
+      heading: Projects        # optional small gold heading above them
   Put it in a stack for even gaps.
 {%- endcomment -%}
+{%- if include.item.heading %}
+<h2 class="section-header">{{ include.item.heading }}</h2>
+{%- endif %}
 {%- for tile_item in site.data[include.item.list] %}
 {% include blocks/tile.html item=tile_item %}
 {%- endfor %}
