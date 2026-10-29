@@ -32,6 +32,8 @@
 {{ content }}
 {%- if page.blocks_from %}
   {%- assign blocks_page = site.pages | where: "url", page.blocks_from | first %}
+  {%- comment %} no such page (e.g. a missing trailing slash): stop the build rather than publish an empty QR page {% endcomment %}
+  {%- unless blocks_page %}{% include ERROR-blocks_from-matches-no-page.html %}{% endunless %}
 {% include blocks.html blocks=blocks_page.blocks %}
 {%- else %}
 {% include blocks.html blocks=page.blocks %}

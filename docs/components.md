@@ -24,7 +24,7 @@ The lines between `---` at the top of a page.
 | `sitemap` | `false` to leave the page out of `sitemap.xml` and `llms.txt` |
 | `robots` | e.g. `noindex, nofollow` to ask search engines not to list it |
 | `blocks` | The list of blocks on the page, top to bottom (below) |
-| `blocks_from` | Another page's address (`/perturb/`): show its blocks instead. For QR copies of a page |
+| `blocks_from` | Another page's address (`/perturb/`): show its blocks instead. For QR copies of a page. Must match the address exactly, trailing `/` included, or the build stops |
 | `layout` | Leave out (defaults to `default`). `redirect` for redirect pages, `demo` for Perturb demos, `null` for a page that is its own complete HTML file |
 | `redirect_to` | With `layout: redirect`: where to send people |
 | `permalink` | Override the page's address (only the 404 page needs this) |
