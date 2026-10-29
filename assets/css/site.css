@@ -21,7 +21,6 @@ sitemap: false
 /* ── page-specific ─────────────────────────────────────── */
 {% include css/pages/conferences.css %}
 {% include css/pages/gallery.css %}
-{% include css/pages/countdown.css %}
 {% include css/pages/perturb.css %}
 {% include css/pages/demo.css %}
 {% include css/pages/home.css %}

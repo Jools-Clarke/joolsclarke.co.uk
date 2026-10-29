@@ -1,5 +1,5 @@
 // Behaviour shared by every page: light/dark button, background logos, confetti.
-// Page-specific scripts (conferences.js, gallery.js, countdown.js) are loaded
+// Page-specific scripts (conferences.js, gallery.js) are loaded
 // by the pages that need them.
 (function () {
   "use strict";

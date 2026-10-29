@@ -234,7 +234,6 @@ buttons, greyed out until their links are set. In dark mode `site.js` swaps each
 | `assets/js/site.js` | every page | ☾/☼ button, background logos, click-to-copy + pop-up, confetti |
 | `assets/js/conferences.js` | `/conferences/` | Leaflet map; links pins to the list |
 | `assets/js/gallery.js` | `/ariel/gallery/` | pop-up viewer |
-| `assets/js/countdown.js` | old arXiv countdown page | countdown |
 
 A page that needs its own script adds
 `<script src="{{ '/assets/js/name.js' | relative_url }}" defer></script>` at
