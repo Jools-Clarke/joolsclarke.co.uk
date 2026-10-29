@@ -179,7 +179,7 @@ Download buttons. The file is only fetched if clicked. Needs
 | `demo-cards` | `limit`, `offset`, `accent` | A card for every page with `layout: demo`, in folder order, labelled Demo (Perturb page) |
 | `conference-map` | `heading` | The list from `data/conferences.yml` and the map (`/conferences/`) |
 | `gallery` | `heading` | Everything in `data/gallery.yml` with the pop-up viewer (`/ariel/gallery/`) |
-| `section-tabs` | `tabs` (each a `label` and a `target` id; `top` for the top of the page) | Notebook tabs down the left edge on phones; the current section's tab pops out while scrolling and for 2 s after (homepage). `heading`s get an id from their text (`Projects` → `projects`), titled tiles from their title (`Conference Map` → `conference-map`) |
+| `section-tabs` | `tabs` (each a `label` and a `target` id; `top` for the top of the page) | Notebook tabs down the left edge on phones, shown only while scrolling and for 2 s after; the current section's tab pops out (homepage). `heading`s get an id from their text (`Projects` → `projects`), titled tiles from their title (`Conference Map` → `conference-map`) |
 
 ### Making a new block type
 

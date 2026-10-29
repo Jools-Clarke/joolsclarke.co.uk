@@ -2,7 +2,8 @@
    left edge, phones only. Each tab is a rounded trapezoid, long side against
    the screen edge: two halves skewed opposite ways, so the slope stays the
    same however long the label is. Later tabs overlap the bottom of the one
-   above. ── */
+   above. Hidden off the edge until you scroll (or tab to them), then they
+   slide in, and leave 2 seconds after scrolling stops. ── */
 .section-tabs {
   display: none;
 }
@@ -15,16 +16,22 @@
     z-index: 50;
     display: flex;
     flex-direction: column;
-    transform: translateY(-50%);
+    transform: translate(calc(-100% - 6px), -50%);   /* past the edge, shadow too */
+    transition: transform 0.25s ease;
+  }
+
+  .section-tabs.scrolling,
+  .section-tabs:focus-within {
+    transform: translate(0, -50%);
   }
 
   .section-tabs a {
     position: relative;
     display: flex;
     justify-content: center;
-    width: 20px;
-    padding: 12px 0;
-    font-size: 11px;
+    width: 40px;
+    padding: 14px 0;
+    font-size: 13px;
     color: var(--text-color);
     text-decoration: none;
     filter: drop-shadow(0 1px 1px var(--shadow-color));
@@ -32,7 +39,7 @@
   }
 
   .section-tabs a + a {
-    margin-top: -6px;
+    margin-top: -8px;
   }
 
   .section-tabs a::before,
@@ -50,14 +57,14 @@
 
   .section-tabs a::before {
     top: 0;
-    border-top-right-radius: 6px;
-    transform: skewY(18deg);
+    border-top-right-radius: 10px;
+    transform: skewY(12deg);
   }
 
   .section-tabs a::after {
     bottom: 0;
-    border-bottom-right-radius: 6px;
-    transform: skewY(-18deg);
+    border-bottom-right-radius: 10px;
+    transform: skewY(-12deg);
   }
 
   /* label reads bottom to top, like a divider tab */
@@ -69,7 +76,7 @@
   /* while scrolling: the current section's tab pops out */
   .section-tabs.scrolling a[aria-current] {
     z-index: 1;
-    width: 26px;
+    width: 48px;
     color: var(--card-bg);
   }
 
@@ -85,6 +92,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .section-tabs,
   .section-tabs a,
   .section-tabs a::before,
   .section-tabs a::after {

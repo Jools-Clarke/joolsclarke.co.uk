@@ -1,5 +1,5 @@
 // Section tabs (_includes/blocks/section-tabs.html): marks the tab of the
-// section you're in, and shows it for 2 seconds after scrolling stops.
+// section you're in, and shows the tabs until 2 seconds after scrolling stops.
 (function () {
   "use strict";
 
