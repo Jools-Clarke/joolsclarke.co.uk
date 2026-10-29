@@ -23,7 +23,6 @@ The lines between `---` at the top of a page.
 | `canonical` | Tell search engines another address is the real page (e.g. `/perturb/` on a QR copy of it) |
 | `sitemap` | `false` to leave the page out of `sitemap.xml` and `llms.txt` |
 | `robots` | e.g. `noindex, nofollow` to ask search engines not to list it |
-| `analytics` | `false` to skip Simple Analytics on this page |
 | `blocks` | The list of blocks on the page, top to bottom (below) |
 | `blocks_from` | Another page's address (`/perturb/`): show its blocks instead. For QR copies of a page |
 | `layout` | Leave out (defaults to `default`). `redirect` for redirect pages, `demo` for Perturb demos, `null` for a page that is its own complete HTML file |

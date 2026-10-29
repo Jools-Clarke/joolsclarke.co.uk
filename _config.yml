@@ -16,10 +16,6 @@ theme: null
 # site root. (If you ever add one, GitHub Pages only runs its approved list.)
 plugins: []
 
-# Simple Analytics (privacy-friendly, no cookies). Set to false to turn off
-# everywhere, or put `analytics: false` in a single page's front matter.
-analytics: true
-
 # All the words live in _includes/content/: Markdown files for text, and
 # the lists (publications, links, conferences…) in its data/ folder.
 data_dir: _includes/content/data

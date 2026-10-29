@@ -106,5 +106,3 @@ only has `"url": "http://localhost:4000"`.
 - `thumbnails.sh` applies EXIF rotation (phone photos) because `cwebp`
   ignores it, and writes previews atomically so the dev server never copies
   a half-written file.
-- Simple Analytics only loads when `jekyll.environment == "production"`
-  (GitHub's build), so local visits aren't counted.

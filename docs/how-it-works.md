@@ -179,4 +179,3 @@ and the `perturb/perturb-c_*` redirects are printed on posters and slides.
   the error is in the Actions tab → "pages build and deployment" → build →
   "Build with Jekyll".
 - Don't put links inside a card's `text`: the whole card is already a link.
-- Analytics only loads in the production build, so local visits aren't counted.

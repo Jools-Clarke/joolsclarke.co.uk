@@ -9,7 +9,7 @@
                          (default: back arrow to `back`, else the homepage, + home button)
     narrow               true for a slim, centred column
     background           false to hide the tiled logos
-    analytics            false to skip Simple Analytics on this page
+                         (narrow and background also work in a layout's front matter, e.g. redirect.html)
     blocks               what's on the page, drawn by _includes/blocks.html
     blocks_from          another page's address: show its blocks instead (QR copies)
 {%- endcomment %}
@@ -21,10 +21,10 @@
 {%- if page.banner %}
 {% include banner.html %}
 {%- endif %}
-{%- unless page.background == false %}
+{%- unless page.background == false or layout.background == false %}
 {% include background.html %}
 {%- endunless %}
-<div class="container{% if page.narrow %} narrow{% endif %}">
+<div class="container{% if page.narrow or layout.narrow %} narrow{% endif %}">
 {%- unless page.header == "none" %}
 {% include header.html %}
 {%- endunless %}
@@ -39,8 +39,5 @@
 </main>
 {% include footer.html %}
 </div>
-{%- if site.analytics and page.analytics != false and jekyll.environment == "production" %}
-<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-{%- endif %}
 </body>
 </html>
