@@ -9,6 +9,8 @@ email: j.d.clarke@ucl.ac.uk
 
 # Photo on the homepage, and the picture shown in link previews.
 photo: /assets/img/profile.png
+# link-preview picture (WhatsApp, Slack…): a small 1200x630 PNG/JPG, not SVG
+preview_image: /perturb/perturb-preview.png
 photo_alt: Jools Clarke sitting on a railing outside the ESA building, Harwell Campus UK
 
 # Where the arcs on the conference map start from.

@@ -13,7 +13,7 @@ The lines between `---` at the top of a page.
 |---|---|
 | `title` | Browser tab / search result title. Convention: `Page name \| Jools Clarke` |
 | `description` | One or two sentences for search results, link previews and `llms.txt`. Defaults to `description` in `data/me.yml` |
-| `image` | Picture for link previews (defaults to my photo) |
+| `image` | Picture for link previews (defaults to `preview_image` in data/me.yml, the Perturb logo) |
 | `header` | `name` = big name on the left (homepage); `none` = no header row; leave out for the ◀︎ back arrow and home button |
 | `back` | Where the ◀︎ back arrow goes (default: homepage; demo pages get `/perturb/` from `_config.yml`) |
 | `banner` | Markdown text for a strip across the top of the page |
