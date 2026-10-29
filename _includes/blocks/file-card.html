@@ -15,7 +15,7 @@
 {%- assign file_type = file_card.file | split: "." | last | upcase -%}
 <div class="link-box file-card accent-{{ file_card.accent | default: 2 }}">
   {%- if file_media.thumb %}
-  <a href="{{ file_card.file | relative_url }}" class="file-preview" tabindex="-1">{% include img.html src=file_card.file alt="" %}</a>
+  <a href="{{ file_card.file | relative_url }}" class="file-preview" tabindex="-1" aria-hidden="true">{% include img.html src=file_card.file alt="" %}</a>
   {%- endif %}
   <div class="file-info">
     <h3>{{ file_card.title }}</h3>
