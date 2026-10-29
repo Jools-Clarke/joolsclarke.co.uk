@@ -2,8 +2,9 @@
    left edge, phones only. Each tab is a rounded trapezoid, long side against
    the screen edge: two halves skewed opposite ways, so the slope stays the
    same however long the label is. Later tabs overlap the bottom of the one
-   above. Hidden off the edge until you scroll (or tab to them), then they
-   slide in, and leave 2 seconds after scrolling stops. ── */
+   above. Hidden off the edge until you scroll, then they
+   slide in, and leave 2 seconds after scrolling stops. Keyboard users get
+   them while tabbing through. ── */
 .section-tabs {
   display: none;
 }
@@ -20,8 +21,10 @@
     transition: transform 0.25s ease;
   }
 
+  /* :focus-visible, not :focus-within: a tapped link keeps focus (#top
+     has nothing to move it to), which would hold the tabs out for good */
   .section-tabs.scrolling,
-  .section-tabs:focus-within {
+  .section-tabs:has(:focus-visible) {
     transform: translate(0, -50%);
   }
 
