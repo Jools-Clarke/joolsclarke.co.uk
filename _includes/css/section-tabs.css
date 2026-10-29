@@ -1,0 +1,93 @@
+/* ── Section tabs (_includes/blocks/section-tabs.html): notebook tabs on the
+   left edge, phones only. Each tab is a rounded trapezoid, long side against
+   the screen edge: two halves skewed opposite ways, so the slope stays the
+   same however long the label is. Later tabs overlap the bottom of the one
+   above. ── */
+.section-tabs {
+  display: none;
+}
+
+@media (max-width: 799px) {
+  .section-tabs {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-50%);
+  }
+
+  .section-tabs a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 20px;
+    padding: 12px 0;
+    font-size: 11px;
+    color: var(--text-color);
+    text-decoration: none;
+    filter: drop-shadow(0 1px 1px var(--shadow-color));
+    transition: width 0.2s ease, color 0.2s ease;
+  }
+
+  .section-tabs a + a {
+    margin-top: -6px;
+  }
+
+  .section-tabs a::before,
+  .section-tabs a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 50%;
+    background: var(--card-bg);
+    transform-origin: left;
+    transition: background 0.2s ease;
+  }
+
+  .section-tabs a::before {
+    top: 0;
+    border-top-right-radius: 6px;
+    transform: skewY(18deg);
+  }
+
+  .section-tabs a::after {
+    bottom: 0;
+    border-bottom-right-radius: 6px;
+    transform: skewY(-18deg);
+  }
+
+  /* label reads bottom to top, like a divider tab */
+  .section-tabs span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* while scrolling: the current section's tab pops out */
+  .section-tabs.scrolling a[aria-current] {
+    z-index: 1;
+    width: 26px;
+    color: var(--card-bg);
+  }
+
+  .section-tabs.scrolling a[aria-current]::before,
+  .section-tabs.scrolling a[aria-current]::after {
+    background: var(--accent-2);
+  }
+
+  /* tapping a tab: land below the sticky banner */
+  .home-page [id] {
+    scroll-margin-top: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-tabs a,
+  .section-tabs a::before,
+  .section-tabs a::after {
+    transition: none;
+  }
+}

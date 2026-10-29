@@ -6,7 +6,7 @@
   Put it in a stack for even gaps.
 {%- endcomment -%}
 {%- if include.item.heading %}
-<h2 class="section-header">{{ include.item.heading }}</h2>
+<h2 class="section-header" id="{{ include.item.heading | slugify }}">{{ include.item.heading }}</h2>
 {%- endif %}
 {%- for card_item in site.data[include.item.list] %}
 {% include blocks/card.html item=card_item index=forloop.index0 %}

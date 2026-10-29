@@ -1,0 +1,18 @@
+{%- comment -%}
+  Notebook-style tabs down the left edge on phones (hidden from 800px up),
+  one per section of the page. While scrolling, and for 2 seconds after, the
+  current section's tab pops out (assets/js/section-tabs.js).
+    - type: section-tabs
+      tabs:
+        - label: About
+          target: top          # top of the page
+        - label: Projects
+          target: projects     # an id on the page: headings get one from
+                               # their text, titled tiles from their title
+{%- endcomment -%}
+<nav class="section-tabs" aria-label="Sections">
+  {%- for tab in include.item.tabs %}
+  <a href="#{{ tab.target }}"><span>{{ tab.label }}</span></a>
+  {%- endfor %}
+</nav>
+<script src="{{ '/assets/js/section-tabs.js' | relative_url }}" defer></script>

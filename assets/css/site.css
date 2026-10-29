@@ -17,6 +17,7 @@ sitemap: false
 {% include css/file-card.css %}
 {% include css/confetti.css %}
 {% include css/toast.css %}
+{% include css/section-tabs.css %}
 
 /* ── page-specific ─────────────────────────────────────── */
 {% include css/pages/conferences.css %}

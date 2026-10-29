@@ -67,6 +67,7 @@ assets/
   js/site.js             light/dark button, background logos, click-to-copy, confetti
   js/conferences.js      the Leaflet map on /conferences/
   js/gallery.js          the pop-up viewer on /ariel/gallery/
+  js/section-tabs.js     the phone section tabs on the homepage
   img/                   photo, background logos (favicon: perturb/perturb-round-*.svg, plus /favicon.ico for browsers that ask for it)
   thumbs/                GENERATED small previews of every image/PDF
 scripts/

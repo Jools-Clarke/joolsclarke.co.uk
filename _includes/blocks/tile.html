@@ -5,7 +5,7 @@
   picture fills the tile and the title is written over it.
 {%- endcomment -%}
 {%- assign tile = include.item | default: include -%}
-<div>{% comment %} plain wrapper so the tile also works inside Markdown pages {% endcomment %}
+<div{% if tile.title %} id="{{ tile.title | slugify }}"{% endif %}>{% comment %} plain wrapper so the tile also works inside Markdown pages {% endcomment %}
 <a href="{{ tile.url | relative_url }}" class="link-box accent-{{ tile.accent | default: 1 }} {% if tile.title %}cover-tile{% else %}logo-tile{% endif %}">
 {%- if tile.title %}
   <div class="cover">
