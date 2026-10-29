@@ -179,7 +179,7 @@ Download buttons. The file is only fetched if clicked. Needs
 | `demo-cards` | `limit`, `offset`, `accent` | A card for every page with `layout: demo`, in folder order, labelled Demo (Perturb page) |
 | `conference-map` | `heading` | The list from `data/conferences.yml` and the map (`/conferences/`) |
 | `gallery` | `heading` | Everything in `data/gallery.yml` with the pop-up viewer (`/ariel/gallery/`) |
-| `section-tabs` | `tabs` (each a `label` and a `target` id; `top` for the top of the page) | Notebook tabs down the left edge on phones, shown only while scrolling and for 2 s after; the current section's tab pops out (homepage). `heading`s get an id from their text (`Projects` → `projects`), titled tiles from their title (`Conference Map` → `conference-map`) |
+| `section-tabs` | `tabs` (each a `label` and a `target` id; `top` for the top of the page) | Notebook tabs down the left edge on phones, shown only while scrolling and for 2 s after; the current section's tab pops out (homepage, Perturb page). `heading`s get an id from their text (`Projects` → `projects`), cards and titled tiles from their title (`Conference Map` → `conference-map`); Markdown headings get one too (`## FAQs` → `faqs`) |
 
 ### Making a new block type
 
@@ -238,7 +238,7 @@ buttons, greyed out until their links are set. In dark mode `site.js` swaps each
 | `assets/js/site.js` | every page | ☾/☼ button, background logos, click-to-copy + pop-up, confetti |
 | `assets/js/conferences.js` | `/conferences/` | Leaflet map; links pins to the list |
 | `assets/js/gallery.js` | `/ariel/gallery/` | pop-up viewer |
-| `assets/js/section-tabs.js` | homepage (`section-tabs` block) | marks the current section's tab while scrolling |
+| `assets/js/section-tabs.js` | pages with a `section-tabs` block (homepage, Perturb) | marks the current section's tab while scrolling; taps land below the banner |
 
 A page that needs its own script adds
 `<script src="{{ '/assets/js/name.js' | relative_url }}" defer></script>` at

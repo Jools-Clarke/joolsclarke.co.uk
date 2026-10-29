@@ -88,8 +88,9 @@
     background: var(--accent-2);
   }
 
-  /* tapping a tab: land below the sticky banner */
-  .home-page [id] {
+  /* tapping a tab without JS: land below the sticky banner (section-tabs.js
+     measures the banner instead) */
+  main [id] {
     scroll-margin-top: 50px;
   }
 }

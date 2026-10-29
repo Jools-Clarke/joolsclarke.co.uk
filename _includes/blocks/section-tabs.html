@@ -8,11 +8,12 @@
           target: top          # top of the page
         - label: Projects
           target: projects     # an id on the page: headings get one from
-                               # their text, titled tiles from their title
+                               # their text, cards and titled tiles from
+                               # their title (Read the paper -> read-the-paper)
 {%- endcomment -%}
 <nav class="section-tabs" aria-label="Sections">
   {%- for tab in include.item.tabs %}
   <a href="#{{ tab.target }}"><span>{{ tab.label }}</span></a>
   {%- endfor %}
 </nav>
-<script src="{{ '/assets/js/section-tabs.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/section-tabs.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

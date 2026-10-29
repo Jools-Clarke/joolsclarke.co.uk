@@ -33,4 +33,16 @@
   }
 
   window.addEventListener("scroll", update, { passive: true });
+
+  // Tapping a tab lands the section just below the sticky banner, however
+  // tall it is (the QR pages have a big one).
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", (event) => {
+      event.preventDefault();
+      const banner = document.querySelector(".banner");
+      const below = (banner ? banner.getBoundingClientRect().bottom : 0) + 16;
+      const top = targets[i] ? targets[i].getBoundingClientRect().top + window.scrollY - below : 0;
+      window.scrollTo(0, top);
+    });
+  });
 })();
