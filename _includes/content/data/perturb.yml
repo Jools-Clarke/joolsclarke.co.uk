@@ -13,12 +13,12 @@ paper:
 
 repo:
   title: Get the package
-  url:
+  url: https://github.com/Jools-Clarke/perturb
   text: Get the Gaussian Perturb package on GitHub.
   accent: 1
 
 replication:
   title: Replicate the paper
-  url:
+  url: https://github.com/Jools-Clarke/gaussian-perturbation-interpretability
   text: Access the full code and data used to generate the figures in the Gaussian Perturb paper.
   accent: 3
