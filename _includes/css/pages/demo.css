@@ -11,6 +11,11 @@
   margin: 0 0 30px;
 }
 
+/* "Package repo": Perturb orange, to stand apart from the notebook buttons */
+.repo-button {
+  background: var(--accent-2);
+}
+
 .demo-pager {
   display: flex;
   gap: 10px;

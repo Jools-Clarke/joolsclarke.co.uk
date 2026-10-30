@@ -28,7 +28,7 @@ Contact: {{ me.email }}
 
 {% include content/perturb/intro.md %}
 More at [the Perturb page]({{ '/perturb/' | absolute_url }}).
-{% assign perturb_links = "paper,repo,replication" | split: "," %}{% for key in perturb_links %}{% assign link = site.data.perturb[key] %}{% if link.url %}
+{% assign perturb_links = "paper,package,repo,replication" | split: "," %}{% for key in perturb_links %}{% assign link = site.data.perturb[key] %}{% if link.url %}
 - [{{ link.title }}]({{ link.url | absolute_url }})
 {%- endif %}{% endfor %}
 {%- assign demos = site.pages | where: "layout", "demo" | sort: "path" %}

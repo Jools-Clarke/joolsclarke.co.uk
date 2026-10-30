@@ -2,7 +2,7 @@
 # repo" button, and the links in /llms.txt. The intro text is in
 # _includes/content/perturb/intro.md.
 #
-#   paper / repo / replication:  card fields (see publications.yml). A card
+#   paper / package / repo / replication:  card fields (see publications.yml). A card
 #             with no url is greyed out ("coming soon").
 
 paper:
@@ -11,10 +11,16 @@ paper:
   text: Get access to the preprint of the Gaussian Perturb paper on arXiv.
   accent: 3
 
-repo:
+package:
   title: Get the package
+  url: https://pypi.org/project/perturb-interp/
+  text: "`pip install perturb-interp`"
+  accent: 1
+
+repo:
+  title: Read the code
   url: https://github.com/Jools-Clarke/perturb
-  text: Get the Gaussian Perturb package on GitHub.
+  text: The Gaussian Perturb source code on GitHub.
   accent: 1
 
 replication:

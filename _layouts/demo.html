@@ -8,7 +8,8 @@ layout: default
     title, description   as usual (the description is also the card's text)
     text                 the demo's Markdown, a file in _includes/content/
     colab                link to open the notebook in Colab (button greyed out without it)
-  The "Package repo" button uses `repo` in data/perturb.yml. Previous/next
+  "Open in GitHub" is the same notebook on GitHub, worked out from `colab`.
+  "Package repo" uses `repo` in data/perturb.yml. Previous/next
   links follow the folder order of perturb/demos/.
 {%- endcomment -%}
 <div class="demo perturb-page">
@@ -20,10 +21,13 @@ layout: default
     {%- else %}
     <span class="button not-ready">Open in Colab (coming soon)</span>
     {%- endif %}
-    {%- if site.data.perturb.repo.url %}
-    <a class="button" href="{{ site.data.perturb.repo.url }}" target="_blank" rel="noopener">Package repo</a>
+    {%- if page.colab %}
+    <a class="button" href="{{ page.colab | replace: 'https://colab.research.google.com/github/', 'https://github.com/' }}" target="_blank" rel="noopener">Open in GitHub</a>
     {%- else %}
-    <span class="button not-ready">Package repo (coming soon)</span>
+    <span class="button not-ready">Open in GitHub (coming soon)</span>
+    {%- endif %}
+    {%- if site.data.perturb.repo.url %}
+    <a class="button repo-button" href="{{ site.data.perturb.repo.url }}" target="_blank" rel="noopener">Package repo</a>
     {%- endif %}
   </p>
 

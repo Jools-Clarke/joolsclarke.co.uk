@@ -22,11 +22,15 @@ blocks:
             limit: 1
             accent: 2
           - type: card
-            from: perturb.repo
+            from: perturb.package
           - type: rule
-          - type: demo-cards
-            offset: 1
+            id: demos
+          - type: demo-cards       # all of them, Get started again too
             accent: 2
+          - type: rule
+            id: source-code
+          - type: card
+            from: perturb.repo
           - type: card
             from: perturb.replication
     right:
@@ -44,5 +48,6 @@ blocks:
       - { label: Get started, target: read-the-paper }
       - { label: Gaussian, target: gaussian-perturb }
       - { label: FAQs, target: faqs }
-      - { label: Demos, target: perturb-for-observations }
+      - { label: Demos, target: demos }
+      - { label: Source code, target: source-code }
 ---

@@ -15,7 +15,7 @@
 }
 
 /* Phones (one column), top to bottom: intro, paper / get started / package,
-   the Gaussian Perturb text and FAQs, then the other demos and replication.
+   the Gaussian Perturb text and FAQs, then all the demos and the source code.
    display: contents opens up the left column so `order` can put the right
    column between its two groups of cards; the gap becomes the stack's 15px. */
 @media (max-width: 799px) {

@@ -6,17 +6,20 @@
 #   image_dark: optional version of a logo for dark mode
 #   alt:      describes the image (needed when there is no title)
 #   title / subtitle: text written over the picture
+#   text:     one line under a logo (logo tiles only)
 #   accent:   optional colour 1-6 for the left border
 
 - url: /perturb/
   image: /perturb/perturb-full-light.svg
   image_dark: /perturb/perturb-full-dark.svg
-  alt: Perturb, an interpretability framework for machine learning retrievals
+  alt: Perturb logo
+  text: An interpretability framework for black-box retrievals
   accent: 3
 
 - url: /ccc/
   image: /ccc/ClimateChangeCommittee.png
-  alt: My placement at the Climate Change Committee
+  alt: Climate Change Committee logo
+  text: Moving the UK Climate Change Committee's models to Python
   accent: 2
 
 - url: /conferences/

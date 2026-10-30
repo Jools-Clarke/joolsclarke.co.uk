@@ -169,6 +169,7 @@ Download buttons. The file is only fetched if clicked. Needs
 
 ```yaml
 - type: rule
+  id: demos      # optional: lets a section-tabs tab jump here
 ```
 
 ### Blocks made for one page
@@ -227,7 +228,8 @@ or in HTML `<a href="#copy">j.d.clarke@ucl.ac.uk</a>`. Cards use `copy:`
 `perturb/demos/*/index.md` with `layout: demo` and `text:` (its Markdown
 file in `_includes/content/perturb/demos/`): a notebook-style page
 (Markdown text, ` ```python ` code, images) with "Open in Colab"
-(front matter `colab:`) and "Package repo" (`repo` in `data/perturb.yml`)
+(front matter `colab:`) and "Open in GitHub" (the same notebook on GitHub, worked out from `colab:`), plus an orange "Package repo"
+(`repo` in `data/perturb.yml`)
 buttons, greyed out until their links are set. In dark mode `site.js` swaps each
 `plot.png` for a `plot-dark.png` beside it, when there is one.
 

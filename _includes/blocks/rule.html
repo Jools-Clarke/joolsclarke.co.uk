@@ -1,2 +1,3 @@
-{%- comment -%} A dividing line:  - type: rule {%- endcomment -%}
-<hr>
+{%- comment -%} A dividing line:  - type: rule
+                                    id: demos     # optional: a section-tabs target {%- endcomment -%}
+<hr{% if include.item.id %} id="{{ include.item.id }}"{% endif %}>

@@ -23,5 +23,8 @@
 {%- else %}
   {% include img.html src=tile.image alt=tile.alt %}
 {%- endif %}
+{%- if tile.text and tile.title == nil %}
+  <p class="tile-text">{{ tile.text }}</p>
+{%- endif %}
 </a>
 </div>

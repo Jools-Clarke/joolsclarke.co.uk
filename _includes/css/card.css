@@ -71,3 +71,12 @@ a.link-box:hover,
   50% { transform: translateX(5px); }
   75% { transform: translateX(-5px); }
 }
+
+/* Inline code in a card, e.g. the `pip install` line on /perturb/. */
+.link-box code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--container-bg);
+  font-family: var(--mono);
+  font-size: 0.95em;
+}
