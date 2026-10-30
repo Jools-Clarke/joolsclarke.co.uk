@@ -1,0 +1,35 @@
+# Who I am. Edit here once and it updates the homepage, the footer, link
+# previews, search-engine metadata (JSON-LD) and /llms.txt.
+
+name: Jools Clarke
+job_title: PhD student in astrophysics
+affiliation: University College London (UCL)
+affiliation_url: https://www.ucl.ac.uk/
+email: j.d.clarke@ucl.ac.uk
+
+# Photo on the homepage, and the picture shown in link previews.
+photo: /assets/img/profile.png
+# link-preview picture (WhatsApp, Slack…): a small 1200x630 PNG/JPG, not SVG
+preview_image: /perturb/perturb-preview.png
+photo_alt: Jools Clarke sitting on a railing outside the ESA building, Harwell Campus UK
+
+# Where the arcs on the conference map start from.
+home: London
+home_coords: [51.5074, -0.1278]
+
+# One or two plain sentences. Used as the default page description in search
+# results and link previews, so keep it under ~160 characters.
+description: >-
+  PhD student at UCL using machine learning to study exoplanet atmospheres,
+  and building data pipelines for the ESA Ariel space telescope.
+
+# Topics, for search engines and AI assistants.
+knows_about:
+  - Machine learning
+  - Exoplanet atmospheres
+  - Atmospheric retrievals
+  - Machine learning interpretability
+  - ESA Ariel space telescope
+  - Python
+
+# The bio next to the photo is in _includes/content/home/bio.md.

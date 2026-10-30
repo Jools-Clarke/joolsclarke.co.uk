@@ -1,4 +1,4 @@
-/* ── File card (_includes/file-card.html): preview + details ── */
+/* ── File card (_includes/blocks/file-card.html): preview + details ── */
 .file-card {
   display: flex;
   flex-wrap: wrap;

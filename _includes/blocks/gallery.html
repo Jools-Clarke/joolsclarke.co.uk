@@ -1,0 +1,38 @@
+{%- comment -%}
+  The /ariel/gallery/ page: every item in data/gallery.yml. Each shows a
+  small preview; clicking it opens a bigger preview (assets/js/gallery.js).
+  The full file is only fetched when someone presses Download.
+    - type: gallery
+      heading: Ariel Creative Resources
+{%- endcomment -%}
+<h1 class="centred">{{ include.item.heading }}</h1>
+
+<hr>
+
+<div class="gallery">
+  {%- for item in site.data.gallery %}
+  {%- assign preview = item.image | default: item.file %}
+  {%- assign preview_media = site.data.media[preview] %}
+  {%- assign file_media = site.data.media[item.file] %}
+  {%- assign file_type = item.file | split: "." | last | upcase %}
+  <figure class="poster">
+    <a href="{{ preview_media.thumb | default: preview | relative_url }}" class="poster-preview" title="Bigger preview">
+      {% include img.html src=preview alt=item.title %}
+    </a>
+    <figcaption>
+      <strong>{{ item.title }}</strong>
+      {%- if item.text %}<br>{{ item.text }}{% endif %}
+      <br><span class="file-meta">by {{ item.author | default: site.data.me.name }}</span>
+      <br><a href="{{ item.file | relative_url }}" download>Download {{ file_type }}{% if file_media.size %} · {{ file_media.size }}{% endif %}</a>
+    </figcaption>
+  </figure>
+  {%- endfor %}
+</div>
+
+<dialog class="viewer" id="viewer">
+  <form method="dialog"><button class="viewer-close" aria-label="Close">✖</button></form>
+  <img alt="">{% comment %} gallery.js fills in src and alt {% endcomment %}
+  <div class="viewer-caption"></div>
+</dialog>
+
+<script src="{{ '/assets/js/gallery.js' | relative_url }}" defer></script>

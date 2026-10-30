@@ -1,0 +1,8 @@
+{%- comment -%}
+  A pile of blocks (usually cards or tiles) with even gaps between them.
+    - type: stack
+      blocks: [blocks…]
+{%- endcomment -%}
+<div class="stack">
+{% include blocks.html blocks=include.item.blocks %}
+</div>

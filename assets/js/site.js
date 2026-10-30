@@ -1,5 +1,5 @@
 // Behaviour shared by every page: light/dark button, background logos, confetti.
-// Page-specific scripts (conferences.js, gallery.js, countdown.js) are loaded
+// Page-specific scripts (conferences.js, gallery.js) are loaded
 // by the pages that need them.
 (function () {
   "use strict";
@@ -14,6 +14,15 @@
   function showTheme() {
     const dark = root.dataset.theme === "dark";
     toggles.forEach((button) => { button.textContent = dark ? "☼" : "☾"; });
+
+    // Demo plots come in pairs, plot.png and plot-dark.png; plot.png stays if there's no dark one.
+    document.querySelectorAll(".demo article img[src$='.png']").forEach((img) => {
+      if (!img.dataset.light) {
+        img.dataset.light = img.getAttribute("src");
+        img.addEventListener("error", () => { img.src = img.dataset.light; });
+      }
+      img.src = dark ? img.dataset.light.replace(/\.png$/, "-dark.png") : img.dataset.light;
+    });
   }
 
   toggles.forEach((button) => {
@@ -33,8 +42,10 @@
     const logos = Array.from(background.children);
     const needed = Math.ceil(window.screen.width / 100) * Math.ceil(window.screen.height / 80);
     const pile = [];
+    // dark-only copies are hidden in light mode (and light-only in dark), so make extra to still fill the screen
+    const shown = logos.filter((logo) => !logo.classList.contains("dark-only")).length;
 
-    while (pile.length < needed) {
+    while (pile.length < needed * logos.length / shown) {
       const round = logos.slice();
       for (let i = round.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));

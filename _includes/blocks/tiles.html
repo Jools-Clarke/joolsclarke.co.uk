@@ -1,0 +1,15 @@
+{%- comment -%}
+  A picture tile for every entry in a list in _includes/content/data/.
+    - type: tiles
+      list: projects           # data/projects.yml
+      heading: Projects        # optional small gold heading above them
+      offset: 2                # optional: skip the first N tiles
+      limit: 2                 # optional: show at most N
+  Put it in a stack for even gaps.
+{%- endcomment -%}
+{%- if include.item.heading %}
+<h2 class="section-header" id="{{ include.item.heading | slugify }}">{{ include.item.heading }}</h2>
+{%- endif %}
+{%- for tile_item in site.data[include.item.list] offset: include.item.offset limit: include.item.limit %}
+{% include blocks/tile.html item=tile_item %}
+{%- endfor %}

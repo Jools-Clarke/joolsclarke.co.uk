@@ -1,0 +1,55 @@
+{%- comment -%}
+  A card with a coloured left edge: the site's main building block.
+  In a page's blocks:   - type: card
+                          title: GitHub
+                          url: https://github.com/…
+  or one entry from a data file:  - type: card
+                                    from: perturb.paper   # data/perturb.yml -> paper
+  (the `cards` block makes one for every entry in a list.)
+
+    title     heading
+    url       where it links. Links to other sites open in a new tab.
+              No url (and no copy): a greyed-out "coming soon" card.
+    copy      instead of url: clicking the card copies this text (e.g. my
+              email address) and says so in a little pop-up
+    text      markdown under the title (don't put links in it: the whole card is a link)
+    note      red warning box
+    label     small word above the title, e.g. Demo
+    accent    1-6, colour of the left edge. Otherwise 1, or cycling by `index` in a `cards` block.
+    confetti  true for confetti on page load and hover
+    disabled  true for a greyed-out "coming soon" card that shakes, even with a url
+    big       true for a chunkier, bold card (good for a single call to action)
+{%- endcomment -%}
+{%- assign card = include.item | default: include -%}
+{%- if card.from -%}
+  {%- assign card_keys = card.from | split: "." -%}
+  {%- assign card = site.data -%}
+  {%- for card_key in card_keys -%}{%- assign card = card[card_key] -%}{%- endfor -%}
+{%- endif -%}
+{%- assign card_off = card.disabled -%}
+{%- unless card.url or card.copy -%}{%- assign card_off = true -%}{%- endunless -%}
+{%- assign card_accent = card.accent | default: include.accent -%}
+{%- unless card_accent -%}
+  {%- assign card_accent = include.index | default: 0 | modulo: 6 | plus: 1 -%}
+{%- endunless -%}
+{%- assign card_tag = "a" -%}
+{%- if card.url == nil or card_off -%}{%- assign card_tag = "div" -%}{%- endif -%}
+<div{% if card.title %} id="{{ card.title | slugify }}"{% endif %}>{% comment %} plain wrapper so the card also works inside Markdown pages {% endcomment %}
+<{{ card_tag }} class="link-box accent-{{ card_accent }}
+  {%- if card.confetti %} has-confetti{% endif %}
+  {%- if card_off %} not-ready{% endif %}
+  {%- if card.big %} big{% endif %}"
+  {%- if card_tag == "a" %} href="{{ card.url | relative_url }}"{% if card.url contains "://" %} target="_blank" rel="noopener"{% endif %}{% endif %}
+  {%- if card.copy %} data-copy="{{ card.copy | escape }}" role="button" tabindex="0"{% endif %}>
+  {%- if card.label %}
+  <span class="card-label">{{ card.label }}</span>
+  {%- endif %}
+  {%- if card.title %}
+  <h3>{{ card.title }}</h3>
+  {%- endif %}
+  {{ card.text | markdownify }}
+  {%- if card.note %}
+  <div class="warning"><strong>{{ card.note }}</strong></div>
+  {%- endif %}
+</{{ card_tag }}>
+</div>

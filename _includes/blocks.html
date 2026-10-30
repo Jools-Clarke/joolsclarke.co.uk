@@ -1,0 +1,10 @@
+{%- comment -%}
+  Draws a list of blocks from a page's front matter, in order. Each block's
+  `type` is a file in _includes/blocks/ (type: card -> blocks/card.html),
+  which gets the block's other fields as `include.item`.
+    {% include blocks.html blocks=page.blocks %}
+  Blocks that hold other blocks (columns, stack) call this file again.
+{%- endcomment -%}
+{%- for block in include.blocks %}
+{% include blocks/{{ block.type }}.html item=block %}
+{%- endfor %}

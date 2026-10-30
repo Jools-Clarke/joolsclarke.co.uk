@@ -1,36 +1,23 @@
 ---
 title: Climate Change Committee Placement | Jools Clarke
 description: From February to August 2026 Jools Clarke led the technical migration of the UK Climate Change Committee's models from Excel to Python, and contributed to the 2026 Progress Report to Parliament.
+blocks:
+  - type: columns
+    left:
+      - type: image
+        heading: true
+        src: /ccc/ClimateChangeCommittee.png
+        alt: Climate Change Committee placement
+      - type: text
+        file: ccc/intro.md
+      - type: rule
+      - type: card
+        title: UKPR26
+        url: https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2026-report-to-parliament/
+        text: Read the Climate Change Committee's annual assessment of the UK's progress towards reducing greenhouse gas emissions and achieving Net Zero.
+        accent: 2
+    right:
+      - type: text
+        file: ccc/role.md
+        class: prose
 ---
-<div class="columns">
-  <div>
-    <h1 class="logo-heading">
-      {% include img.html src="/ccc/ClimateChangeCommittee.png" alt="Climate Change Committee placement" eager=true %}
-    </h1>
-    <p>From February through to August 2026 I worked with the UK Climate Change Committee (CCC) on an internal model review project.</p>
-    <p>I was also involved in the publication of the official parliamentary UK Progress Report, which can be read by clicking below.</p>
-    <hr>
-    {% include card.html
-      title="UKPR26"
-      url="https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2026-report-to-parliament/"
-      text="Read the Climate Change Committee's annual assessment of the UK's progress towards reducing greenhouse gas emissions and achieving Net Zero."
-      accent=2
-    %}
-  </div>
-
-  <article class="prose">
-    <h2>About my role</h2>
-    <p>Over a six-month period, I served as the primary technical expert for a team delivering the transition of a suite of climate models from Excel to Python.</p>
-    <p>My responsibilities included:</p>
-    <ul>
-      <li>Led the technical delivery of the migration and acted as the primary Python expert for a team of five.</li>
-      <li>Assessed the technical and operational risks associated with migrating the modelling ecosystem from Excel to Python.</li>
-      <li>Established development standards, coding practices, and governance for Python-based models.</li>
-      <li>Designed and implemented a reusable framework to enable future model migrations using a consistent, scalable approach.</li>
-      <li>Advised on the team's Python training strategy and mentored colleagues with little or no prior Python experience through code reviews, pair programming, and technical guidance.</li>
-    </ul>
-
-    <h2>Impact</h2>
-    <p>Beyond delivering the initial migration, I focused on creating sustainable engineering practices that would support future projects. The result was not just a successful model transition, but a repeatable development framework, improved technical capability across the team, and a solid foundation for the organisation's wider adoption of Python for model development.</p>
-  </article>
-</div>

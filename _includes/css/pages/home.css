@@ -1,0 +1,32 @@
+/* Homepage on phones (one column), top to bottom: bio, projects,
+   publications, the map, links, a rule, the gallery. display: contents opens up
+   both columns and their stacks, so every heading, card and tile is spaced
+   by .columns (15px, the same as a stack) and `order` can interleave them.
+   Unordered items (bio, projects, publications) keep their place. */
+@media (max-width: 799px) {
+  .home-page {
+    gap: 15px;
+  }
+
+  .home-page > *,
+  .home-page > * > .stack {
+    display: contents;
+  }
+
+  /* minus the 15px gap, so the rule keeps its usual 10px/20px spacing */
+  .home-page > :first-child > hr {
+    margin: -5px 0 5px;
+  }
+
+  /* the rule between publications and links now sits above the map */
+  .home-page > :last-child > .stack > hr { order: 1; }
+  .home-page div:has(> a[href="/conferences/"]) { order: 2; }
+  .home-page > :last-child > .stack > hr ~ * { order: 3; }   /* Links */
+  .home-page div:has(> a[href="/ariel/gallery/"]) {
+    order: 4;
+    /* a rule above it, spaced like the others (20px either side) */
+    margin-top: 5px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule-color);
+  }
+}

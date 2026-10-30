@@ -1,0 +1,16 @@
+{%- comment -%}
+  A Markdown file from _includes/content/, turned into HTML.
+    - type: text
+      file: ccc/role.md        # path inside _includes/content/
+      class: prose             # optional: prose, subheading, centred
+  The file can use Liquid, e.g. {{ site.data.me.email }}. A wrong file name
+  stops the build with "Could not locate the included file".
+{%- endcomment -%}
+{%- capture text_md %}{% include content/{{ include.item.file }} %}{% endcapture -%}
+{%- if include.item.class %}
+<div class="{{ include.item.class }}">
+{%- endif %}
+{{ text_md | markdownify }}
+{%- if include.item.class %}
+</div>
+{%- endif %}

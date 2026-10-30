@@ -1,0 +1,105 @@
+/* ── Section tabs (_includes/blocks/section-tabs.html): notebook tabs on the
+   left edge, phones only. Each tab is a rounded trapezoid, long side against
+   the screen edge: two halves skewed opposite ways, so the slope stays the
+   same however long the label is. Later tabs overlap the bottom of the one
+   above. Hidden off the edge until you scroll, then they
+   slide in, and leave 2 seconds after scrolling stops. Keyboard users get
+   them while tabbing through. ── */
+.section-tabs {
+  display: none;
+}
+
+@media (max-width: 799px) {
+  .section-tabs {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    transform: translate(calc(-100% - 6px), -50%);   /* past the edge, shadow too */
+    transition: transform 0.25s ease;
+  }
+
+  /* :focus-visible, not :focus-within: a tapped link keeps focus (#top
+     has nothing to move it to), which would hold the tabs out for good */
+  .section-tabs.scrolling,
+  .section-tabs:has(:focus-visible) {
+    transform: translate(0, -50%);
+  }
+
+  .section-tabs a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    padding: 14px 0;
+    font-size: 13px;
+    color: var(--text-color);
+    text-decoration: none;
+    filter: drop-shadow(0 1px 1px var(--shadow-color));
+    transition: width 0.2s ease, color 0.2s ease;
+  }
+
+  .section-tabs a + a {
+    margin-top: -8px;
+  }
+
+  .section-tabs a::before,
+  .section-tabs a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 50%;
+    background: var(--card-bg);
+    transform-origin: left;
+    transition: background 0.2s ease;
+  }
+
+  .section-tabs a::before {
+    top: 0;
+    border-top-right-radius: 10px;
+    transform: skewY(12deg);
+  }
+
+  .section-tabs a::after {
+    bottom: 0;
+    border-bottom-right-radius: 10px;
+    transform: skewY(-12deg);
+  }
+
+  /* label reads bottom to top, like a divider tab */
+  .section-tabs span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* while scrolling: the current section's tab pops out */
+  .section-tabs.scrolling a[aria-current] {
+    z-index: 1;
+    width: 48px;
+    color: var(--card-bg);
+  }
+
+  .section-tabs.scrolling a[aria-current]::before,
+  .section-tabs.scrolling a[aria-current]::after {
+    background: var(--accent-2);
+  }
+
+  /* tapping a tab without JS: land below the sticky banner (section-tabs.js
+     measures the banner instead) */
+  main [id] {
+    scroll-margin-top: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-tabs,
+  .section-tabs a,
+  .section-tabs a::before,
+  .section-tabs a::after {
+    transition: none;
+  }
+}

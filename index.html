@@ -4,6 +4,39 @@ description: Jools Clarke is a PhD student at UCL using machine learning to stud
 header: name
 banner: "email me directly ► [j.d.clarke@ucl.ac.uk](#copy)"
 banner_style: quiet
+blocks:
+  - type: columns
+    class: home-page         # phone order set in css/pages/home.css
+    left:
+      - type: intro
+        file: home/bio.md
+      - type: rule
+      - type: stack
+        blocks:
+          - type: tiles
+            list: projects
+            heading: Projects
+            limit: 2                 # Perturb, CCC
+          - type: rule
+          - type: tiles
+            list: projects
+            offset: 2                # map and gallery
+    right:
+      - type: stack
+        blocks:
+          - type: cards
+            list: publications
+            heading: Publications
+          - type: rule
+          - type: cards
+            list: links
+            heading: Links
+  - type: section-tabs        # phones only: tabs down the left edge, in phone order
+    tabs:
+      - { label: About, target: top }
+      - { label: Projects, target: projects }
+      - { label: Publications, target: publications }
+      - { label: Map, target: conference-map }
+      - { label: Links, target: links }
+      - { label: Gallery, target: gallery }
 ---
-{%- comment -%} Content lives in _data/ (me, projects, publications, links). {%- endcomment -%}
-{% include content/home.html %}

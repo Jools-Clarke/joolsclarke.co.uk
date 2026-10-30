@@ -1,0 +1,53 @@
+/* ── Perturb page (perturb/index.html): styleguide colours ── */
+.perturb-page {
+  --accent-1: var(--perturb-3);
+  --accent-2: var(--perturb-1);
+  --accent-3: var(--perturb-2);
+}
+
+.perturb-page h2 {
+  color: var(--perturb-2);
+}
+
+.perturb-page hr {
+  border-top-color: var(--perturb-1);
+  opacity: 0.5;
+}
+
+/* Phones (one column), top to bottom: intro, paper / get started / package,
+   the Gaussian Perturb text and FAQs, then the other demos and replication.
+   display: contents opens up the left column so `order` can put the right
+   column between its two groups of cards; the gap becomes the stack's 15px. */
+@media (max-width: 799px) {
+  .perturb-page {
+    gap: 15px;
+  }
+
+  .perturb-page > :first-child,
+  .perturb-page > :first-child > .stack {
+    display: contents;
+  }
+
+  /* margins don't overlap in a flex column: trim them to the old spacing */
+  .perturb-page > :first-child > h1 {
+    margin-bottom: 5px;
+  }
+
+  .perturb-page > :first-child > .subheading {
+    margin-bottom: 20px;
+  }
+
+  .perturb-page > :first-child > hr {
+    margin: -5px 0 5px;
+  }
+
+  .perturb-page > :last-child {
+    order: 1;
+    margin-top: 15px;
+  }
+
+  .perturb-page > :first-child > .stack > hr,
+  .perturb-page > :first-child > .stack > hr ~ * {
+    order: 2;
+  }
+}

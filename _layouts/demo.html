@@ -1,0 +1,51 @@
+---
+layout: default
+---
+{%- comment -%}
+  A Gaussian Perturb demo, written like a notebook in Markdown: text, ```python
+  code blocks and images. Every page using this layout gets a card on /perturb/.
+  Page front matter:
+    title, description   as usual (the description is also the card's text)
+    text                 the demo's Markdown, a file in _includes/content/
+    colab                link to open the notebook in Colab (button greyed out without it)
+  The "Package repo" button uses `repo` in data/perturb.yml. Previous/next
+  links follow the folder order of perturb/demos/.
+{%- endcomment -%}
+<div class="demo perturb-page">
+  <h1>{{ page.title | split: " | " | first }}</h1>
+
+  <p class="demo-buttons">
+    {%- if page.colab %}
+    <a class="button" href="{{ page.colab }}" target="_blank" rel="noopener">Open in Colab</a>
+    {%- else %}
+    <span class="button not-ready">Open in Colab (coming soon)</span>
+    {%- endif %}
+    {%- if site.data.perturb.repo.url %}
+    <a class="button" href="{{ site.data.perturb.repo.url }}" target="_blank" rel="noopener">Package repo</a>
+    {%- else %}
+    <span class="button not-ready">Package repo (coming soon)</span>
+    {%- endif %}
+  </p>
+
+  <article class="prose">
+{%- capture demo_md %}{% include content/{{ page.text }} %}{% endcapture %}
+{{ demo_md | markdownify }}
+  </article>
+
+  {%- assign demos = site.pages | where: "layout", "demo" | sort: "path" %}
+  {%- for demo in demos %}
+    {%- if demo.url == page.url %}
+      {%- assign demo_prev = forloop.index0 | minus: 1 %}
+      {%- assign demo_next = forloop.index0 | plus: 1 %}
+    {%- endif %}
+  {%- endfor %}
+  <hr>
+  <nav class="demo-pager">
+    {%- if demo_prev >= 0 %}
+    <a href="{{ demos[demo_prev].url | relative_url }}" class="button">◀︎ {{ demos[demo_prev].title | split: " | " | first }}</a>
+    {%- endif %}
+    {%- if demo_next < demos.size %}
+    <a href="{{ demos[demo_next].url | relative_url }}" class="button demo-next">{{ demos[demo_next].title | split: " | " | first }} ▶︎</a>
+    {%- endif %}
+  </nav>
+</div>

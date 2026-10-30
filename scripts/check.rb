@@ -5,7 +5,8 @@
 #   - a link/image/script pointing at a page or file that doesn't exist
 #   - links to this site written as https://joolsclarke.co.uk/... (use /path/)
 #   - files loaded from raw.githubusercontent.com / github.com/.../raw, anywhere in the page
-#   - images without alt text, pages without a <title>
+#   - images without alt text (alt="" only on decorative ones marked aria-hidden),
+#     pages without a <title>
 # Warnings:
 #   - pages without a description
 #   - a big original image put on a page instead of its small preview
@@ -22,7 +23,8 @@ errors = []
 warnings = []
 
 def target_file(path)
-  file = File.join(SITE, URI.decode_www_form_component(path))
+  # unescape keeps + as +, unlike decode_www_form_component
+  file = File.join(SITE, URI::DEFAULT_PARSER.unescape(path))
   file = File.join(file, "index.html") if File.directory?(file)
   file
 end
@@ -44,7 +46,13 @@ Dir.glob("**/*.html", base: SITE).sort.each do |page|
 
   html.scan(/<(a|img|script|link|source|iframe)\b([^>]*)>/im) do |tag, attrs|
     next if tag == "link" && attrs =~ /rel="(canonical|alternate)"/
-    errors << "#{page}: <img> without alt: #{attrs.strip[0, 80]}" if tag == "img" && attrs !~ /\balt=/
+    if tag == "img" && attrs =~ /(?<![-\w])src="[^"]/
+      if attrs !~ /(?<![-\w])alt=/
+        errors << "#{page}: <img> without alt: #{attrs.strip[0, 80]}"
+      elsif attrs =~ /(?<![-\w])alt=""/ && attrs !~ /aria-hidden="true"/
+        errors << "#{page}: <img> with empty alt - describe it, or use img.html with alt=\"\" if it's decorative: #{attrs.strip[0, 80]}"
+      end
+    end
 
     url = attrs[/\b(?:href|src)="([^"]*)"/, 1]
     next if url.nil? || url.empty? || url.start_with?("#", "mailto:", "tel:", "data:", "javascript:")

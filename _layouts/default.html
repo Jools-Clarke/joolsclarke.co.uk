@@ -6,10 +6,12 @@
     banner_style         quiet (small, right-aligned) or leave out for a loud one
     header               name  -> big name on the left (homepage style)
                          none  -> no header row at all
-                         (default: back arrow to the homepage)
+                         (default: back arrow to `back`, else the homepage, + home button)
     narrow               true for a slim, centred column
     background           false to hide the tiled logos
-    analytics            false to skip Simple Analytics on this page
+                         (narrow and background also work in a layout's front matter, e.g. redirect.html)
+    blocks               what's on the page, drawn by _includes/blocks.html
+    blocks_from          another page's address: show its blocks instead (QR copies)
 {%- endcomment %}
 <html lang="{{ site.lang | default: 'en' }}">
 <head>
@@ -19,20 +21,25 @@
 {%- if page.banner %}
 {% include banner.html %}
 {%- endif %}
-{%- unless page.background == false %}
+{%- unless page.background == false or layout.background == false %}
 {% include background.html %}
 {%- endunless %}
-<div class="container{% if page.narrow %} narrow{% endif %}">
+<div class="container{% if page.narrow or layout.narrow %} narrow{% endif %}">
 {%- unless page.header == "none" %}
 {% include header.html %}
 {%- endunless %}
 <main>
 {{ content }}
+{%- if page.blocks_from %}
+  {%- assign blocks_page = site.pages | where: "url", page.blocks_from | first %}
+  {%- comment %} no such page (e.g. a missing trailing slash): stop the build rather than publish an empty QR page {% endcomment %}
+  {%- unless blocks_page %}{% include ERROR-blocks_from-matches-no-page.html %}{% endunless %}
+{% include blocks.html blocks=blocks_page.blocks %}
+{%- else %}
+{% include blocks.html blocks=page.blocks %}
+{%- endif %}
 </main>
 {% include footer.html %}
 </div>
-{%- if site.analytics and page.analytics != false and jekyll.environment == "production" %}
-<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-{%- endif %}
 </body>
 </html>

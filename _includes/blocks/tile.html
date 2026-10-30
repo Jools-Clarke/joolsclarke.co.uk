@@ -1,0 +1,27 @@
+{%- comment -%}
+  One picture tile, as in the homepage's left column (the `tiles` block makes
+  one for every entry in a list). See data/projects.yml for the fields. Without a title the image is shown
+  whole (good for logos). With a title the tile becomes a "cover": the
+  picture fills the tile and the title is written over it.
+{%- endcomment -%}
+{%- assign tile = include.item | default: include -%}
+<div{% if tile.title %} id="{{ tile.title | slugify }}"{% endif %}>{% comment %} plain wrapper so the tile also works inside Markdown pages {% endcomment %}
+<a href="{{ tile.url | relative_url }}" class="link-box accent-{{ tile.accent | default: 1 }} {% if tile.title %}cover-tile{% else %}logo-tile{% endif %}">
+{%- if tile.title %}
+  <div class="cover">
+    {% include img.html src=tile.image alt="" %}
+    <div class="cover-text">
+      <h3>{{ tile.title }}</h3>
+      {%- if tile.subtitle %}
+      <p>{{ tile.subtitle }}</p>
+      {%- endif %}
+    </div>
+  </div>
+{%- elsif tile.image_dark %}
+  {% include img.html src=tile.image alt=tile.alt class="light-only" %}
+  {% include img.html src=tile.image_dark alt=tile.alt class="dark-only" %}
+{%- else %}
+  {% include img.html src=tile.image alt=tile.alt %}
+{%- endif %}
+</a>
+</div>
