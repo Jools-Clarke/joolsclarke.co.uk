@@ -26,8 +26,9 @@
 
 .cover {
   position: relative;
+  width: 100%;         /* else max-height shrinks the width too, leaving bars */
   aspect-ratio: 16 / 9;
-  max-height: 300px;   /* don't get huge when the column is full width */
+  max-height: 300px;   /* don't get huge when the column is full width; the picture crops */
   overflow: hidden;
 }
 
